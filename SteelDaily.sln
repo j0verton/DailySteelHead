@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteelDaily", "SteelDaily\SteelDaily.csproj", "{77ECA493-C65C-4641-A34D-B3D837DFD34C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteelDaily.Tests", "SteelDaily.Tests\SteelDaily.Tests.csproj", "{67572899-1351-42AC-AD70-DBCE5117C730}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77ECA493-C65C-4641-A34D-B3D837DFD34C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77ECA493-C65C-4641-A34D-B3D837DFD34C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77ECA493-C65C-4641-A34D-B3D837DFD34C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77ECA493-C65C-4641-A34D-B3D837DFD34C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67572899-1351-42AC-AD70-DBCE5117C730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67572899-1351-42AC-AD70-DBCE5117C730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67572899-1351-42AC-AD70-DBCE5117C730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67572899-1351-42AC-AD70-DBCE5117C730}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5A5CFAC-A303-44AA-9611-7416D502A1AF}
+	EndGlobalSection
+EndGlobal
