@@ -23,7 +23,7 @@ namespace SteelDaily.Models
         {
             get {
                 List<List<ChromaticScale>> Fretboard = new List<List<ChromaticScale>>();
-                List<string> fretZeroString = Notes.Split(',', ' ').ToList();
+                List<string> fretZeroString = Notes.Split(',').ToList();
                 var fretZero = new List<ChromaticScale>();
                 foreach (string NoteString in fretZeroString)
                 {
