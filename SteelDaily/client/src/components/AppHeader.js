@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 
+
 const AppHeader = () => {
   const { getCurrentUser, logout, isAdmin } = useContext(UserProfileContext);
   const user = getCurrentUser();
@@ -34,11 +35,11 @@ const AppHeader = () => {
         <NavbarBrand tag={Link} to="/">
           <img
             id="header-logo"
-            src="/quill.png"
+            src="../steel-guitar.png"
             width="30"
             height="30"
             className="mr-1"
-            alt="Quill Logo"
+            alt="Pedal Steel Logo"
           />
           Tabloid
         </NavbarBrand>
@@ -47,7 +48,7 @@ const AppHeader = () => {
           <Nav className="mr-auto" navbar>
             {user ? (
               <>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink to="/explore" tag={Link}>
                     Explore
                   </NavLink>
@@ -61,13 +62,13 @@ const AppHeader = () => {
                   <NavLink to="/mypost" tag={Link}>
                     My Post
                   </NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
                   <NavLink to="/myprofile" tag={Link}>
                     My Profile
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink to="/subscription" tag={Link}>
                     Subscription
                   </NavLink>
@@ -97,7 +98,7 @@ const AppHeader = () => {
                       Profiles
                     </NavLink>
                   </NavItem>
-                )}
+                )} */}
                 <NavItem>
                   <NavLink tag={Link} to="/" onClick={logoutAndReturn}>
                     Logout
