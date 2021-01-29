@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SteelDaily.Models;
 using SteelDaily.Repositories;
 using System;
 using System.Collections.Generic;
@@ -51,81 +52,13 @@ namespace SteelDaily.Controllers
         public IActionResult Post(UserProfile userProfile)
         {
             userProfile.CreateDateTime = DateTime.Now;
-            userProfile.UserTypeId = UserType.AUTHOR_ID;
             _repo.Add(userProfile);
             return CreatedAtAction(
                 nameof(GetUserProfile),
                 new { firebaseUserId = userProfile.FirebaseUserId },
                 userProfile);
         }
-
-
-        [HttpPut("{firebaseUserId}")]
-        public IActionResult UpdateStatus(string firebaseUserId, UserProfile userProfile)
-        {
-            var user = GetCurrentUserProfile();
-            if (user.UserTypeId != 1)
-            {
-                return Unauthorized();
-            }
-            var currentProfileStatus = _repo.GetByFirebaseUserId(firebaseUserId);
-            if (firebaseUserId != userProfile.FirebaseUserId)
-            {
-                return BadRequest();
-            }
-            if (userProfile.UserStatusId == 2)
-            {
-                currentProfileStatus.UserStatusId = 1;
-                _repo.Update(currentProfileStatus);
-                return NoContent();
-            }
-            else if (userProfile.UserStatusId == 1)
-            {
-                if (_repo.AdminCount() <= 1)
-                {
-                    return Unauthorized();
-                }
-
-                currentProfileStatus.UserStatusId = 2;
-                _repo.Update(currentProfileStatus);
-                return NoContent();
-            }
-            return NoContent();
-
-        }
-        [HttpPut("typeEdit/{firebaseUserId}")]
-        public IActionResult UpdateType(string firebaseUserId, UserProfile userProfile)
-        {
-            var user = GetCurrentUserProfile();
-            if (user.UserTypeId != 1)
-            {
-                return Unauthorized();
-            }
-            var currentProfileStatus = _repo.GetByFirebaseUserId(firebaseUserId);
-            if (firebaseUserId != userProfile.FirebaseUserId)
-            {
-                return BadRequest();
-            }
-            if (userProfile.UserTypeId == 2)
-            {
-                currentProfileStatus.UserTypeId = 1;
-                _repo.Update(currentProfileStatus);
-                return NoContent();
-            }
-            else if (userProfile.UserTypeId == 1)
-            {
-                if (_repo.AdminCount() <= 1)
-                {
-                    return Unauthorized();
-                }
-
-                currentProfileStatus.UserTypeId = 2;
-                _repo.Update(currentProfileStatus);
-                return NoContent();
-            }
-            return NoContent();
-
-        }
+   
         private UserProfile GetCurrentUserProfile()
         {
             try

@@ -12,7 +12,7 @@ namespace SteelDaily.Models
         public string FirebaseUserId { get; set; }
         [Required]
         [MaxLength(50)]
-        public string DisplayName { get; set; }
+        public string Username { get; set; }
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
@@ -22,6 +22,7 @@ namespace SteelDaily.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public string Description { get; set; }
         public DateTime CreateDateTime { get; set; }
         [MaxLength(255)]
         [DataType(DataType.ImageUrl)]

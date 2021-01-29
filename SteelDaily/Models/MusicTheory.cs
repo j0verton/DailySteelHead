@@ -52,6 +52,10 @@ namespace SteelDaily.Models
             Seven = 12
         }
 
+        //public static int CSToInt(ChromaticScale enum)   
+        //{
+        //    return Convert.ToInt32(enum)
+        //}
         //public string GetDescription(this Enum value)
         //{
         //    return ((DescriptionAttribute)Attribute.GetCustomAttribute(

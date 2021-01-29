@@ -26,7 +26,7 @@ VALUES
 
 
   set identity_insert [UserProfile] on
-insert into UserProfile (Id, Username, FirstName, LastName, Email, CreateDateTime, ImageLocation, FirebaseUserId) values (1, 'admin', 'Reina', 'Sandwith', 'admin@example.com', '2020-04-23', 'https://robohash.org/numquamutut.png?size=150x150&set=set1', 'HHhIydCh6cYHusJOurjxUGDlShA2');
+insert into UserProfile (Id, Userame, FirstName, LastName, Email, CreateDateTime, ImageLocation, FirebaseUserId) values (1, 'admin', 'Reina', 'Sandwith', 'admin@example.com', '2020-04-23', 'https://robohash.org/numquamutut.png?size=150x150&set=set1', 'HHhIydCh6cYHusJOurjxUGDlShA2');
 insert into UserProfile (Id, Username, FirstName, LastName, Email, CreateDateTime, ImageLocation, FirebaseUserId) values (2, 'jeffjeffityjeff', 'Jeff', 'Jeff', 'jeff@jeff.com', '2020-04-20', 'https://robohash.org/nisiautemet.png?size=150x150&set=set1', 'qugdVHtN3qZPYtIkRLXkOWeB77r2');
 insert into UserProfile (Id, Username, FirstName, LastName, Email, CreateDateTime, ImageLocation, FirebaseUserId) values (3, 'aotton2', 'Arnold', 'Otton', 'aotton2@ow.lyx', '2020-01-13', 'https://robohash.org/molestiaemagnamet.png?size=150x150&set=set1', 'wqhvgdjxjqkqecuridpvjtwpoacc');
 insert into UserProfile (Id, Username, FirstName, LastName, Email, CreateDateTime, ImageLocation, FirebaseUserId) values (4, 'agrzeskowski3', 'Aharon', 'Grzeskowski', 'agrzeskowski3@fc2.comx', '2020-04-12', 'https://robohash.org/doloremfugiatrerum.png?size=150x150&set=set1', 'exsjcqvnhydjofznqmtvecekcgno');

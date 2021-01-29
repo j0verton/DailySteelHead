@@ -8,8 +8,6 @@ namespace SteelDaily.Models
 {
     public class Key
     {
-
-        [Required]
         public int Id { get; set; }
         [Required]
         public string Root { get; set; }

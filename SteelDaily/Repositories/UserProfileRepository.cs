@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SteelDaily.Data;
+using SteelDaily.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tabloid_Fullstack.Data;
-using Tabloid_Fullstack.Models;
-using Tabloid_Fullstack.Models.ViewModels;
 
 namespace SteelDaily.Repositories
 {
@@ -21,41 +20,24 @@ namespace SteelDaily.Repositories
         public List<UserProfile> GetProfiles()
         {
             return _context.UserProfile
-                .Include(up => up.UserType)
-                .OrderBy(up => up.DisplayName)
-                .ToList();
-        }
-        public List<UserProfile> GetAuthorProfiles()
-        {
-            return _context.UserProfile
-            .Include(up => up.UserType)
-                .Include(up => up.Post
-                    .Where(p => p.IsApproved))
-                .Where(up => up.Post.Count >= 1)
-                .OrderByDescending(up => up.CreateDateTime)
-                .Take(10)
+                .OrderBy(up => up.Username)
                 .ToList();
         }
         public UserProfile GetProfileById(int id)
         {
             return _context.UserProfile
-                .Include(up => up.UserType)
-                .Include(up => up.Post)
                 .FirstOrDefault(up => up.Id == id);
         }
 
         public UserProfile GetByFirebaseUserId(string firebaseUserId)
         {
             return _context.UserProfile
-                .Include(up => up.UserType)
-                .Include(up => up.Post)
                 .FirstOrDefault(up => up.FirebaseUserId == firebaseUserId);
 
         }
 
         public void Add(UserProfile userProfile)
         {
-            userProfile.UserStatusId = 1;
             _context.Add(userProfile);
             _context.SaveChanges();
         }
@@ -63,14 +45,6 @@ namespace SteelDaily.Repositories
         {
             _context.Entry(userProfile).State = EntityState.Modified;
             _context.SaveChanges();
-        }
-
-        public int AdminCount()
-        {
-            return _context.UserProfile
-                .Where(up => up.UserTypeId == 1)
-                .Where(up => up.UserStatusId == 1)
-                .Count();
         }
     }
 }

@@ -22,12 +22,12 @@ namespace SteelDaily.Models
         public List<List<ChromaticScale>> Fretboard 
         {
             get {
-                List<List<ChromaticScale>> Fretboard = new List<List<ChromaticScale>>();
+                List<List<ChromaticScale>> fretboard = new List<List<ChromaticScale>>();
                 List<string> fretZeroString = Notes.Split(',').ToList();
                 var fretZero = new List<ChromaticScale>();
-                foreach (string NoteString in fretZeroString)
+                foreach (string noteString in fretZeroString)
                 {
-                    fretZero.Add((ChromaticScale)Enum.Parse(typeof(ChromaticScale), NoteString));
+                    fretZero.Add((ChromaticScale)Enum.Parse(typeof(ChromaticScale), noteString));
                 }
                 Fretboard.Add(fretZero);
                 for (var i = 0; i < 22; i++)
@@ -35,14 +35,14 @@ namespace SteelDaily.Models
                     var fret = new List<ChromaticScale>();
                     foreach (ChromaticScale note in Fretboard[i])
                     {
-                        ChromaticScale NewNote = note + 1;
-                        if (Convert.ToInt32(NewNote) == 13)
+                        ChromaticScale newNote = note + 1;
+                        if (Convert.ToInt32(newNote) == 13)
                         {
-                            NewNote = (ChromaticScale)1;
+                            newNote = (ChromaticScale)1;
                         }
-                        fret.Add(NewNote);
+                        fret.Add(newNote);
                     };
-                    Fretboard.Add(fret);
+                    fretboard.Add(fret);
                 }
                 return Fretboard;
             }

@@ -7,18 +7,18 @@ namespace SteelDaily.Models.ViewModel
 {
     public class IntervalFretboard : MusicTheory
     {
-        public Key key { get; set; }
+        public Key Key { get; set; }
 
-        public Tuning tuning { get; set; }
+        public Tuning Tuning { get; set; }
 
         public List<List<string>> Fretboard
         {
             get
             {
-                ChromaticScale root = (ChromaticScale) Enum.Parse(typeof(ChromaticScale), key.Root);
+                ChromaticScale root = (ChromaticScale) Enum.Parse(typeof(ChromaticScale), Key.Root);
                 int transposition = (int) root - 1;
-                List <List<string>> Fretboard = new List<List<string>>();
-                foreach (List<ChromaticScale> fret in tuning.Fretboard)
+                List <List<string>> fretboard = new List<List<string>>();
+                foreach (List<ChromaticScale> fret in Tuning.Fretboard)
                 {
                     List<string> fretIntervals = new List<string>();
                     foreach (ChromaticScale note in fret)
@@ -27,9 +27,9 @@ namespace SteelDaily.Models.ViewModel
                         Intervals interval = (Intervals)intervalHalfSteps;
                         fretIntervals.Add(interval.ToString());
                     }
-                    Fretboard.Add(fretIntervals);
+                    fretboard.Add(fretIntervals);
                 }
-                return Fretboard;
+                return fretboard;
             }
         }
 
