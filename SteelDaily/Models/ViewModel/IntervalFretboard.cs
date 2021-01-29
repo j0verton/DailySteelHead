@@ -7,7 +7,7 @@ namespace SteelDaily.Models.ViewModel
 {
     public class IntervalFretboard : MusicTheory
     {
-        public Key Key { get; set; }
+        public string Key { get; set; }
 
         public Tuning Tuning { get; set; }
 
@@ -15,7 +15,7 @@ namespace SteelDaily.Models.ViewModel
         {
             get
             {
-                ChromaticScale root = (ChromaticScale) Enum.Parse(typeof(ChromaticScale), Key.Root);
+                ChromaticScale root = (ChromaticScale) Enum.Parse(typeof(ChromaticScale), Key);
                 int transposition = (int) root - 1;
                 List <List<string>> fretboard = new List<List<string>>();
                 foreach (List<ChromaticScale> fret in Tuning.Fretboard)

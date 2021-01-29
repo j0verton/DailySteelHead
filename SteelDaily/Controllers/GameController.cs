@@ -35,10 +35,7 @@ namespace SteelDaily.Controllers
             {
                 Fretboard = new IntervalFretboard()
                 {
-                    Key = new Key()
-                    {
-                        Root = key
-                    },
+                    Key = key,
                     Tuning = _tuningRepository.GetDefaultTuning()
                 },
             };
@@ -59,34 +56,27 @@ namespace SteelDaily.Controllers
             };
 
             _resultRepository.Add(newResult);
-            var createdResult = CreatedAtAction("Get", new { id = newResult.Id }, newResult);
-            //how do i capture this new id ??????????????
-            //newResult.Id = createdResult.Value.
-
-
-            //var game = new InProcessGame()
-            //{
-            //    QuestionNumbers = newGame.QuestionNumbers,
-            //    //Result = 
-            //};
-            return Ok(newResult);
+            return Ok(CreatedAtAction("Get", new { id = newResult.Id }, newResult));
         }
         [HttpPut]
-        public IActionResult Answer(Result result) 
+        public IActionResult Answer(InProcessGame game) 
         {
-
-            var storedResult = _resultRepository.GetById(result.Id);
+            var storedResult = _resultRepository.GetById(game.Result.Id);
             if (storedResult.UserId != GetCurrentUserProfile().Id || storedResult.Complete == true)
             {
                 return BadRequest();
             }
             if (storedResult.Questions.Count >= 9)
             {
+                storedResult.Outcomes.Add(game.Outcome);
                 storedResult.Complete = true;
-
                 return Ok(storedResult);
             }
-        
+            storedResult.Outcomes.Add(game.Outcome);
+            storedResult.Questions.Add(game.QuestionNumbers);
+            _resultRepository.Add(storedResult);
+
+            return Ok(storedResult);
         }
 
 

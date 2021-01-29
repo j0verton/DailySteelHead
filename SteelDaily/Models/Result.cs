@@ -16,9 +16,12 @@ namespace SteelDaily.Models
         public int TuningId { get; set; }
         public Tuning Tuning { get; set; }
         public List<List<int>> Questions { get; set; }
-        public List<bool> Outcome { get; set; }
+        public List<bool> Outcomes { get; set; }
         public bool Public { get; set; }
         public DateTime Date { get; set; }
+
+        //could refactor to compute completion at 10 answers, 
+        //would then need to also change gamecontroller answer method
         public bool Complete { get; set; }
     }
 }
