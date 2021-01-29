@@ -43,6 +43,9 @@ namespace SteelDaily.Controllers
                 },
             };
 
+            var questionList = new List<List<int>>();
+            questionList.Add(newGame.QuestionNumbers);
+
             var newResult = new Result()
             {
                 UserId = GetCurrentUserProfile().Id,
@@ -51,21 +54,39 @@ namespace SteelDaily.Controllers
                 TuningId = newGame.Fretboard.Tuning.Id,
                 Public = true,
                 Date = DateTime.Now,
-                Complete = false
+                Complete = false,
+                Questions = questionList
             };
 
             _resultRepository.Add(newResult);
             var createdResult = CreatedAtAction("Get", new { id = newResult.Id }, newResult);
             //how do i capture this new id ??????????????
-            newResult.Id = createdResult.Value.
+            //newResult.Id = createdResult.Value.
 
 
-            var game = new InProcessGame()
+            //var game = new InProcessGame()
+            //{
+            //    QuestionNumbers = newGame.QuestionNumbers,
+            //    //Result = 
+            //};
+            return Ok(newResult);
+        }
+        [HttpPut]
+        public IActionResult Answer(Result result) 
+        {
+
+            var storedResult = _resultRepository.GetById(result.Id);
+            if (storedResult.UserId != GetCurrentUserProfile().Id || storedResult.Complete == true)
             {
-                QuestionNumbers = newGame.QuestionNumbers,
-                Result =
-            };
-            return Ok(game);
+                return BadRequest();
+            }
+            if (storedResult.Questions.Count >= 9)
+            {
+                storedResult.Complete = true;
+
+                return Ok(storedResult);
+            }
+        
         }
 
 

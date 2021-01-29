@@ -15,7 +15,8 @@ namespace SteelDaily.Models
         public Scale Scale { get; set; }
         public int TuningId { get; set; }
         public Tuning Tuning { get; set; }
-
+        public List<List<int>> Questions { get; set; }
+        public List<bool> Outcome { get; set; }
         public bool Public { get; set; }
         public DateTime Date { get; set; }
         public bool Complete { get; set; }
