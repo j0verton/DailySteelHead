@@ -23,7 +23,7 @@ namespace SteelDaily.Models
         public bool Complete { 
             get 
             {
-                return Outcomes.Count switch
+                return Outcomes.Count(v => v || !v) switch
                 {
                     >= 9 => true,
                     _ => false
