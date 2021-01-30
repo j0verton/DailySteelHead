@@ -20,8 +20,18 @@ namespace SteelDaily.Models
         public bool Public { get; set; }
         public DateTime Date { get; set; }
 
-        //could refactor to compute completion at 10 answers, 
-        //would then need to also change gamecontroller answer method
-        public bool Complete { get; set; }
+        public bool Complete { 
+            get 
+            {
+                if (Outcomes.Count >= 9)
+                {
+                    return true;
+                }
+                else 
+                {
+                    return false;
+                }
+            } 
+        }
     }
 }

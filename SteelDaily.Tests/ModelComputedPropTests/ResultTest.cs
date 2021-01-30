@@ -5,11 +5,13 @@ using SteelDaily.Models.ViewModel;
 
 namespace SteelDaily.Tests
 {
-    public class IntervalFretboardTest
+    public class ResultTest
     {
         [Fact]
-    publci void 
+        public void Complete_Should_Return_True_With_Ten_Outcomes()
         {
+
+
         }
     }
 }

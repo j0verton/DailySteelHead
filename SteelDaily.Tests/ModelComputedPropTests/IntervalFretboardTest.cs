@@ -12,12 +12,8 @@ namespace SteelDaily.Tests
         {
             var FretboardTest = new IntervalFretboard()
             {
-                key = new Key()
-                { 
-                    Id = 1,
-                    Root = "D",
-                },
-                tuning = new Tuning()
+                Key = "D",
+                Tuning = new Tuning()
                 {
                     Id = 1,
                     Name = "E9",
@@ -33,12 +29,8 @@ namespace SteelDaily.Tests
         {
             var FretboardTest = new IntervalFretboard()
             {
-                key = new Key()
-                {
-                    Id = 1,
-                    Root = "D",
-                },
-                tuning = new Tuning()
+                Key = "D",
+                Tuning = new Tuning()
                 {
                     Id = 1,
                     Name = "E9",

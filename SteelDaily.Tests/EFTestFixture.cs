@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
-namespace Gifter.Tests
+namespace SteelDaily.Tests
 {
 
     public class TestDbContext : ApplicationDbContext

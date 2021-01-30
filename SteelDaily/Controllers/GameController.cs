@@ -51,7 +51,6 @@ namespace SteelDaily.Controllers
                 TuningId = newGame.Fretboard.Tuning.Id,
                 Public = true,
                 Date = DateTime.Now,
-                Complete = false,
                 Questions = questionList
             };
 
@@ -69,7 +68,6 @@ namespace SteelDaily.Controllers
             if (storedResult.Questions.Count >= 9)
             {
                 storedResult.Outcomes.Add(game.Outcome);
-                storedResult.Complete = true;
                 return Ok(storedResult);
             }
             storedResult.Outcomes.Add(game.Outcome);
