@@ -35,16 +35,26 @@ const AppHeader = () => {
         <NavbarBrand tag={Link} to="/">
           <img
             id="header-logo"
-            src="../steel-guitar.png"
+            src="../steel.svg"
             width="30"
             height="30"
             className="mr-1"
-            alt="Pedal Steel Logo"
+            alt="Steel Daily"
           />
-          Tabloid
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <Nav>
+          <NavItem>
+            <NavLink to="/myprofile" tag={Link}>
+              My Profile
+                  </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/NTIgame" tag={Link}>
+              Name That Interval
+                  </NavLink>
+          </NavItem>
+          {/* <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             {user ? (
               <>
@@ -79,7 +89,8 @@ const AppHeader = () => {
               Welcome {user.displayName}
             </NavbarText>
           ) : null}
-        </Collapse>
+        </Collapse> */}
+        </Nav>
       </Navbar>
     </div>
   );

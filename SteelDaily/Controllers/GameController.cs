@@ -68,6 +68,8 @@ namespace SteelDaily.Controllers
             if (storedResult.Questions.Count >= 9)
             {
                 storedResult.Outcomes.Add(game.Outcome);
+                //remove following line if Complete becomes computed
+                //storedResult.Complete = true;
                 return Ok(storedResult);
             }
             storedResult.Outcomes.Add(game.Outcome);

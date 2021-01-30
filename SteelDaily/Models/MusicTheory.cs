@@ -8,6 +8,7 @@ namespace SteelDaily.Models
 {
     public class MusicTheory
     {
+        public int Id { get; set; }
 
         public enum ChromaticScale
         {
