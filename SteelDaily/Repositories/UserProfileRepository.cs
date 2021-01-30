@@ -16,7 +16,7 @@ namespace SteelDaily.Repositories
         {
             _context = context;
         }
-        //remember you took posts out of GetProfiles
+
         public List<UserProfile> GetProfiles()
         {
             return _context.UserProfile

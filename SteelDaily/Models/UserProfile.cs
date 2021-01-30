@@ -25,7 +25,7 @@ namespace SteelDaily.Models
         public string Description { get; set; }
         public DateTime CreateDateTime { get; set; }
         [MaxLength(255)]
-        [DataType(DataType.ImageUrl)]
+        //[DataType(DataType.ImageUrl)]
         public string ImageLocation { get; set; }
     }
 }

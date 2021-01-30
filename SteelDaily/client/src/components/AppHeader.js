@@ -48,57 +48,11 @@ const AppHeader = () => {
           <Nav className="mr-auto" navbar>
             {user ? (
               <>
-                {/* <NavItem>
-                  <NavLink to="/explore" tag={Link}>
-                    Explore
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink to="/create/post" tag={Link}>
-                    New Post
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink to="/mypost" tag={Link}>
-                    My Post
-                  </NavLink>
-                </NavItem> */}
                 <NavItem>
                   <NavLink to="/myprofile" tag={Link}>
                     My Profile
                   </NavLink>
                 </NavItem>
-                {/* <NavItem>
-                  <NavLink to="/subscription" tag={Link}>
-                    Subscription
-                  </NavLink>
-                </NavItem>
-                {isAdmin() && (
-                  <>
-                    <NavItem>
-                      <NavLink to="/categories" tag={Link}>
-                        Categories
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink to="/tags" tag={Link}>
-                        Tags
-                      </NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink to="/approval" tag={Link}>
-                        Post Approval
-                      </NavLink>
-                    </NavItem>
-                  </>
-                )}
-                {isAdmin() && (
-                  <NavItem>
-                    <NavLink to="/profiles" tag={Link}>
-                      Profiles
-                    </NavLink>
-                  </NavItem>
-                )} */}
                 <NavItem>
                   <NavLink tag={Link} to="/" onClick={logoutAndReturn}>
                     Logout
