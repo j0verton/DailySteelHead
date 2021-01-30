@@ -72,7 +72,7 @@ namespace SteelDaily.Controllers
             }
             storedResult.Outcomes.Add(game.Outcome);
             storedResult.Questions.Add(game.QuestionNumbers);
-            _resultRepository.Add(storedResult);
+            _resultRepository.Update(storedResult);
 
             return Ok(storedResult);
         }

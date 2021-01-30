@@ -14,20 +14,21 @@ namespace SteelDaily.Tests
             AddSampleData();
         }
 
-        [Fact]
-        public void Updating_With_Outcome_And_Question_Should_Create_Matching_Outcome_And_Question()
-        {
-            var repo = new ResultRepository(_context);
-            
+        //[Fact]
+        //public void Updating_With_Outcome_And_Question_Should_Create_Matching_Outcome_And_Question()
+        //{
+        //    var repo = new ResultRepository(_context);
+        //    repo.Update
         
-        }
+        //}
 
         [Fact]
         public void Result_With_Ten_Outcomes_Complete_Should_Return_True()
         {
             var repo = new ResultRepository(_context);
-            var result = repo.GetById(3)
+            var result = repo.GetById(1);
 
+            Assert.True(result.Complete);
         }
 
 
@@ -50,7 +51,7 @@ namespace SteelDaily.Tests
                 Key = "C",
                 TuningId = 1,
                 Questions = new List<List<int>>(),
-                Outcomes = new List<bool>() { true, true, true}
+                Outcomes = new List<bool>{ true, true, true}
             };
             //ans = D/2
             Result1.Questions.Add(new List<int> { 11, 2 });

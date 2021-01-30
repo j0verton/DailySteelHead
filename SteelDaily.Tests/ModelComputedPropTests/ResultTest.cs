@@ -7,11 +7,11 @@ namespace SteelDaily.Tests
 {
     public class ResultTest
     {
-        [Fact]
-        public void Complete_Should_Return_True_With_Ten_Outcomes()
-        {
+        //[Fact]
+        //public void Complete_Should_Return_True_With_Ten_Outcomes()
+        //{
 
 
-        }
+        //}
     }
 }

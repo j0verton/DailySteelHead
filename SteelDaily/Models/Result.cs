@@ -23,14 +23,11 @@ namespace SteelDaily.Models
         public bool Complete { 
             get 
             {
-                if (Outcomes.Count >= 9)
+                return Outcomes.Count switch
                 {
-                    return true;
-                }
-                else 
-                {
-                    return false;
-                }
+                    >= 9 => true,
+                    _ => false
+                };
             } 
         }
     }

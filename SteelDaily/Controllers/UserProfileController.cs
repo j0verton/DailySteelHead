@@ -38,15 +38,15 @@ namespace SteelDaily.Controllers
             return Ok(_repo.GetByFirebaseUserId(firebaseUserId));
         }
 
-        [HttpPut("img/")]
-        public IActionResult UpdateImg(ImageUrl url)
-        {
-            var user = GetCurrentUserProfile();
-            user.ImageLocation = url.ImageLocation;
-            _repo.Update(user);
+        //[HttpPut("img/")]
+        //public IActionResult UpdateImg(ImageUrl url)
+        //{
+        //    var user = GetCurrentUserProfile();
+        //    user.ImageLocation = url.ImageLocation;
+        //    _repo.Update(user);
 
-            return Ok(user);
-        }
+        //    return Ok(user);
+        //}
 
         [HttpPost]
         public IActionResult Post(UserProfile userProfile)
