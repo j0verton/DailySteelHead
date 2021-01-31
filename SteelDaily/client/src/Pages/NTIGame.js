@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import NTIQuestionCard from "../components/NTIQuestionCard";
 import ScoreDisplay from "../components/ScoreDisplay";
 import { Button, Card } from "reactstrap";
+import "./NTIGame.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const NTIGame = () => {

@@ -12,6 +12,7 @@ import {
   NavbarText,
 } from "reactstrap";
 import { UserProfileContext } from "../providers/UserProfileProvider";
+import "./AppHeader.css"
 
 
 const AppHeader = () => {
@@ -35,7 +36,7 @@ const AppHeader = () => {
         <NavbarBrand tag={Link} to="/">
           <img
             id="header-logo"
-            src="../steel.svg"
+            src="steel.svg"
             width="30"
             height="30"
             className="mr-1"
