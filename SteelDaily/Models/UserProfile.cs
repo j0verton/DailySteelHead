@@ -6,6 +6,7 @@ namespace SteelDaily.Models
 {
     public class UserProfile
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(28)]

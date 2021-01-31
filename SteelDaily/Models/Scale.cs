@@ -9,6 +9,7 @@ namespace SteelDaily.Models
     public class Scale
     {
         [Required]
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(255)]

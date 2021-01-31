@@ -24,7 +24,7 @@ export function UserProfileProvider(props) {
       .signInWithEmailAndPassword(email, pw)
       .then((signInResponse) => getUserProfile(signInResponse.user.uid))
       .then((userProfile) => {
-        if (userProfile.UserStatusId == 2) {
+        if (userProfile.UserStatusId === 2) {
           console.log("this account is inactive")
         }
         localStorage.setItem("userProfile", JSON.stringify(userProfile));

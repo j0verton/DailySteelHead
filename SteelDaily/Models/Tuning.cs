@@ -9,9 +9,6 @@ namespace SteelDaily.Models
     public class Tuning : MusicTheory
     {
         [Required]
-        public int Id { get; set; }
-
-        [Required]
         [MaxLength(255)]
         public string Name { get; set; }
 

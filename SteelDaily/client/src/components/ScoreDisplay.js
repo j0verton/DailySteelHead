@@ -1,4 +1,6 @@
 import react from "react"
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const ScoreDisplay = () => {
 
@@ -6,7 +8,8 @@ const ScoreDisplay = () => {
 
         <>
             {/* array.forEach(element => { */}
-            <span class="glyphicon glyphicon-star" />
+            <span className="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+            <h3>3/10 Correct</h3>
             {/* }); */}
         </>
 
