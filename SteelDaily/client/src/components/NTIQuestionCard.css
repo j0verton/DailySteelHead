@@ -1,0 +1,8 @@
+#isIncorrect{
+    background-color: firebrick;
+}
+
+.gameCard {
+padding: 15px;
+margin: 15px;
+}
