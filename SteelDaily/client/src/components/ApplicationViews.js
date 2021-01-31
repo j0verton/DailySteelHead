@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import NTIGame from "../pages/NTIGame";
 
 const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -10,6 +11,10 @@ const ApplicationViews = () => {
 
   return (
     <Switch>
+      <Route path="/NTIgame">
+        <NTIGame />
+      </Route>
+
       {/* <Route path="/" exact>
         {isLoggedIn ? <HomePageManager /> : <Redirect to="/login" />}
       </Route>
