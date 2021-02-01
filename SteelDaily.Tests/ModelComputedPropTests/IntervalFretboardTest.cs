@@ -13,15 +13,18 @@ namespace SteelDaily.Tests
             var FretboardTest = new IntervalFretboard()
             {
                 Key = "D",
-                Tuning = new Tuning()
+                ChromaticFretboard = new ChromaticFretboard()
                 {
-                    Id = 1,
-                    Name = "E9",
-                    Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
-                },
+                    Tuning = new Tuning()
+                    {
+                        Id = 1,
+                        Name = "E9",
+                        Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
+                    },
+                }
             };
             //Assert.Equal("B", stringTen);
-            Assert.Equal("One", FretboardTest.Fretboard[0][1].ToString());
+            Assert.Equal("One", FretboardTest.IntFretboard[0][1].ToString());
         }
 
         [Fact]
@@ -30,15 +33,18 @@ namespace SteelDaily.Tests
             var FretboardTest = new IntervalFretboard()
             {
                 Key = "D",
-                Tuning = new Tuning()
+                ChromaticFretboard = new ChromaticFretboard()
                 {
-                    Id = 1,
-                    Name = "E9",
-                    Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
-                },
+                    Tuning = new Tuning()
+                    {
+                        Id = 1,
+                        Name = "E9",
+                        Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
+                    },
+                }
             };
             //Assert.Equal("B", stringTen);
-            Assert.Equal("FlatFive", FretboardTest.Fretboard[0][4].ToString());
+            Assert.Equal("FlatFive", FretboardTest.IntFretboard[0][4].ToString());
         }
     }
 

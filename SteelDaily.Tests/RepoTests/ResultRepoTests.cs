@@ -50,17 +50,9 @@ namespace SteelDaily.Tests
                 Id = 1,
                 Key = "C",
                 TuningId = 1,
-                Questions = new List<List<int>>(),
-                Outcomes = new List<bool>{ true, true, true}
+                Questions = "11,2,8,8,7,4,18,5",
+                Answers = "2,1,b7,4"
             };
-            //ans = D/2
-            Result1.Questions.Add(new List<int> { 11, 2 });
-            //ans = C/1
-            Result1.Questions.Add(new List<int> { 8, 8 });
-            //ans = B/b7
-            Result1.Questions.Add(new List<int> { 7, 4 });
-            //ans = F/4
-            Result1.Questions.Add(new List<int> { 18, 5 });
 
             //contains 10 questions 10 outcomes test adding an outcome and check for complete to become true
             var Result2 = new Result()
@@ -68,26 +60,10 @@ namespace SteelDaily.Tests
                 Id = 2,
                 Key = "A",
                 TuningId = 1,
-                Questions = new List<List<int>>(),
-                Outcomes = new List<bool>() { true, true, true, false, false, false, true, false, false, }
+                Questions = "11,2,8,8,7,4,18,5,18,5,18,5,18,5,18,5,18,5,18,5",
+                Answers = "2,1,b7,4"
             };
-            //ans = D/4
-            Result2.Questions.Add(new List<int> { 11, 2 });
-            //ans = C/b3
-            Result2.Questions.Add(new List<int> { 8, 8 });
-            //ans = B/2
-            Result2.Questions.Add(new List<int> { 7, 4 });
-            //ans = F/b6
-            Result2.Questions.Add(new List<int> { 18, 5 });
-            Result2.Questions.Add(new List<int> { 18, 5 });
-            Result2.Questions.Add(new List<int> { 18, 5 });
-            Result2.Questions.Add(new List<int> { 18, 5 });
-            Result2.Questions.Add(new List<int> { 18, 5 });
-            Result2.Questions.Add(new List<int> { 18, 5 }); 
-            Result2.Questions.Add(new List<int> { 18, 5 });
-            Result2.Questions.Add(new List<int> { 18, 5 });
-            _context.Add(Result1);
-            _context.Add(Result2);
+
         }
 
 

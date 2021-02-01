@@ -3,6 +3,7 @@ using Xunit;
 using SteelDaily.Models;
 using SteelDaily.Models.ViewModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SteelDaily.Tests
 {
@@ -23,27 +24,25 @@ namespace SteelDaily.Tests
                 Key = "C",
                 TuningId = 1,
                 Tuning = TestTuning,
-                Questions = new List<List<int>>(),
-                Outcomes = new List<bool> { true, true, true }
+                Questions = "11,2,8,8,7,4,18,5",
+                Answers = "2,1,b7,4"
             };
-            //ans = D/2
-            Result1.Questions.Add(new List<int> { 11, 2 });
-            //ans = C/1
-            Result1.Questions.Add(new List<int> { 8, 8 });
-            //ans = B/b7
-            Result1.Questions.Add(new List<int> { 7, 4 });
-            //ans = F/4
-            Result1.Questions.Add(new List<int> { 18, 5 });
+            ////ans = D/2
+            //Result1.Questions.Add(new List<int> { 11, 2 });
+            ////ans = C/1
+            //Result1.Questions.Add(new List<int> { 8, 8 });
+            ////ans = B/b7
+            //Result1.Questions.Add(new List<int> { 7, 4 });
+            ////ans = F/4
+            //Result1.Questions.Add(new List<int> { 18, 5 });
 
             var Game = new InProcessGame()
             {
-
-                Answer = "F",
                 Result = Result1
             };
 
 
-            Assert.True(Game.Outcome);
+            Assert.Equal("4", Game.AnswerList.LastOrDefault());
 
         }
     }

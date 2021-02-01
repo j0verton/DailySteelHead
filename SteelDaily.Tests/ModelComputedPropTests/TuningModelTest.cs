@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using SteelDaily.Models;
+using SteelDaily.Models.ViewModel;
 
 namespace SteelDaily.Tests
 {
@@ -15,25 +16,34 @@ namespace SteelDaily.Tests
                 Name = "E9", 
                 Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb" 
             };
-            
+            var ChromFretboard = new ChromaticFretboard()
+            {
+                Tuning = TestTuning
+            };
+
+
             string stringTen = TestTuning.Notes.Split(',', ' ')[0];
             //Assert.Equal("B", stringTen);
-            Assert.Equal(stringTen, TestTuning.Fretboard[0][0].ToString());
+            Assert.Equal(stringTen, ChromFretboard.Fretboard[0][0].ToString());
 
 
         }
         [Fact]
         public void Computed_Fretboard_At_One_One_Should_Be_Zero_One_Plus_One()
         {
-            var TestTuning = new Tuning()
+            var testTuning = new Tuning()
             {
                 Id = 1,
                 Name = "E9",
                 Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
             };
+            var chromFretboard = new ChromaticFretboard()
+            {
+                Tuning = testTuning
+            };
 
-            string stringTen = TestTuning.Notes.Split(',', ' ')[0];
-            Assert.Equal("Eb", TestTuning.Fretboard[1][1].ToString());
+            string stringTen = testTuning.Notes.Split(',', ' ')[0];
+            Assert.Equal("Eb", chromFretboard.Fretboard[1][1].ToString());
 
 
         }
@@ -41,15 +51,19 @@ namespace SteelDaily.Tests
         public void Computed_Fretboard_At_One_Zero_Should_Be_Zero_Zero_Plus_One()
         {
             //the tests turning the corner from 12 to 1 or B to C
-            var TestTuning = new Tuning()
+            var testTuning = new Tuning()
             {
                 Id = 1,
                 Name = "E9",
                 Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
             };
+            var chromFretboard = new ChromaticFretboard()
+            {
+                Tuning = testTuning
+            };
 
-            string stringTen = TestTuning.Notes.Split(',', ' ')[0];
-            Assert.Equal("C", TestTuning.Fretboard[1][0].ToString());
+            string stringTen = testTuning.Notes.Split(',', ' ')[0];
+            Assert.Equal("C", chromFretboard.Fretboard[1][0].ToString());
         }
         [Fact]
         public void Computed_Fretboard_At_One_Zero_Should_Be_Thirteen_Zero()
@@ -61,9 +75,13 @@ namespace SteelDaily.Tests
                 Name = "E9",
                 Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
             };
+            var chromFretboard = new ChromaticFretboard()
+            {
+                Tuning = testTuning
+            };
 
             string stringTen = testTuning.Notes.Split(',', ' ')[0];
-            Assert.Equal("C", testTuning.Fretboard[13][0].ToString());
+            Assert.Equal("C", chromFretboard.Fretboard[13][0].ToString());
         }
         [Fact]
         public void Computed_Fretboard_At_One_Nine_Should_Be_Thirteen_Nine()
@@ -75,8 +93,12 @@ namespace SteelDaily.Tests
                 Name = "E9",
                 Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
             };
+            var chromFretboard = new ChromaticFretboard()
+            {
+                Tuning = testTuning
+            };
             string stringTen = testTuning.Notes.Split(',', ' ')[0];
-            Assert.Equal("E", testTuning.Fretboard[13][8].ToString());
+            Assert.Equal("E", chromFretboard.Fretboard[13][8].ToString());
         }
     }
 }
