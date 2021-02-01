@@ -2,13 +2,40 @@ import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import NTIQuestionCard from "../components/NTIQuestionCard";
 import ScoreDisplay from "../components/ScoreDisplay";
-import { Button, Card } from "reactstrap";
+import { Button, Card, Col } from "reactstrap";
 import "./NTIGame.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { UserProfileContext } from "../providers/UserProfileProvider";
+import KeySelect from "../components/KeySelect";
 
 
 const NTIGame = () => {
+    const { getToken } = useContext(UserProfileContext)
+    const [game, setGame] = useState(false)
+    const [key, setKey] = useState("C")
+    const [result, setResult] = useState({})
 
+    const startGame = () => {
+        setGame(true)
+        getToken()
+            .then(token =>
+                fetch(`/api/Game?key=${key}`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+            ).then(res => res.json())
+            .then(res => {
+                console.log(res)
+                setResult(res)
+            }
+            )
+    }
+    const onSelect = () => {
+
+
+    }
 
     return (
         <div className="game-area">
@@ -16,7 +43,15 @@ const NTIGame = () => {
                 <ScoreDisplay />
             </div>
             <div className="card-area">
-                <NTIQuestionCard />
+                <Col sm="12" md={{ size: 6, offset: 3 }}>
+                    {game ?
+                        <NTIQuestionCard result={result} />
+                        : <>
+                            <KeySelect setKey={setKey} />
+                            <Button onClick={startGame}>Start Game</Button>
+                        </>
+                    }
+                </Col>
             </div>
             <div className="button-container">
                 <Button value="1">1</Button>

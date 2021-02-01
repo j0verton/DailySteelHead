@@ -60,7 +60,7 @@ namespace SteelDaily.Controllers
             _resultRepository.Add(newResult);
             return Ok(CreatedAtAction("Get", new { id = newResult.Id }, newResult));
         }
-        [HttpPut]
+        [HttpPost]
         public IActionResult Answer(InProcessGame game) 
         {
             var storedGame = new InProcessGame()

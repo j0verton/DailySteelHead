@@ -9,18 +9,23 @@ GO
 USE [SteelDaily]
 GO
 
-
+/*
+ALTER TABLE 
+DROP CONSTRAINT
+*/
 DROP TABLE IF EXISTS [UserProfile];
 DROP TABLE IF EXISTS [Tuning];
 DROP TABLE IF EXISTS [Key];
 DROP TABLE IF EXISTS [Streak];
 DROP TABLE IF EXISTS Challenge;
 DROP TABLE IF EXISTS [Status];
-DROP TABLE IF EXISTS [Results];
+DROP TABLE IF EXISTS [Result];
 DROP TABLE IF EXISTS [Post];
 DROP TABLE IF EXISTS [Comment];
 DROP TABLE IF EXISTS [Game];
 DROP TABLE IF EXISTS [Scale];
+GO
+
 
 CREATE TABLE [UserProfile] (
   [Id] integer PRIMARY KEY IDENTITY,
@@ -42,13 +47,12 @@ CREATE TABLE [Tuning] (
   [Name] nvarchar(255),
   [Notes] nvarchar(255)
 )
-GO
 
 CREATE TABLE [Key] (
   [Id] int PRIMARY KEY IDENTITY,
   [Root] nvarchar(255)
 )
-GO
+
 
 CREATE TABLE [Streak] (
   [Id] int PRIMARY KEY IDENTITY,
@@ -60,8 +64,12 @@ CREATE TABLE [Streak] (
 	CONSTRAINT [FK_Streak_UserProfile] FOREIGN KEY ([UserProfileId])
 	REFERENCES [UserProfile] ([Id])
 )
-GO
 
+
+CREATE TABLE [Status] (
+  [Id] int PRIMARY KEY IDENTITY,
+  [Name] nvarchar(255)
+)
 CREATE TABLE [Challenge] (
   [Id] int PRIMARY KEY IDENTITY,
   [StatusId] int,
@@ -69,19 +77,20 @@ CREATE TABLE [Challenge] (
   [UserProfileTwoId] int
 
   CONSTRAINT [FK_Challenge_Status] FOREIGN KEY ([StatusId])
-	REFERENCES [Status] ([Id]),
+	REFERENCES [Status] ([Id])
 	  /*CONSTRAINT [FK_Challenge_UserProfile] FOREIGN KEY (UserProfileOneId])
 	REFERENCES [UserProfile] ([Id]),*/
 )
-GO
 
-CREATE TABLE [Status] (
+
+
+
+CREATE TABLE [Scale] (
   [Id] int PRIMARY KEY IDENTITY,
-  [Name] nvarchar(255)
+  [Name] nvarchar(255),
+  [Pattern] nvarchar(255)
 )
-GO
-
-CREATE TABLE [Results] (
+CREATE TABLE [Result] (
   [Id] int PRIMARY KEY IDENTITY,
   [UserProfileId] int,
   [GameId] int,
@@ -94,14 +103,14 @@ CREATE TABLE [Results] (
   [Date] date,
   [Complete] bit
 
-  	CONSTRAINT [FK_Results_UserProfile] FOREIGN KEY ([UserProfileId])
+  	CONSTRAINT [FK_Result_UserProfile] FOREIGN KEY ([UserProfileId])
 		REFERENCES [UserProfile] ([Id]),
-	CONSTRAINT [FK_Results_Scale] FOREIGN KEY ([ScaleId])
+	CONSTRAINT [FK_Result_Scale] FOREIGN KEY ([ScaleId])
 		REFERENCES [Scale] ([Id]),
-	CONSTRAINT [FK_Results_Tuning] FOREIGN KEY ([TuningId])
+	CONSTRAINT [FK_Result_Tuning] FOREIGN KEY ([TuningId])
 		REFERENCES [Tuning] ([Id])
 )
-GO
+
 
 CREATE TABLE [Post] (
   [Id] int PRIMARY KEY IDENTITY,
@@ -116,7 +125,7 @@ CREATE TABLE [Post] (
 	CONSTRAINT [FK_Post_Result] FOREIGN KEY ([ResultId])
 		REFERENCES [Result] ([Id])
 )
-GO
+
 
 CREATE TABLE [Comment] (
   [Id] int PRIMARY KEY IDENTITY,
@@ -126,19 +135,13 @@ CREATE TABLE [Comment] (
 	REFERENCES [UserProfile] ([Id])
 
 )
-GO
+
 
 CREATE TABLE [Game] (
   [Id] int PRIMARY KEY IDENTITY,
   [Name] nvarchar(255)
 )
-GO
 
-CREATE TABLE [Scale] (
-  [Id] int PRIMARY KEY IDENTITY,
-  [Name] nvarchar(255),
-  [Pattern] nvarchar(255)
-)
 GO
 
 
