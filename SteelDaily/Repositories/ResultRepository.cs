@@ -20,8 +20,8 @@ namespace SteelDaily.Repositories
         public Result GetById(int id)
         {
             return _context.Result
-                .Include(r => r.ScaleId)
-                .Include(r => r.TuningId)
+                .Include(r => r.Scale)
+                .Include(r => r.Tuning)
                 .Where(r => r.Id == id)
                 .FirstOrDefault();
         }

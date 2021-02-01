@@ -54,6 +54,7 @@ namespace SteelDaily.Tests
                 Answers = "2,1,b7,4"
             };
 
+            
             //contains 10 questions 10 outcomes test adding an outcome and check for complete to become true
             var Result2 = new Result()
             {
@@ -61,9 +62,11 @@ namespace SteelDaily.Tests
                 Key = "A",
                 TuningId = 1,
                 Questions = "11,2,8,8,7,4,18,5,18,5,18,5,18,5,18,5,18,5,18,5",
-                Answers = "2,1,b7,4"
+                Answers = "2,1,b7,4",
+                Complete = true
             };
-
+            _context.Add(Result1);
+            _context.Add(Result2);
         }
 
 

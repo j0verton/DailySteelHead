@@ -11,16 +11,16 @@ GO
 
 
 DROP TABLE IF EXISTS [UserProfile];
-DROP TABLE IF EXISTS Tuning;
+DROP TABLE IF EXISTS [Tuning];
 DROP TABLE IF EXISTS [Key];
-DROP TABLE IF EXISTS Streak;
+DROP TABLE IF EXISTS [Streak];
 DROP TABLE IF EXISTS Challenge;
 DROP TABLE IF EXISTS [Status];
-DROP TABLE IF EXISTS Results;
-DROP TABLE IF EXISTS Post;
-DROP TABLE IF EXISTS Comment;
-DROP TABLE IF EXISTS Game;
-DROP TABLE IF EXISTS Scale;
+DROP TABLE IF EXISTS [Results];
+DROP TABLE IF EXISTS [Post];
+DROP TABLE IF EXISTS [Comment];
+DROP TABLE IF EXISTS [Game];
+DROP TABLE IF EXISTS [Scale];
 
 CREATE TABLE [UserProfile] (
   [Id] integer PRIMARY KEY IDENTITY,
@@ -50,7 +50,7 @@ CREATE TABLE [Key] (
 )
 GO
 
-CREATE TABLE Streak (
+CREATE TABLE [Streak] (
   [Id] int PRIMARY KEY IDENTITY,
   [Days] int,
   [UserProfileId] int,
@@ -62,7 +62,7 @@ CREATE TABLE Streak (
 )
 GO
 
-CREATE TABLE Challenge (
+CREATE TABLE [Challenge] (
   [Id] int PRIMARY KEY IDENTITY,
   [StatusId] int,
   [UserProfileOneId] int,
@@ -81,7 +81,7 @@ CREATE TABLE [Status] (
 )
 GO
 
-CREATE TABLE Results (
+CREATE TABLE [Results] (
   [Id] int PRIMARY KEY IDENTITY,
   [UserProfileId] int,
   [GameId] int,
@@ -103,7 +103,7 @@ CREATE TABLE Results (
 )
 GO
 
-CREATE TABLE Post (
+CREATE TABLE [Post] (
   [Id] int PRIMARY KEY IDENTITY,
   [UserProfileId] int,
   [Title] nvarchar(255),
@@ -118,7 +118,7 @@ CREATE TABLE Post (
 )
 GO
 
-CREATE TABLE Comment (
+CREATE TABLE [Comment] (
   [Id] int PRIMARY KEY IDENTITY,
   [UserProfileId] int,
   [PostId] int,
@@ -128,13 +128,13 @@ CREATE TABLE Comment (
 )
 GO
 
-CREATE TABLE Game (
+CREATE TABLE [Game] (
   [Id] int PRIMARY KEY IDENTITY,
   [Name] nvarchar(255)
 )
 GO
 
-CREATE TABLE Scale (
+CREATE TABLE [Scale] (
   [Id] int PRIMARY KEY IDENTITY,
   [Name] nvarchar(255),
   [Pattern] nvarchar(255)

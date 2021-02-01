@@ -2,6 +2,8 @@
 using Xunit;
 using SteelDaily.Models;
 using SteelDaily.Models.ViewModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SteelDaily.Tests
 {
