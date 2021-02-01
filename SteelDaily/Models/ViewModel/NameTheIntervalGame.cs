@@ -14,8 +14,8 @@ namespace SteelDaily.Models.ViewModel
             get
             {
                 var noteCoordinates = new List<int>();
-                int frets = Fretboard.Fretboard.Count();
-                int strings = Fretboard.Tuning.Notes.Split(',').Count();
+                int frets = Fretboard.ChromaticFretboard.Fretboard.Count();
+                int strings = Fretboard.ChromaticFretboard.Tuning.Notes.Split(',').Count();
                 noteCoordinates.Add(new Random().Next(frets));
                 noteCoordinates.Add(new Random().Next(strings));
                 return noteCoordinates;

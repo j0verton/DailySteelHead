@@ -7,14 +7,13 @@ namespace SteelDaily.Models.ViewModel
 {
     public class InProcessGame
     {
-        public string Answer { get; set; }
         public List<int> QuestionNumbers
         {
             get
             {
                 var noteCoordinates = new List<int>();
-                int frets = Fretboard.Fretboard.Count();
-                int strings = Fretboard.Tuning.Notes.Split(',').Count();
+                int frets = Fretboard.IntFretboard.Count();
+                int strings = Fretboard.ChromaticFretboard.Tuning.Notes.Split(',').Count();
                 noteCoordinates.Add(new Random().Next(frets));
                 noteCoordinates.Add(new Random().Next(strings));
                 return noteCoordinates;
@@ -27,29 +26,55 @@ namespace SteelDaily.Models.ViewModel
                 var fretboard = new IntervalFretboard()
                 {
                     Key = Result.Key,
-                    Tuning = Result.Tuning
+                    ChromaticFretboard = new ChromaticFretboard() 
+                    { 
+                        Tuning = Result.Tuning
+                    } 
 
                 };
                 return fretboard;
             }
         }
-        public bool Outcome 
-        {
-            get 
+        public List<string> AnswerList { 
+            get
             {
-                var question = Result.Questions.Last();
-                var correctAnswer = Fretboard.Fretboard[question[0]][question[1]];
-                if (Answer == correctAnswer)
-                {
-                    return true;
-                } 
-                else 
-                {
-                    return false;
-                }
-            
+                return Result.Answers.Split(',').ToList();
             }
-        
+        }
+        public List<bool> Outcomes 
+        { get
+            {
+                var outcomes = new List<bool>();
+                for (int i = 0; i < AnswerList.Count(); i++) 
+                {
+                    var question = Questions[i];
+                    var correctAnswer = Fretboard.IntFretboard[question[0]][question[1]];
+                    if (AnswerList[i] == correctAnswer)
+                    {
+                        outcomes.Add(true);
+                    }
+                    else
+                    {
+                        outcomes.Add(false);
+                    }
+                }
+                return outcomes;
+            } 
+        }
+
+        public List<List<int>> Questions 
+        {
+            get
+            {
+                var questions = new List<List<int>>();
+                var wholeList = Result.Questions.Split(',').ToList();
+                for (int i = 0; i < wholeList.Count()/2; i+=2)
+                {
+                    var questionPair = new List<string>(wholeList.Skip(i).Take(2).ToList());
+                    questions.Add(questionPair.Select(int.Parse).ToList());
+                }
+                    return questions;
+            } 
         }
     }
 }

@@ -9,16 +9,16 @@ namespace SteelDaily.Models.ViewModel
     {
         public string Key { get; set; }
 
-        public Tuning Tuning { get; set; }
+        public ChromaticFretboard ChromaticFretboard { get; set; }
 
-        public List<List<string>> Fretboard
+        public List<List<string>> IntFretboard
         {
             get
             {
                 ChromaticScale root = (ChromaticScale) Enum.Parse(typeof(ChromaticScale), Key);
                 int transposition = (int) root - 1;
                 List <List<string>> fretboard = new List<List<string>>();
-                foreach (List<ChromaticScale> fret in Tuning.Fretboard)
+                foreach (List<ChromaticScale> fret in ChromaticFretboard.Fretboard)
                 {
                     List<string> fretIntervals = new List<string>();
                     foreach (ChromaticScale note in fret)

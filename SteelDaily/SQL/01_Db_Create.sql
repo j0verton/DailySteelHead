@@ -65,8 +65,13 @@ GO
 CREATE TABLE Challenge (
   [Id] int PRIMARY KEY IDENTITY,
   [StatusId] int,
-  [UserProfileIdOne] int,
-  [UserProfileIdTwo] int
+  [UserProfileOneId] int,
+  [UserProfileTwoId] int
+
+  CONSTRAINT [FK_Challenge_Status] FOREIGN KEY ([StatusId])
+	REFERENCES [Status] ([Id]),
+	  /*CONSTRAINT [FK_Challenge_UserProfile] FOREIGN KEY (UserProfileOneId])
+	REFERENCES [UserProfile] ([Id]),*/
 )
 GO
 
@@ -80,14 +85,21 @@ CREATE TABLE Results (
   [Id] int PRIMARY KEY IDENTITY,
   [UserProfileId] int,
   [GameId] int,
-  [KeyId] int,
+  [Key] nvarchar(5),
   [ScaleId] int,
   [TuningId] int,
+  [Questions] nvarchar,
+  [Answers] nvarchar,
   [Public] bit,
   [Date] date,
+  [Complete] bit
 
   	CONSTRAINT [FK_Results_UserProfile] FOREIGN KEY ([UserProfileId])
-	REFERENCES [UserProfile] ([Id])
+		REFERENCES [UserProfile] ([Id]),
+	CONSTRAINT [FK_Results_Scale] FOREIGN KEY ([ScaleId])
+		REFERENCES [Scale] ([Id]),
+	CONSTRAINT [FK_Results_Tuning] FOREIGN KEY ([TuningId])
+		REFERENCES [Tuning] ([Id])
 )
 GO
 
@@ -99,7 +111,10 @@ CREATE TABLE Post (
   [ResultId] int,
 
     CONSTRAINT [FK_Post_UserProfile] FOREIGN KEY ([UserProfileId])
-	REFERENCES [UserProfile] ([Id])
+		REFERENCES [UserProfile] ([Id]),
+
+	CONSTRAINT [FK_Post_Result] FOREIGN KEY ([ResultId])
+		REFERENCES [Result] ([Id])
 )
 GO
 
