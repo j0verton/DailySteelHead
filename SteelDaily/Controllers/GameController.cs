@@ -36,7 +36,10 @@ namespace SteelDaily.Controllers
                 Fretboard = new IntervalFretboard()
                 {
                     Key = key,
-                    Tuning = _tuningRepository.GetDefaultTuning()
+                    ChromaticFretboard = new ChromaticFretboard() 
+                    { 
+                        Tuning = _tuningRepository.GetDefaultTuning()
+                    }
                 },
             };
 
@@ -45,13 +48,13 @@ namespace SteelDaily.Controllers
 
             var newResult = new Result()
             {
-                UserId = GetCurrentUserProfile().Id,
+                UserProfileId = GetCurrentUserProfile().Id,
                 GameId = 1,
                 Key = key,
-                TuningId = newGame.Fretboard.Tuning.Id,
+                TuningId = newGame.Fretboard.ChromaticFretboard.Tuning.Id,
                 Public = true,
                 Date = DateTime.Now,
-                Questions = questionList
+                Questions = string.Join(",", questionList)
             };
 
             _resultRepository.Add(newResult);
@@ -60,23 +63,26 @@ namespace SteelDaily.Controllers
         [HttpPut]
         public IActionResult Answer(InProcessGame game) 
         {
-            var storedResult = _resultRepository.GetById(game.Result.Id);
-            if (storedResult.UserId != GetCurrentUserProfile().Id || storedResult.Complete == true)
+            var storedGame = new InProcessGame()
+            {
+                Result = _resultRepository.GetById(game.Result.Id)
+            };
+            if (storedGame.Result.UserProfileId != GetCurrentUserProfile().Id || storedGame.Result.Complete == true)
             {
                 return BadRequest();
             }
-            if (storedResult.Questions.Count >= 9)
+            var returnedAnswer = game.AnswerList.LastOrDefault();
+            if (storedGame.Questions.Count >= 9)
             {
-                storedResult.Outcomes.Add(game.Outcome);
-                //remove following line if Complete becomes computed
-                //storedResult.Complete = true;
-                return Ok(storedResult);
+                storedGame.Result.Answers += $",{returnedAnswer}";
+                storedGame.Result.Complete = true;
+                return Ok(storedGame);
             }
-            storedResult.Outcomes.Add(game.Outcome);
-            storedResult.Questions.Add(game.QuestionNumbers);
-            _resultRepository.Update(storedResult);
+            storedGame.Result.Answers += $",{returnedAnswer}";
+            storedGame.Result.Questions+= $",{game.QuestionNumbers[0].ToString()},{game.QuestionNumbers[1].ToString()}";
+            _resultRepository.Update(storedGame.Result);
 
-            return Ok(storedResult);
+            return Ok(storedGame.Result);
         }
 
 
