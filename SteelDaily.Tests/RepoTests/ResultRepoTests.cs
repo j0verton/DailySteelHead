@@ -26,7 +26,7 @@ namespace SteelDaily.Tests
         public void Result_With_Ten_Outcomes_Complete_Should_Return_True()
         {
             var repo = new ResultRepository(_context);
-            var result = repo.GetById(1);
+            var result = repo.GetById(2);
 
             Assert.True(result.Complete);
         }
@@ -41,8 +41,14 @@ namespace SteelDaily.Tests
                 Name = "E9",
                 Notes = "B,D,E,F#,G#,B,E,G#,D#,F#"
             };
+            var chromScale = new Scale()
+            {
+                Id = 1,
+                Name = "Chromatic"
+            };
 
             _context.Add(E9Tuning);
+            _context.Add(chromScale);
 
             //test updating with a new outcome and a new question 
             var Result1 = new Result()
@@ -50,8 +56,10 @@ namespace SteelDaily.Tests
                 Id = 1,
                 Key = "C",
                 TuningId = 1,
+                ScaleId= 1,
                 Questions = "11,2,8,8,7,4,18,5",
-                Answers = "2,1,b7,4"
+                Answers = "2,1,b7,4",
+                Complete = false
             };
 
             
@@ -61,12 +69,14 @@ namespace SteelDaily.Tests
                 Id = 2,
                 Key = "A",
                 TuningId = 1,
+                ScaleId = 1,
                 Questions = "11,2,8,8,7,4,18,5,18,5,18,5,18,5,18,5,18,5,18,5",
                 Answers = "2,1,b7,4",
                 Complete = true
             };
             _context.Add(Result1);
             _context.Add(Result2);
+            _context.SaveChanges();
         }
 
 

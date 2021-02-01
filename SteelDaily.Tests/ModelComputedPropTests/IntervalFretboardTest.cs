@@ -9,6 +9,10 @@ namespace SteelDaily.Tests
 {
     public class IntervalFretboardTest
     {
+        public IntervalFretboardTest()
+        {
+            var foo = 1;
+        }
         [Fact]
         public void Inteval_Fretboard_At_Zero_Should_Match_Tuning_Fretboard()
         {
