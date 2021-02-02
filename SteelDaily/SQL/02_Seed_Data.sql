@@ -12,7 +12,8 @@ INSERT INTO [Scale]
   ([Id], [Name], [Pattern])
 VALUES
   (1, 'major', '2,2,1,2,2,2,1'),
-  (2, 'pentatonic', '2,2,3,2,3');
+  (2, 'pentatonic', '2,2,3,2,3'),
+  (3, 'chromatic', '1,1,1,1,1,1,1,1,1,1,1');
   SET IDENTITY_INSERT [Scale] OFF
   
 

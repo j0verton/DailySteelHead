@@ -5,16 +5,17 @@ import ReactCardFlip from 'react-card-flip';
 import "./NTIQuestionCard.css"
 
 
-const NTIQuestionCard = ({ result }) => {
-    const [isFlipped, setIsFlipped] = useState(false)
-    const [correct, setCorrect] = useState(true)
+const NTIQuestionCard = ({ result, isFlipped, correct }) => {
+    // const [isFlipped, setIsFlipped] = useState(false)
+
     const [vertFlip, setFlip] = useState(true)
-    const handleClick = (e) => {
-        flipRandomizer()
-        e.preventDefault();
-        setCorrect(false);
-        setIsFlipped(!isFlipped);
-    }
+
+    // const handleClick = (e) => {
+    //     flipRandomizer()
+    //     e.preventDefault();
+    //     setCorrect(false);
+    //     setIsFlipped(!isFlipped);
+    // }
 
     const flipRandomizer = () => {
         const num = Math.floor(Math.random() * 10)
@@ -34,10 +35,10 @@ const NTIQuestionCard = ({ result }) => {
                 <Card className="gameCard">
                     What interval of <br />
                     <h2>{result.key}</h2><br />
-                is at the<br />
-                    <h2>8th fret</h2><br />
+                is at<br />
+                    <h2>fret {result.questions[0]}</h2><br />
                 on the <br />
-                    <h2>8th string</h2>
+                    <h2>string {result.questions[1]}</h2>
                 </Card>
                 <Card className="gameCard" id={correct ? "isCorrect" : "isIncorrect"}>
                     <h2>8th fret</h2><br />
@@ -48,7 +49,6 @@ const NTIQuestionCard = ({ result }) => {
                 degree of the C scale<br />
                 </Card>
             </ReactCardFlip>
-            <Button onClick={handleClick}>Flip</Button>
         </Col >
 
         //give correct/incorrect via toast or a flipping card

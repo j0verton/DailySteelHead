@@ -14,10 +14,24 @@ const NTIGame = () => {
     const [game, setGame] = useState(false)
     const [key, setKey] = useState("C")
     const [result, setResult] = useState({})
-
+    const [isFlipped, setIsFlipped] = useState(false)
+    const [correct, setCorrect] = useState(true)
+    const scale = [
+        { steps: 1, interval: "1" },
+        { steps: 2, interval: "b2" },
+        { steps: 3, interval: "2" },
+        { steps: 4, interval: "b3" },
+        { steps: 5, interval: "3" },
+        { steps: 6, interval: "4" },
+        { steps: 7, interval: "b5" },
+        { steps: 8, interval: "5" },
+        { steps: 9, interval: "b6" },
+        { steps: 10, interval: "6" },
+        { steps: 11, interval: "b7" },
+        { steps: 12, interval: "7" }
+    ]
     const startGame = () => {
-        setGame(true)
-        getToken()
+        return getToken()
             .then(token =>
                 fetch(`/api/Game?key=${key}`, {
                     method: "GET",
@@ -27,14 +41,43 @@ const NTIGame = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log(res)
-                setResult(res)
+                console.log(res.value)
+                setResult(res.value)
             }
             )
     }
-    const onSelect = () => {
+    const answerQuestion = (answer) => {
+        const priorAnswers = result.answers ? result.answers + "," : null
+        const game = {
+            result: {
+                id: result.id,
+                answers: `${priorAnswers}${answer}`
+            }
+        }
+        return getToken()
+            .then(token =>
+                fetch(`/api/Game`, {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(game)
+                })
+            ).then(res => res.json())
+            .then(res => {
+                console.log(res.value)
+                setResult(res.value)
+            })
+    }
 
-
+    async function startHandler() {
+        await startGame()
+        setGame(true)
+    }
+    async function AnswerHandler(e) {
+        console.log(e.target.value)
+        answerQuestion()
+        setIsFlipped(!isFlipped)
     }
 
     return (
@@ -45,31 +88,22 @@ const NTIGame = () => {
             <div className="card-area">
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
                     {game ?
-                        <NTIQuestionCard result={result} />
+                        <NTIQuestionCard result={result} isFlipped={isFlipped} correct={correct} />
                         : <>
                             <KeySelect setKey={setKey} />
-                            <Button onClick={startGame}>Start Game</Button>
+                            <Button onClick={startHandler}>Start Game</Button>
                         </>
                     }
                 </Col>
             </div>
             <div className="button-container">
-                <Button value="1">1</Button>
-                <Button value="2">b2</Button>
-                <Button value="3">2</Button>
-                <Button value="4">b3</Button>
-                <Button value="5">3</Button>
-                <Button value="6">4</Button>
-                <Button value="7">b5</Button>
-                <Button value="8">5</Button>
-                <Button value="9">b6</Button>
-                <Button value="10">6</Button>
-                <Button value="11">b7</Button>
-                <Button value="12">7</Button>
-
-
+                {scale.map(interval => (
+                    <Button key={interval.steps} value={interval.steps}
+                        onClick={AnswerHandler}
+                    >{interval.interval}</Button>
+                ))}
             </div>
-        </div>
+        </div >
 
 
 
