@@ -44,8 +44,23 @@ namespace SteelDaily.Controllers
             };
 
             var questionList = new List<List<int>>();
-            questionList.Add(newGame.QuestionNumbers);
-
+            //this is from the debug terminal
+           //at System.Enum.InternalBoxEnum(System.RuntimeType, Int64)
+           //at System.Enum.TryParse(System.Type, System.String, Boolean, Boolean, System.Object ByRef)
+           //at System.Enum.Parse(System.Type, System.String)
+           //at SteelDaily.Models.ViewModel.ChromaticFretboard.get_Fretboard()
+           //at SteelDaily.Models.ViewModel.ChromaticFretboard.get_Fretboard()
+           //at SteelDaily.Models.ViewModel.ChromaticFretboard.get_Fretboard()
+           //at SteelDaily.Models.ViewModel.ChromaticFretboard.get_Fretboard()
+           //at SteelDaily.Models.ViewModel.ChromaticFretboard.get_Fretboard()
+           //at SteelDaily.Models.ViewModel.ChromaticFretboard.get_Fretboard()
+           //at SteelDaily.Models.ViewModel.ChromaticFretboard.get_Fretboard()
+           //at SteelDaily.Models.ViewModel.ChromaticFretboard.get_Fretboard()...
+            //starts infinite looping here VVVVVVV
+            questionList.Add(newGame.QuestionNumbers());
+            string questionString = string.Join(",", questionList[0]);
+       
+        //questionList.Join()
             var newResult = new Result()
             {
                 UserProfileId = GetCurrentUserProfile().Id,
@@ -54,7 +69,7 @@ namespace SteelDaily.Controllers
                 TuningId = newGame.Fretboard.ChromaticFretboard.Tuning.Id,
                 Public = true,
                 Date = DateTime.Now,
-                Questions = string.Join(",", questionList)
+                Questions = questionString
             };
 
             _resultRepository.Add(newResult);

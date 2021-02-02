@@ -19,11 +19,11 @@ namespace SteelDaily.Models.ViewModel
                 {
                     fretZero.Add((ChromaticScale)Enum.Parse(typeof(ChromaticScale), noteString));
                 }
-                Fretboard.Add(fretZero);
+                fretboard.Add(fretZero);
                 for (var i = 0; i < 22; i++)
                 {
                     var fret = new List<ChromaticScale>();
-                    foreach (ChromaticScale note in Fretboard[i])
+                    foreach (ChromaticScale note in fretboard[i])
                     {
                         ChromaticScale newNote = note + 1;
                         if (Convert.ToInt32(newNote) == 13)
@@ -34,7 +34,7 @@ namespace SteelDaily.Models.ViewModel
                     };
                     fretboard.Add(fret);
                 }
-                return Fretboard;
+                return fretboard;
             }
         }
     }

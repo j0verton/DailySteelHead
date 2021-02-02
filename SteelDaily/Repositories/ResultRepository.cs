@@ -28,8 +28,15 @@ namespace SteelDaily.Repositories
 
     public void Add(Result result)
         {
-            _context.Add(result);
-            _context.SaveChanges();
+            try
+            {
+                _context.Add(result);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            { 
+            
+            }
         }
 
         public void Update(Result result)
