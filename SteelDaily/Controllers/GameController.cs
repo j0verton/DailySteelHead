@@ -54,6 +54,7 @@ namespace SteelDaily.Controllers
                 UserProfileId = 1,
                 //UserProfileId = GetCurrentUserProfile().Id,
                 GameId = 1,
+                ScaleId = 1,
                 Key = key,
                 TuningId = newGame.Fretboard.ChromaticFretboard.Tuning.Id,
                 Public = true,

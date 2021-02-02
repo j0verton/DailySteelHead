@@ -97,8 +97,8 @@ CREATE TABLE [Result] (
   [Key] nvarchar(5),
   [ScaleId] int,
   [TuningId] int,
-  [Questions] nvarchar,
-  [Answers] nvarchar,
+  [Questions] nvarchar(255),
+  [Answers] nvarchar(255),
   [Public] bit,
   [Date] date,
   [Complete] bit
