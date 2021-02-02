@@ -36,9 +36,9 @@ const NTIQuestionCard = ({ result, isFlipped, correct }) => {
                     What interval of <br />
                     <h2>{result.key}</h2><br />
                 is at<br />
-                    <h2>fret {result.questions[0]}</h2><br />
+                    <h2>fret {result.questions.split(",")[0]}</h2><br />
                 on the <br />
-                    <h2>string {result.questions[1]}</h2>
+                    <h2>string {result.questions.split(",")[1]}</h2>
                 </Card>
                 <Card className="gameCard" id={correct ? "isCorrect" : "isIncorrect"}>
                     <h2>8th fret</h2><br />

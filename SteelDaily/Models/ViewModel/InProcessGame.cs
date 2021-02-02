@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models.ViewModel
 {
-    public class InProcessGame
+    public class InProcessGame : NameTheIntervalGame
     {
         public List<int> QuestionNumbers
         {
@@ -20,7 +20,7 @@ namespace SteelDaily.Models.ViewModel
             }
         }
         public Result Result { get; set; }
-        public IntervalFretboard Fretboard 
+        public override IntervalFretboard Fretboard 
         {
             get {
                 var fretboard = new IntervalFretboard()

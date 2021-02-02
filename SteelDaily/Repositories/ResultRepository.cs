@@ -26,17 +26,21 @@ namespace SteelDaily.Repositories
                 .FirstOrDefault();
         }
 
-    public void Add(Result result)
+    public Result Add(Result result)
         {
             try
             {
+                var resultToAdd = result;
                 _context.Add(result);
                 _context.SaveChanges();
+                return resultToAdd;
             }
             catch (Exception ex)
-            { 
-            
+            {
+                return result;
+
             }
+
         }
 
         public void Update(Result result)

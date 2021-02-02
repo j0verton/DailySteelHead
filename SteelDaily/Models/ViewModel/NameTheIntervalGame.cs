@@ -7,9 +7,9 @@ namespace SteelDaily.Models.ViewModel
 {
     public class NameTheIntervalGame
     {
-        public IntervalFretboard Fretboard;
+        public virtual IntervalFretboard Fretboard { get; set; }
 
-        public List<int> QuestionNumbers()
+        public List<int> GetQuestionNumbers()
          {
              var noteCoordinates = new List<int>();
              int frets = Fretboard.ChromaticFretboard.Fretboard.Count();

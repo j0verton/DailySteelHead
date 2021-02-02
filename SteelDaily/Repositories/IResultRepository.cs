@@ -4,7 +4,7 @@ namespace SteelDaily.Repositories
 {
     public interface IResultRepository
     {
-        void Add(Result result);
+        Result Add(Result result);
         Result GetById(int id);
         void Update(Result result);
     }

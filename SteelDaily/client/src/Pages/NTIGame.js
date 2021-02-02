@@ -41,19 +41,18 @@ const NTIGame = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log(res.value)
-                setResult(res.value)
+                console.log(res)
+                setResult(res)
             }
             )
     }
     const answerQuestion = (answer) => {
-        const priorAnswers = result.answers ? result.answers + "," : null
-        const game = {
-            result: {
-                id: result.id,
-                answers: `${priorAnswers}${answer}`
-            }
+        const gameReturn = {
+            resultId: result.id,
+            questionNumbers: result.questions,
+            answer: answer
         }
+        console.log("game", gameReturn)
         return getToken()
             .then(token =>
                 fetch(`/api/Game`, {
@@ -61,7 +60,7 @@ const NTIGame = () => {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
-                    body: JSON.stringify(game)
+                    body: JSON.stringify(gameReturn)
                 })
             ).then(res => res.json())
             .then(res => {
@@ -75,8 +74,8 @@ const NTIGame = () => {
         setGame(true)
     }
     async function AnswerHandler(e) {
-        console.log(e.target.value)
-        answerQuestion()
+        console.log("answer steps", e.target.value)
+        await answerQuestion(e.target.value)
         setIsFlipped(!isFlipped)
     }
 

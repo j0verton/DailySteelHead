@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GameController : ControllerBase
@@ -45,13 +45,14 @@ namespace SteelDaily.Controllers
 
             var questionList = new List<List<int>>();
 
-            questionList.Add(newGame.QuestionNumbers());
+            questionList.Add(newGame.GetQuestionNumbers());
             string questionString = string.Join(",", questionList[0]);
        
         //questionList.Join()
             var newResult = new Result()
             {
-                UserProfileId = GetCurrentUserProfile().Id,
+                UserProfileId = 1,
+                //UserProfileId = GetCurrentUserProfile().Id,
                 GameId = 1,
                 Key = key,
                 TuningId = newGame.Fretboard.ChromaticFretboard.Tuning.Id,
@@ -60,29 +61,33 @@ namespace SteelDaily.Controllers
                 Questions = questionString
             };
 
-            _resultRepository.Add(newResult);
-            return Ok(CreatedAtAction("Get", new { id = newResult.Id }, newResult));
+            var returnedResult = _resultRepository.Add(newResult);
+            return Ok(returnedResult);
         }
         [HttpPost]
-        public IActionResult Answer(InProcessGame game) 
+        public IActionResult Answer(ReturnedGame game) 
         {
             var storedGame = new InProcessGame()
             {
-                Result = _resultRepository.GetById(game.Result.Id)
+                Result = _resultRepository.GetById(game.ResultId)
             };
             if (storedGame.Result.UserProfileId != GetCurrentUserProfile().Id || storedGame.Result.Complete == true)
             {
                 return BadRequest();
             }
-            var returnedAnswer = game.AnswerList.LastOrDefault();
             if (storedGame.Questions.Count >= 9)
             {
-                storedGame.Result.Answers += $",{returnedAnswer}";
+                storedGame.Result.Answers += $",{game.Answer}";
                 storedGame.Result.Complete = true;
                 return Ok(storedGame);
             }
-            storedGame.Result.Answers += $",{returnedAnswer}";
-            storedGame.Result.Questions+= $",{game.QuestionNumbers[0].ToString()},{game.QuestionNumbers[1].ToString()}";
+            if (storedGame.Result.Answers == "")
+            {
+                storedGame.Result.Answers = game.Answer;
+            }
+            storedGame.Result.Answers += $",{game.Answer}";
+            List<int> newNumbers = storedGame.GetQuestionNumbers();
+            storedGame.Result.Questions+= $",{newNumbers[0].ToString()},{newNumbers.ToString()}";
             _resultRepository.Update(storedGame.Result);
 
             return Ok(storedGame.Result);
