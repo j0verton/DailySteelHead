@@ -36,14 +36,14 @@ const NTIQuestionCard = ({ result, isFlipped }) => {
                     What interval of <br />
                     <h2>{result.result.key}</h2><br />
                 is at<br />
-                    <h2>fret {result.questionsNumbers.reverse()[0][0]}</h2><br />
+                    <h2>fret {result.questions.reverse()[0][0]}</h2><br />
                 on the <br />
-                    <h2>string {result.questionsNumbers.reverse()[0][1]}</h2>
+                    <h2>string {result.questions.reverse()[0][1]}</h2>
                 </Card>
                 <Card id="gameCard" className={result.outcomes.reverse()[0] ? "isCorrect" : "isIncorrect"}>
-                    <h2>fret {result.questionsNumbers.reverse()[1][0]}</h2><br />
+                    <h2>fret {result.questions.reverse()[1][0]}</h2><br />
                 on the <br />
-                    <h2>string {result.questionsNumbers.reverse()[1][1]}</h2>
+                    <h2>string {result.questions.reverse()[1][1]}</h2>
                     is the<br />
                     <h2>{result.answers ? result.answerList.reverse()[0] : null}</h2><br />
                 degree of the {result.key} scale<br />

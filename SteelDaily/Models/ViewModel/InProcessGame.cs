@@ -55,7 +55,9 @@ namespace SteelDaily.Models.ViewModel
         { 
             get
             {
-                var outcomes = new List<bool?>();
+                if (Result.Answers != null)
+                {
+                    var outcomes = new List<bool?>();
                 var answerList = Result.Answers.Split(',').ToList();
                 for (int i = 0; i < answerList.Count(); i++) 
                 {
@@ -71,7 +73,13 @@ namespace SteelDaily.Models.ViewModel
                     }
                 }
                 return outcomes;
-            } 
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
         }
 
         public List<List<int>> Questions 
