@@ -35,14 +35,25 @@ namespace SteelDaily.Models.ViewModel
                 return fretboard;
             }
         }
-        public List<string> AnswerList { 
+        public List<string> AnswerList 
+        { 
             get
             {
-                return Result.Answers.Split(',').ToList();
+                if (Result.Answers != null)
+                {
+                    return Result.Answers.Split(',').ToList();
+                }
+                else 
+                { 
+                return null;
+                }
+
+
             }
         }
         public List<bool?> Outcomes 
-        { get
+        { 
+            get
             {
                 var outcomes = new List<bool?>();
                 var answerList = Result.Answers.Split(',').ToList();

@@ -1,8 +1,8 @@
-#isIncorrect{
+.isIncorrect{
     background-color: firebrick;
 }
 
-.gameCard {
+#gameCard {
 padding: 15px;
 margin: 15px;
 }

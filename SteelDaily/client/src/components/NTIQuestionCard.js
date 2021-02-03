@@ -5,7 +5,7 @@ import ReactCardFlip from 'react-card-flip';
 import "./NTIQuestionCard.css"
 
 
-const NTIQuestionCard = ({ result, isFlipped, correct }) => {
+const NTIQuestionCard = ({ result, isFlipped }) => {
     // const [isFlipped, setIsFlipped] = useState(false)
 
     const [vertFlip, setFlip] = useState(true)
@@ -34,19 +34,19 @@ const NTIQuestionCard = ({ result, isFlipped, correct }) => {
                 flipDirection={vertFlip ? "vertical" : "horizontal"}>
                 <Card className="gameCard">
                     What interval of <br />
-                    <h2>{result.key}</h2><br />
+                    <h2>{result.result.key}</h2><br />
                 is at<br />
-                    <h2>fret {result.questions.split(",")[0]}</h2><br />
+                    <h2>fret {result.questionsNumbers.reverse()[0][0]}</h2><br />
                 on the <br />
-                    <h2>string {result.questions.split(",")[1]}</h2>
+                    <h2>string {result.questionsNumbers.reverse()[0][1]}</h2>
                 </Card>
-                <Card className="gameCard" id={correct ? "isCorrect" : "isIncorrect"}>
-                    <h2>8th fret</h2><br />
+                <Card id="gameCard" className={result.outcomes.reverse()[0] ? "isCorrect" : "isIncorrect"}>
+                    <h2>fret {result.questionsNumbers.reverse()[1][0]}</h2><br />
                 on the <br />
-                    <h2>8th string</h2>
+                    <h2>string {result.questionsNumbers.reverse()[1][1]}</h2>
                     is the<br />
-                    <h2>1st</h2><br />
-                degree of the C scale<br />
+                    <h2>{result.answers ? result.answerList.reverse()[0] : null}</h2><br />
+                degree of the {result.key} scale<br />
                 </Card>
             </ReactCardFlip>
         </Col >

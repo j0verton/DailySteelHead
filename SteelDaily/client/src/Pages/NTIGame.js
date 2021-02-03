@@ -15,7 +15,6 @@ const NTIGame = () => {
     const [key, setKey] = useState("C")
     const [result, setResult] = useState({})
     const [isFlipped, setIsFlipped] = useState(false)
-    const [correct, setCorrect] = useState(true)
     const scale = [
         { steps: 1, interval: "1" },
         { steps: 2, interval: "b2" },
@@ -66,6 +65,7 @@ const NTIGame = () => {
             ).then(res => res.json())
             .then(res => {
                 console.log("ans response", res)
+                debugger
                 setResult(res)
             })
     }
@@ -83,12 +83,12 @@ const NTIGame = () => {
     return (
         <div className="game-area">
             <div className="score-container">
-                <ScoreDisplay />
+                <ScoreDisplay result={result} />
             </div>
             <div className="card-area">
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
                     {game ?
-                        <NTIQuestionCard result={result} isFlipped={isFlipped} correct={correct} />
+                        <NTIQuestionCard result={result} isFlipped={isFlipped} />
                         : <>
                             <KeySelect setKey={setKey} />
                             <Button onClick={startHandler}>Start Game</Button>

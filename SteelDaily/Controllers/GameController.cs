@@ -62,7 +62,11 @@ namespace SteelDaily.Controllers
             };
 
             var returnedResult = _resultRepository.Add(newResult);
-            return Ok(returnedResult);
+            var game = new InProcessGame()
+            {
+                Result = returnedResult,
+            };
+            return Ok(game);
         }
         [HttpPost]
         public IActionResult Answer(ReturnedGame game) 
@@ -94,7 +98,7 @@ namespace SteelDaily.Controllers
             storedGame.Result.Questions+= $",{newNumbers[0].ToString()},{newNumbers[1].ToString()}";
             _resultRepository.Update(storedGame.Result);
 
-            return Ok(storedGame.Result);
+            return Ok(storedGame);
         }
 
 
