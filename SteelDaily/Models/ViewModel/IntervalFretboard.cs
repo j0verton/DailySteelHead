@@ -15,15 +15,21 @@ namespace SteelDaily.Models.ViewModel
         {
             get
             {
+                // converting key from result into enum value
                 ChromaticScale root = (ChromaticScale) Enum.Parse(typeof(ChromaticScale), Key);
-                int transposition = (int) root - 1;
+                //the number of steps the new root is above the key of C 
+                int transposition = (int) root - 1 ;
                 List <List<string>> fretboard = new List<List<string>>();
                 foreach (List<ChromaticScale> fret in ChromaticFretboard.Fretboard)
                 {
                     List<string> fretIntervals = new List<string>();
                     foreach (ChromaticScale note in fret)
                     {
-                        int intervalHalfSteps = (int)note - transposition;
+                        int intervalHalfSteps = ((int)note - transposition + 12) % 12;
+                        if (intervalHalfSteps == 0)
+                        {
+                            intervalHalfSteps = 12;
+                        }
                         Intervals interval = (Intervals)intervalHalfSteps;
                         fretIntervals.Add(interval.ToString());
                     }

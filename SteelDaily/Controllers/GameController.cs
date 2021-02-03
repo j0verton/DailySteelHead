@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GameController : ControllerBase

@@ -20,59 +20,59 @@ namespace SteelDaily.Models.ViewModel
             }
         }
         public Result Result { get; set; }
-        public override IntervalFretboard Fretboard 
+        public override IntervalFretboard Fretboard
         {
             get {
                 var fretboard = new IntervalFretboard()
                 {
                     Key = Result.Key,
-                    ChromaticFretboard = new ChromaticFretboard() 
-                    { 
+                    ChromaticFretboard = new ChromaticFretboard()
+                    {
                         Tuning = Result.Tuning
-                    } 
+                    }
 
                 };
                 return fretboard;
             }
         }
-        public List<string> AnswerList 
-        { 
+        public List<string> AnswerList
+        {
             get
             {
                 if (Result.Answers != null)
                 {
                     return Result.Answers.Split(',').ToList();
                 }
-                else 
-                { 
-                return null;
+                else
+                {
+                    return null;
                 }
 
 
             }
         }
-        public List<bool?> Outcomes 
-        { 
+        public List<bool?> Outcomes
+        {
             get
             {
                 if (Result.Answers != null)
                 {
                     var outcomes = new List<bool?>();
-                var answerList = Result.Answers.Split(',').ToList();
-                for (int i = 0; i < answerList.Count(); i++) 
-                {
-                    var question = Questions[i];
-                    var correctAnswer = Fretboard.IntFretboard[question[0]][question[1]];
-                    if (AnswerList[i] == correctAnswer)
+                    var answerList = Result.Answers.Split(',').ToList();
+                    for (int i = 0; i < answerList.Count(); i++)
                     {
-                        outcomes.Add(true);
+                        var question = Questions[i];
+                        var correctAnswer = Fretboard.IntFretboard[question[0]][question[1]];
+                        if (AnswerList[i] == correctAnswer)
+                        {
+                            outcomes.Add(true);
+                        }
+                        else
+                        {
+                            outcomes.Add(false);
+                        }
                     }
-                    else
-                    {
-                        outcomes.Add(false);
-                    }
-                }
-                return outcomes;
+                    return outcomes;
                 }
                 else
                 {
@@ -81,7 +81,24 @@ namespace SteelDaily.Models.ViewModel
 
             }
         }
-
+        public List<string> CorrectAnswerList
+        {
+            get
+            {
+                var correctAnswerList = new List<string>();
+                if (Result.Answers != null)
+                {
+                    for (int i = 0; i < Questions.Count(); i++)
+                    {
+                        var question = Questions[i];
+                        var correctAnswer = Fretboard.IntFretboard[question[0]][question[1]];
+                        correctAnswerList.Add(correctAnswer);
+                    }
+                    return correctAnswerList;
+                }
+                return null;
+            }
+        }
         public List<List<int>> Questions 
         {
             get

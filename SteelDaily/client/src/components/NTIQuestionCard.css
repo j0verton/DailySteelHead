@@ -1,5 +1,11 @@
 .isIncorrect{
     background-color: firebrick;
+
+}
+
+.isIncorrectAns{
+    
+    text-decoration: line-through;
 }
 
 #gameCard {

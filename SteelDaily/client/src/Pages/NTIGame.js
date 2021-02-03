@@ -16,18 +16,18 @@ const NTIGame = () => {
     const [result, setResult] = useState({})
     const [isFlipped, setIsFlipped] = useState(false)
     const scale = [
-        { steps: 1, interval: "1" },
-        { steps: 2, interval: "b2" },
-        { steps: 3, interval: "2" },
-        { steps: 4, interval: "b3" },
-        { steps: 5, interval: "3" },
-        { steps: 6, interval: "4" },
-        { steps: 7, interval: "b5" },
-        { steps: 8, interval: "5" },
-        { steps: 9, interval: "b6" },
-        { steps: 10, interval: "6" },
-        { steps: 11, interval: "b7" },
-        { steps: 12, interval: "7" }
+        { steps: 1, buttonName: "1", interval: "1st", stringName: "One" },
+        { steps: 2, buttonName: "b2", interval: "b2nd", stringName: "FlatTwo" },
+        { steps: 3, buttonName: "2", interval: "2nd", stringName: "Two" },
+        { steps: 4, buttonName: "b3", interval: "b3rd", stringName: "FlatThree" },
+        { steps: 5, buttonName: "3", interval: "3rd", stringName: "Three" },
+        { steps: 6, buttonName: "4", interval: "4th", stringName: "Four" },
+        { steps: 7, buttonName: "b5", interval: "b5th", stringName: "FlatFive" },
+        { steps: 8, buttonName: "5", interval: "5th", stringName: "Five" },
+        { steps: 9, buttonName: "b6", interval: "b6th", stringName: "FlatSix" },
+        { steps: 10, buttonName: "6", interval: "6th", stringName: "Six" },
+        { steps: 11, buttonName: "b7", interval: "b7th", stringName: "FlatSeven" },
+        { steps: 12, buttonName: "7", interval: "7th", stringName: "Seven" }
     ]
     const startGame = () => {
         return getToken()
@@ -47,8 +47,8 @@ const NTIGame = () => {
     }
     const answerQuestion = (answer) => {
         const gameReturn = {
-            resultId: result.id,
-            questionNumbers: result.questions,
+            resultId: result.result.id,
+            questionNumbers: result.questions.reverse()[0].join(","),
             answer: answer
         }
         console.log("game", gameReturn)
@@ -65,7 +65,6 @@ const NTIGame = () => {
             ).then(res => res.json())
             .then(res => {
                 console.log("ans response", res)
-                debugger
                 setResult(res)
             })
     }
@@ -88,7 +87,7 @@ const NTIGame = () => {
             <div className="card-area">
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
                     {game ?
-                        <NTIQuestionCard result={result} isFlipped={isFlipped} />
+                        <NTIQuestionCard result={result} isFlipped={isFlipped} scale={scale} />
                         : <>
                             <KeySelect setKey={setKey} />
                             <Button onClick={startHandler}>Start Game</Button>
@@ -97,11 +96,16 @@ const NTIGame = () => {
                 </Col>
             </div>
             <div className="button-container">
-                {scale.map(interval => (
-                    <Button key={interval.steps} value={interval.steps}
-                        onClick={AnswerHandler}
-                    >{interval.interval}</Button>
-                ))}
+                {
+                    isFlipped ? <Button onClick={() => setIsFlipped(false)}>Next</Button> :
+
+                        scale.map(interval => (
+                            <Button key={interval.steps} value={interval.stringName}
+                                onClick={AnswerHandler}
+                            >{interval.buttonName}</Button>
+                        ))
+
+                }
             </div>
         </div >
 
