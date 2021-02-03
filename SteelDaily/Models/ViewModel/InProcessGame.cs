@@ -41,11 +41,12 @@ namespace SteelDaily.Models.ViewModel
                 return Result.Answers.Split(',').ToList();
             }
         }
-        public List<bool> Outcomes 
+        public List<bool?> Outcomes 
         { get
             {
-                var outcomes = new List<bool>();
-                for (int i = 0; i < AnswerList.Count(); i++) 
+                var outcomes = new List<bool?>();
+                var answerList = Result.Answers.Split(',').ToList();
+                for (int i = 0; i < answerList.Count(); i++) 
                 {
                     var question = Questions[i];
                     var correctAnswer = Fretboard.IntFretboard[question[0]][question[1]];
@@ -68,7 +69,7 @@ namespace SteelDaily.Models.ViewModel
             {
                 var questions = new List<List<int>>();
                 var wholeList = Result.Questions.Split(',').ToList();
-                for (int i = 0; i < wholeList.Count()/2; i+=2)
+                for (int i = 0; i < wholeList.Count(); i+=2)
                 {
                     var questionPair = new List<string>(wholeList.Skip(i).Take(2).ToList());
                     questions.Add(questionPair.Select(int.Parse).ToList());

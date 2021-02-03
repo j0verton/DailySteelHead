@@ -51,8 +51,7 @@ namespace SteelDaily.Controllers
         //questionList.Join()
             var newResult = new Result()
             {
-                UserProfileId = 1,
-                //UserProfileId = GetCurrentUserProfile().Id,
+                UserProfileId = GetCurrentUserProfile().Id,
                 GameId = 1,
                 ScaleId = 1,
                 Key = key,
@@ -68,6 +67,7 @@ namespace SteelDaily.Controllers
         [HttpPost]
         public IActionResult Answer(ReturnedGame game) 
         {
+            //outcomes throwing null ref exception
             var storedGame = new InProcessGame()
             {
                 Result = _resultRepository.GetById(game.ResultId)
@@ -82,13 +82,16 @@ namespace SteelDaily.Controllers
                 storedGame.Result.Complete = true;
                 return Ok(storedGame);
             }
-            if (storedGame.Result.Answers == "")
+            if (storedGame.Result.Answers == null)
             {
                 storedGame.Result.Answers = game.Answer;
             }
-            storedGame.Result.Answers += $",{game.Answer}";
+            else
+            { 
+                storedGame.Result.Answers += $",{game.Answer}";
+            }
             List<int> newNumbers = storedGame.GetQuestionNumbers();
-            storedGame.Result.Questions+= $",{newNumbers[0].ToString()},{newNumbers.ToString()}";
+            storedGame.Result.Questions+= $",{newNumbers[0].ToString()},{newNumbers[1].ToString()}";
             _resultRepository.Update(storedGame.Result);
 
             return Ok(storedGame.Result);

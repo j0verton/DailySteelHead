@@ -16,7 +16,7 @@ namespace SteelDaily.Tests
             {
                 Id = 1,
                 Name = "E9",
-                Notes = "B,D,E,Gb,Ab,B,E,Ab,Eb,Gb"
+                Notes = "Gb,Eb,Ab,E,B,Ab,Gb,E,D,B"
             };
             var Result1 = new Result()
             {
@@ -25,7 +25,7 @@ namespace SteelDaily.Tests
                 TuningId = 1,
                 Tuning = TestTuning,
                 Questions = "11,2,8,8,7,4,18,5",
-                Answers = "2,1,b7,4"
+                Answers = "FlatTwo,One,FlatSeven,Four"
             };
             ////ans = D/2
             //Result1.Questions.Add(new List<int> { 11, 2 });
@@ -41,8 +41,10 @@ namespace SteelDaily.Tests
                 Result = Result1
             };
 
-
-            Assert.Equal("4", Game.AnswerList.LastOrDefault());
+            Assert.True(Game.Outcomes[0]);
+            Assert.True(Game.Outcomes[1]);
+            Assert.True(Game.Outcomes[2]);
+            Assert.True(Game.Outcomes[3]);
 
         }
     }

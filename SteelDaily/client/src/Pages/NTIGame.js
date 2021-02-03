@@ -55,17 +55,18 @@ const NTIGame = () => {
         console.log("game", gameReturn)
         return getToken()
             .then(token =>
-                fetch(`/api/Game`, {
+                fetch(`/api/game/`, {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify(gameReturn)
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log(res.value)
-                setResult(res.value)
+                console.log("ans response", res)
+                setResult(res)
             })
     }
 
