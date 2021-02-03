@@ -48,7 +48,7 @@ const NTIGame = () => {
     const answerQuestion = (answer) => {
         const gameReturn = {
             resultId: result.result.id,
-            questionNumbers: result.questions.reverse()[0].join(","),
+            questionNumbers: result.questions.slice(-1).join(","),
             answer: answer
         }
         console.log("game", gameReturn)
