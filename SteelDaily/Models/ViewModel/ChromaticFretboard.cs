@@ -20,7 +20,7 @@ namespace SteelDaily.Models.ViewModel
                     fretZero.Add((ChromaticScale)Enum.Parse(typeof(ChromaticScale), noteString));
                 }
                 fretboard.Add(fretZero);
-                for (var i = 0; i < 22; i++)
+                for (var i = 0; i < 16; i++)
                 {
                     var fret = new List<ChromaticScale>();
                     foreach (ChromaticScale note in fretboard[i])

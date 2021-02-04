@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import KeySelect from "../components/KeySelect";
 import fretboard from "../images/fretboard.svg"
-import MemoFretboard from "../components/Fretboard";
-
+import Fretboard from "../components/Fretboard";
+import DisplayQuestionDot from "../components/DisplayQuestionDot";
 
 const NTIFBGame = () => {
     const { getToken } = useContext(UserProfileContext)
@@ -30,11 +30,6 @@ const NTIFBGame = () => {
         { steps: 11, buttonName: "b7", interval: "b7th", stringName: "FlatSeven" },
         { steps: 12, buttonName: "7", interval: "7th", stringName: "Seven" }
     ]
-
-    const buildInteractiveFretboard = () => {
-        // result.fretboard.intFretboard.
-
-    }
 
     const startGame = () => {
         return getToken()
@@ -96,7 +91,7 @@ const NTIFBGame = () => {
                     <Button onClick={startHandler}>Start Game</Button>
                 </>
                 }
-                <MemoFretboard />
+                <Fretboard result={result} gameComponent={DisplayQuestionDot} />
                 {/* <img
                     id="fretboard"
                     src={fretboard}
