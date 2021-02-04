@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import KeySelect from "../components/KeySelect";
 import fretboard from "../images/fretboard.svg"
+import MemoFretboard from "../components/Fretboard";
 
 
 const NTIFBGame = () => {
@@ -31,7 +32,7 @@ const NTIFBGame = () => {
     ]
 
     const buildInteractiveFretboard = () => {
-        result.fretboard.intFretboard.
+        // result.fretboard.intFretboard.
 
     }
 
@@ -95,10 +96,11 @@ const NTIFBGame = () => {
                     <Button onClick={startHandler}>Start Game</Button>
                 </>
                 }
-                <img
+                <MemoFretboard />
+                {/* <img
                     id="fretboard"
                     src={fretboard}
-                    alt="steelguitar fretboard" />
+                    alt="steelguitar fretboard" /> */}
             </div>
             <div className="button-container">
                 {
