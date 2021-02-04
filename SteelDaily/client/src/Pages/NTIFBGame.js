@@ -13,7 +13,8 @@ const NTIFBGame = () => {
             <div className="score-container">
                 <img
                     id="fretboard"
-                    src={fretboard} />
+                    src={fretboard}
+                    alt="steelguitar fretboard" />
             </div>
         </div>
 
