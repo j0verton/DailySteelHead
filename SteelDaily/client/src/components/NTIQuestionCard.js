@@ -45,33 +45,33 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                     What interval of <br />
                     <h2>{result.result.key}</h2><br />
                         is at<br />
-                    <h2>fret {result.questions.slice(-1)[0]}</h2><br />
+                    <h2>fret {result.questions.slice(-1)[0][0]}</h2><br />
                         on the <br />
-                    <h2>string {result.questions.slice(-1)[1]}</h2>
+                    <h2>string {result.questions.slice(-1)[0][1]}</h2>
                 </Card>
 
                 {//Back of car with answer
                 }
                 <Card id="gameCard" className={result.outcomes ? result.outcomes.slice(-1) ? "isCorrect" : "isIncorrect" : null}>
                     {result.outcomes ? (<>
-                        <h2>fret {result.questions.slice(-2, -1)[0]}</h2><br />
+                        <h2>fret {result.questions.slice(-2, -1)[0][0]}</h2><br />
                         on the <br />
-                        <h2>string {result.questions.slice(-2, -1)[1]}</h2>
+                        <h2>string {result.questions.slice(-2, -1)[0][1]}</h2>
                         is the<br />
                         {result.outcomes.slice(-1) ?
                             //display correct answer
                             (
                                 <h2 className="isCorrectAns">
-                                    {convertCharIntervalToNumericInterval(result.answerList.slice(-1))}
+                                    {convertCharIntervalToNumericInterval(result.answerList.slice(-1)[0])}
                                 </h2>) :
                             //displays incorrect and correct answer
                             (
                                 <>
                                     <h2 className="isIncorrectAns">
-                                        {convertCharIntervalToNumericInterval(result.answerList.slice(-1))}
+                                        {convertCharIntervalToNumericInterval(result.answerList.slice(-1)[0])}
                                     </h2>
                                     <h2>
-                                        {convertCharIntervalToNumericInterval(result.correctAnswerList.slice(-2, -1))}
+                                        {convertCharIntervalToNumericInterval(result.correctAnswerList.slice(-2, -1)[0])}
                                     </h2>
 
                                 </>)}

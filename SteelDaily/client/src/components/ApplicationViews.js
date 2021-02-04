@@ -4,6 +4,7 @@ import { UserProfileContext } from "../providers/UserProfileProvider";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NTIGame from "../pages/NTIGame";
+import NTIFBGame from "../pages/NTIFBGame";
 
 const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -14,7 +15,9 @@ const ApplicationViews = () => {
       <Route path="/NTIgame">
         <NTIGame />
       </Route>
-
+      <Route path="/NTIFretboardGame">
+        <NTIFBGame />
+      </Route>
       {/* <Route path="/" exact>
         {isLoggedIn ? <HomePageManager /> : <Redirect to="/login" />}
       </Route>

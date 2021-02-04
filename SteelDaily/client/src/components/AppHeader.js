@@ -53,7 +53,12 @@ const AppHeader = () => {
           </NavItem>
           <NavItem>
             <NavLink to="/NTIgame" tag={Link}>
-              Name That Interval
+              Name That Interval Flash Cards
+                  </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/NTIFBgame" tag={Link}>
+              Name That Interval Fretboard
                   </NavLink>
           </NavItem>
           {/* <Collapse isOpen={isOpen} navbar>
