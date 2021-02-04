@@ -5,7 +5,7 @@ import { Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import "./Login.css";
-import { image } from "../"
+import steel from "../steel.svg"
 const Register = () => {
   const { register } = useContext(UserProfileContext);
   const [loading, setLoading] = useState(false);
@@ -48,7 +48,7 @@ const Register = () => {
     <div className="login-form">
       <form onSubmit={handleSubmit}>
         <div className="avatar bg-primary">
-          <img src="" alt="Avatar" />
+          <img src={steel} alt=" Avatar" />
         </div>
         <h2 className="text-center">User Register</h2>
         <div className="form-group">

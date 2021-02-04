@@ -38,8 +38,8 @@ const AppHeader = () => {
           <img
             id="header-logo"
             src={logo}
-            width="30"
-            height="30"
+            width="40"
+            height="40"
             className="mr-1"
             alt="Steel Daily"
           />

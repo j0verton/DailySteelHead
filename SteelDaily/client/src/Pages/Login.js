@@ -5,6 +5,7 @@ import { Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import "./Login.css";
+import steel from "../steel.svg"
 
 const Login = () => {
   const { login, logout } = useContext(UserProfileContext);
@@ -19,7 +20,7 @@ const Login = () => {
     login(email, password)
       .then((user) => {
         setLoading(false);
-        user.userStatusId == 2 ? toast.info('That account in inactive', logout())
+        user.userStatusId === 2 ? toast.info('That account in inactive', logout())
           : toast.info(`Welcome back ${user.displayName}`, history.push("/"));
       })
       .catch((err) => {
@@ -32,7 +33,7 @@ const Login = () => {
     <div className="login-form">
       <form onSubmit={handleSubmit}>
         <div className="avatar bg-primary">
-          <img src="../steel.svg" alt="Avatar" />
+          <img src={steel} alt="Avatar" />
         </div>
         <h2 className="text-center">User Login</h2>
         <div className="form-group">
