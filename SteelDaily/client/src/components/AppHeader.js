@@ -57,7 +57,7 @@ const AppHeader = () => {
                   </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/NTIFBgame" tag={Link}>
+            <NavLink to="/NTIFretboardGame" tag={Link}>
               Name That Interval Fretboard
                   </NavLink>
           </NavItem>

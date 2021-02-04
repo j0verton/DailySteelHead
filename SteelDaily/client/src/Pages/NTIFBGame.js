@@ -1,13 +1,19 @@
+import { useEffect } from "react";
 import fretboard from "../images/fretboard.svg"
 
 
 const NTIFBGame = () => {
 
+    useEffect(() => {
+        console.log("run my shit")
+    }, [])
     return (
         <div className="game-area">
             <h2>Name the interval</h2>
             <div className="score-container">
-                <img src={fretboard} />
+                <img
+                    id="fretboard"
+                    src={fretboard} />
             </div>
         </div>
 
