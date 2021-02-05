@@ -80,7 +80,7 @@ namespace SteelDaily.Controllers
             {
                 return BadRequest();
             }
-            if (storedGame.Questions.Count >= 9)
+            if (storedGame.Questions.Count >= 10)
             {
                 storedGame.Result.Answers += $",{game.Answer}";
                 storedGame.Result.Complete = true;

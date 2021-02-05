@@ -7,14 +7,16 @@ import "./NTIGame.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import KeySelect from "../components/KeySelect";
+import ResultsView from "../components/ResultsView";
 
 
 const NTIGame = () => {
-    const { getToken } = useContext(UserProfileContext)
-    const [game, setGame] = useState(false)
-    const [key, setKey] = useState("C")
-    const [result, setResult] = useState({})
-    const [isFlipped, setIsFlipped] = useState(false)
+    const { getToken } = useContext(UserProfileContext);
+    const [game, setGame] = useState(false);
+    const [viewResult, setViewResult] = useState(false);
+    const [key, setKey] = useState("C");
+    const [result, setResult] = useState({});
+    const [isFlipped, setIsFlipped] = useState(false);
     const scale = [
         { steps: 1, buttonName: "1", interval: "1st", stringName: "One" },
         { steps: 2, buttonName: "b2", interval: "b2nd", stringName: "FlatTwo" },
@@ -40,10 +42,8 @@ const NTIGame = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log(res)
                 setResult(res)
-            }
-            )
+            })
     }
     const answerQuestion = (answer) => {
         const gameReturn = {
@@ -65,6 +65,11 @@ const NTIGame = () => {
             ).then(res => res.json())
             .then(res => {
                 console.log("ans response", res)
+                console.log(res.result.complete)
+                if (res.result.complete === true) {
+                    setViewResult(true)
+                    setGame(false)
+                }
                 setResult(res)
             })
     }
@@ -81,33 +86,54 @@ const NTIGame = () => {
 
     return (
         <div className="game-area">
-            <div m="5" className="score-container">
-                <ScoreDisplay result={result} game={game} />
-            </div>
-            <div className="card-area">
-                <Col sm="12" md={{ size: 6, offset: 3 }}>
-                    {game ?
-                        <NTIQuestionCard result={result} isFlipped={isFlipped} scale={scale} />
-                        : <>
-                            <KeySelect setKey={setKey} />
-                            <Button onClick={startHandler}>Start Game</Button>
-                        </>
-                    }
-                </Col>
-            </div>
-            <div className="button-container">
-                {
-                    isFlipped ? <Button onClick={() => setIsFlipped(false)}>Next</Button> :
+            {viewResult ? <>
+                <ResultsView result={result} game={game} />
+                <Button
+                    onClick={() => {
+                        setGame(false)
+                        setIsFlipped(false)
+                        setViewResult(false)
+                        result.outcomes = null
+                    }}>
+                    Next
+                        </Button>
+            </> :
+                <>
+                    <div m="5" className="score-container">
+                        <ScoreDisplay result={result} game={game} />
+                    </div>
+                    <div className="card-area">
+                        <Col sm="12" md={{ size: 6, offset: 3 }}>
+                            {game ?
+                                <NTIQuestionCard result={result} isFlipped={isFlipped} scale={scale} />
+                                : <>
+                                    <KeySelect setKey={setKey} />
+                                    <Button onClick={startHandler}>Start Game</Button>
+                                </>
+                            }
+                        </Col>
+                    </div>
+                    <div className="button-container">
+                        {
+                            isFlipped ? <Button
+                                onClick={() => {
 
-                        game ?
-                            scale.map(interval => (
-                                <Button key={interval.steps} value={interval.stringName}
-                                    onClick={AnswerHandler}
-                                >{interval.buttonName}</Button>
-                            )) : null
+                                    setIsFlipped(false)
+                                }}>
+                                Next
+                        </Button> :
 
-                }
-            </div>
+                                game ?
+                                    scale.map(interval => (
+                                        <Button key={interval.steps} value={interval.stringName}
+                                            onClick={AnswerHandler}
+                                        >{interval.buttonName}</Button>
+                                    )) : null
+
+                        }
+                    </div>
+                </>
+            }
         </div >
 
 
