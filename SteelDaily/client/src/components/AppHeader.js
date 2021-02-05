@@ -46,7 +46,7 @@ const AppHeader = () => {
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Nav>
-          <NavItem>
+          {/* <NavItem>
             <NavLink to="/myprofile" tag={Link}>
               My Profile
                   </NavLink>
@@ -61,42 +61,67 @@ const AppHeader = () => {
               Name That Interval Fretboard
                   </NavLink>
           </NavItem>
-          {/* <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            {user ? (
-              <>
-                <NavItem>
-                  <NavLink to="/myprofile" tag={Link}>
-                    My Profile
+          <NavItem>
+            <NavLink to="/UnisonFinderGame" tag={Link}>
+              Unison Finder
                   </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} to="/" onClick={logoutAndReturn}>
-                    Logout
-                  </NavLink>
-                </NavItem>
-              </>
-            ) : (
+          </NavItem> */}
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              {user ? (
                 <>
                   <NavItem>
-                    <NavLink to="/login" tag={Link}>
-                      Login
+                    <NavLink to="/myprofile" tag={Link}>
+                      My Profile
                   </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink to="/register" tag={Link}>
-                      Register
+                    <NavLink to="/NTIgame" tag={Link}>
+                      Name That Interval Flash Cards
+                  </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink to="/NTIFretboardGame" tag={Link}>
+                      Name That Interval Fretboard
+                  </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink to="/UnisonFinderGame" tag={Link}>
+                      Unison Finder
+                  </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink to="/myprofile" tag={Link}>
+                      My Profile
+                  </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={Link} to="/" onClick={logoutAndReturn}>
+                      Logout
                   </NavLink>
                   </NavItem>
                 </>
-              )}
-          </Nav>
-          {user ? (
-            <NavbarText className="d-sm-none d-md-block">
-              Welcome {user.displayName}
-            </NavbarText>
-          ) : null}
-        </Collapse> */}
+              ) : (
+                  <>
+                    <NavItem>
+                      <NavLink to="/login" tag={Link}>
+                        Login
+                  </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink to="/register" tag={Link}>
+                        Register
+                  </NavLink>
+                    </NavItem>
+                  </>
+                )}
+            </Nav>
+            {user ? (
+              <NavbarText className="d-sm-none d-md-block">
+                Welcome {user.displayName}
+              </NavbarText>
+            ) : null}
+          </Collapse>
         </Nav>
       </Navbar>
     </div>

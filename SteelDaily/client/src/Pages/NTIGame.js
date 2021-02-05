@@ -14,7 +14,7 @@ const NTIGame = () => {
     const { getToken } = useContext(UserProfileContext);
     const [game, setGame] = useState(false);
     const [viewResult, setViewResult] = useState(false);
-    const [key, setKey] = useState("C");
+    const [key, setKey] = useState("A");
     const [result, setResult] = useState({});
     const [isFlipped, setIsFlipped] = useState(false);
     const scale = [
@@ -129,17 +129,11 @@ const NTIGame = () => {
                                             onClick={AnswerHandler}
                                         >{interval.buttonName}</Button>
                                     )) : null
-
                         }
                     </div>
                 </>
             }
         </div >
-
-
-
     )
-
-
 };
 export default NTIGame;

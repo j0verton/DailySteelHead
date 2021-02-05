@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Children } from "react";
 
-function Fretboard({ result, gameComponent }) {
+function Fretboard({ result, gameComponent, children }) {
     return (
         <svg width={1912} height={353} >
             {/* fretboard */}
@@ -93,22 +93,7 @@ function Fretboard({ result, gameComponent }) {
                 297h1864v5H21zM21 
                 331h1864v5H21zM21z"
             />
-            {/* {result.fretboard ? gameComponent(result) : null} */}
-            {result.fretboard ? result.fretboard.intFretboard.map((fret, i) => {
-                return fret.map((note, j) => {
-                    return (
-                        <circle
-                            key={`${i}-${j}`}
-                            id={`note--${i}-${j}`}
-                            cx={21 + (110 * i)} cy={25 + (34 * j)} r="15"
-                            fill="#39FF14"
-                            visibility={(i === result.questions.slice(-1)[0][0] && j === result.questions.slice(-1)[0][1]) ? "visible" : "hidden"}
-                        // onClick={ }
-                        />
-
-                    )
-                });
-            }) : null}
+            {children}
         </svg>
     );
 }

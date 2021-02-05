@@ -6,13 +6,12 @@ import "./NTIGame.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import KeySelect from "../components/KeySelect";
-import fretboard from "../images/fretboard.svg"
 import Fretboard from "../components/Fretboard";
-import DisplayQuestionDot from "../components/DisplayQuestionDot";
+import FindUnisonNotes from "../components/FindUnisonNotes";
 import ResultsView from "../components/ResultsView";
 
 
-const NTIFBGame = () => {
+const UnisonFinderGame = () => {
     const { getToken } = useContext(UserProfileContext)
     const [game, setGame] = useState(false)
     const [viewResult, setViewResult] = useState(false);
@@ -113,7 +112,7 @@ const NTIFBGame = () => {
                         </>
                         }
 
-                        <Fretboard result={result} gameComponent={DisplayQuestionDot}><DisplayQuestionDot result={result} /></Fretboard>
+                        <Fretboard result={result} ><FindUnisonNotes result={result} /></Fretboard>
                     </div>
                     <div className="button-container">
                         {
@@ -132,4 +131,4 @@ const NTIFBGame = () => {
         </div >
     )
 };
-export default NTIFBGame;
+export default UnisonFinderGame;
