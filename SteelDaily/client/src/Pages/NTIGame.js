@@ -81,8 +81,8 @@ const NTIGame = () => {
 
     return (
         <div className="game-area">
-            <div className="score-container">
-                <ScoreDisplay result={result} />
+            <div m="5" className="score-container">
+                <ScoreDisplay result={result} game={game} />
             </div>
             <div className="card-area">
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
@@ -99,11 +99,12 @@ const NTIGame = () => {
                 {
                     isFlipped ? <Button onClick={() => setIsFlipped(false)}>Next</Button> :
 
-                        scale.map(interval => (
-                            <Button key={interval.steps} value={interval.stringName}
-                                onClick={AnswerHandler}
-                            >{interval.buttonName}</Button>
-                        ))
+                        game ?
+                            scale.map(interval => (
+                                <Button key={interval.steps} value={interval.stringName}
+                                    onClick={AnswerHandler}
+                                >{interval.buttonName}</Button>
+                            )) : null
 
                 }
             </div>

@@ -1,22 +1,28 @@
 import react from "react"
+import { Col, Row } from "reactstrap";
+import Star from "./Star";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const ScoreDisplay = (result) => {
+const ScoreDisplay = ({ result, game }) => {
 
     return (
         <>
             {
                 result.outcomes ?
                     <>
-                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <h3>{result.outcomes.filter(b => b).length}/10 Correct</h3>
+                        <Row m="5">
+                            <Col sm={{ size: 10, order: 2, offset: 1 }}>
+                                {result.outcomes.map(outcome => {
+                                    console.log("outcome", outcome)
+                                    return <Star outcome={outcome} />
+                                })}
+                            </Col>
+                        </Row>
                     </>
-                    : <h3>Select A Key Then Begin</h3>
+                    : game ? null : <h3>Select A Key Then Begin</h3>
             }
         </>
-
-
     )
 };
 export default ScoreDisplay;

@@ -43,22 +43,25 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                 flipDirection={vertFlip ? "vertical" : "horizontal"}>
                 <Card className="gameCard">
                     What interval of <br />
-                    <h2>{result.result.key}</h2><br />
+                    <h2>{result.result.key}</h2>
                         is at<br />
-                    <h2>fret {result.questions.slice(-1)[0][0]}</h2><br />
+                    <h2>fret {result.questions.slice(-1)[0][0]}</h2>
                         on the <br />
                     <h2>string {result.questions.slice(-1)[0][1]}</h2>
                 </Card>
 
                 {//Back of car with answer
                 }
-                <Card id="gameCard" className={result.outcomes ? result.outcomes.slice(-1) ? "isCorrect" : "isIncorrect" : null}>
+                <Card id="gameCard" className={result.outcomes ? result.outcomes.slice(-1)[0] ? "isCorrect" : "isIncorrect" : null}>
                     {result.outcomes ? (<>
-                        <h2>fret {result.questions.slice(-2, -1)[0][0]}</h2><br />
+                        {result.outcomes.slice(-1)[0] ?
+                            <h1>Correct!</h1>
+                            : <h1>Incorrect!</h1>}
+                        <h2>fret {result.questions.slice(-2, -1)[0][0]}</h2>
                         on the <br />
                         <h2>string {result.questions.slice(-2, -1)[0][1]}</h2>
                         is the<br />
-                        {result.outcomes.slice(-1) ?
+                        {result.outcomes.slice(-1)[0] ?
                             //display correct answer
                             (
                                 <h2 className="isCorrectAns">
@@ -75,8 +78,9 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                                     </h2>
 
                                 </>)}
-                        < br />
                         degree of the {result.key} scale<br />
+
+
                     </>) : null}
                 </Card>
             </ReactCardFlip>

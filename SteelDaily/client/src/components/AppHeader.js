@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import "./AppHeader.css"
-import logo from "../steel.svg"
+import logo from "../images/steel.svg"
 
 
 const AppHeader = () => {

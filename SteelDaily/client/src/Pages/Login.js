@@ -5,7 +5,7 @@ import { Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import "./Login.css";
-import steel from "../steel.svg"
+import steel from "../images/steel.svg"
 
 const Login = () => {
   const { login, logout } = useContext(UserProfileContext);
