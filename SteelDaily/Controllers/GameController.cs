@@ -87,8 +87,26 @@ namespace SteelDaily.Controllers
             {
                 storedGame.Result.Answers += $",{game.Answer}";
                 storedGame.Result.Complete = true;
+                var user = GetCurrentUserProfile();
                 var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
-                return Ok(storedGame);
+                if (streak is null)
+                {
+                    var newStreak = new Streak()
+                    {
+                        UserProfileId = user.Id,
+                        DateBegun = DateTime.Now,
+                        LastUpdate = DateTime.Now,
+
+                    };
+                    _streakRepository.Add(newStreak);
+                    return Ok(storedGame);
+                }
+                if (streak is not null)
+                {
+                    streak.LastUpdate = DateTime.Now;
+                    _streakRepository.Update(streak);
+                    return Ok(storedGame);
+                }
             }
             if (storedGame.Result.Answers == null)
             {
