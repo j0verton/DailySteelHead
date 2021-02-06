@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import AppHeader from "./components/AppHeader";
-import { StreakContext, StreakProvider } from "./providers/StreakProvider";
+import { StreakProvider } from "./providers/StreakProvider";
 
 function App() {
 

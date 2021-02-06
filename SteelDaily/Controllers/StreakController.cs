@@ -44,43 +44,44 @@ namespace SteelDaily.Controllers
                 return Ok(streakObj);
         }
 
-        [HttpPost]
-        public IActionResult GameComplete()
-        {
-            var user = GetCurrentUserProfile();
-            try
-            {
-                var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
-                var result = _resultRepository.GetAUserResultForToday(user.Id);
-                if (streak is null && result.Complete == true)
-                {
-                    var newStreak = new Streak()
-                    {
-                        UserProfileId = user.Id,
-                        DateBegun = DateTime.Now,
-                        LastUpdate = DateTime.Now,
+        //this needs to be removed
+        //[HttpPost]
+        //public IActionResult GameComplete()
+        //{
+        //    var user = GetCurrentUserProfile();
+        //    try
+        //    {
+        //        var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
+        //        var result = _resultRepository.GetAUserResultForToday(user.Id);
+        //        if (streak is null && result.Complete == true)
+        //        {
+        //            var newStreak = new Streak()
+        //            {
+        //                UserProfileId = user.Id,
+        //                DateBegun = DateTime.Now,
+        //                LastUpdate = DateTime.Now,
 
-                    };
-                    _streakRepository.Add(newStreak);
-                    return CreatedAtAction("Get", new { id = newStreak.Id }, newStreak);
-                }
-                if (streak is null)
-                {
-                    return BadRequest();
-                }
-                if (streak is not null && result.Complete == true)
-                {
-                    streak.LastUpdate = DateTime.Now;
-                    _streakRepository.Update(streak);
-                    return Ok(streak);
-                }
-                return BadRequest();
-            }
-            catch
-            {
-                return NoContent();
-            }
-        }
+        //            };
+        //            _streakRepository.Add(newStreak);
+        //            return CreatedAtAction("Get", new { id = newStreak.Id }, newStreak);
+        //        }
+        //        if (streak is null)
+        //        {
+        //            return BadRequest();
+        //        }
+        //        if (streak is not null && result.Complete == true)
+        //        {
+        //            streak.LastUpdate = DateTime.Now;
+        //            _streakRepository.Update(streak);
+        //            return Ok(streak);
+        //        }
+        //        return BadRequest();
+        //    }
+        //    catch
+        //    {
+        //        return NoContent();
+        //    }
+        //}
 
         private UserProfile GetCurrentUserProfile()
         {

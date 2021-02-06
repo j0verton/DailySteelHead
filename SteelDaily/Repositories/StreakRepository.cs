@@ -27,7 +27,7 @@ namespace SteelDaily.Repositories
             return _context.Streak
                 .Include(s => s.UserProfile)
                 .Where(s => s.UserProfileId == id)
-                .Where(s => s.LastUpdate.Date == DateTime.Today.AddDays(-1))
+                .Where(s => s.LastUpdate.Date == DateTime.Today.AddDays(-1) || s.LastUpdate.Date == DateTime.Today)
                 .FirstOrDefault();
         }
         public void Update(Streak streak)

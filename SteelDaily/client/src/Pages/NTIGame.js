@@ -8,10 +8,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import KeySelect from "../components/KeySelect";
 import ResultsView from "../components/ResultsView";
+import { StreakContext } from "../providers/StreakProvider";
 
 
-const NTIGame = (getStreak) => {
+const NTIGame = () => {
     const { getToken } = useContext(UserProfileContext);
+    const { getStreak, streak } = useContext(StreakContext)
+
     const [game, setGame] = useState(false);
     const [viewResult, setViewResult] = useState(false);
     const [key, setKey] = useState("A");

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
 
 
@@ -8,10 +8,6 @@ export function StreakProvider(props) {
     const { getToken } = useContext(UserProfileContext)
     const [streak, setStreak] = useState();
 
-    useEffect(() => {
-        getStreak()
-    }, []);
-
     const getStreak = () => {
         getToken().then((token) => {
             return fetch(`/api/streak`, {
@@ -20,11 +16,17 @@ export function StreakProvider(props) {
                     Authorization: `Bearer ${token}`,
                 },
             })
-        }).then(setStreak)
+        }).then(res => res.json())
+            .then(res => {
+                console.log(res)
+                setStreak(res)
+            })
     }
 
     return (
-        <StreakContext.Provider value={{ streak, getStreak }}></StreakContext.Provider>
+        <StreakContext.Provider value={{ streak, getStreak }}>
+            {props.children}
+        </StreakContext.Provider>
 
     )
 }

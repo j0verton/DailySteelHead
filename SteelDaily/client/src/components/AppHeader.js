@@ -14,10 +14,12 @@ import {
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import "./AppHeader.css"
 import logo from "../images/steel.svg"
+import { StreakContext } from "../providers/StreakProvider";
 
 
-const AppHeader = (streak, getStreak) => {
+const AppHeader = () => {
   const { getCurrentUser, logout, isAdmin, getToken } = useContext(UserProfileContext);
+  const { getStreak, streak } = useContext(StreakContext)
   const user = getCurrentUser();
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
@@ -32,8 +34,9 @@ const AppHeader = (streak, getStreak) => {
   };
 
   useEffect(() => {
-    getStreak()
+    setTimeout(getStreak(), 6000);
   }, [])
+
   return (
     <div>
       <Navbar color="dark" dark expand="md">
@@ -122,13 +125,13 @@ const AppHeader = (streak, getStreak) => {
             {user ? (
               <>
                 <NavbarText className="d-sm-none d-md-block">
-                  Welcome {user.firstName}
+                  Welcome {user.firstName} -
                 </NavbarText>
                 {
 
                   streak ? streak.length ?
                     <NavbarText className="d-sm-none d-md-block">
-                      Streak - {streak.length}
+                      Current Streak - {streak.length.days}
                     </NavbarText> : null : null
                 }
               </>
