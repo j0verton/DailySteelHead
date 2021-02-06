@@ -35,6 +35,7 @@ namespace SteelDaily
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IResultRepository, ResultRepository>();
             services.AddTransient<ITuningRepository, TuningRepository>();
+            services.AddTransient<IStreakRepository, StreakRepository>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
