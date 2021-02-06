@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SteelDaily.Models;
+using SteelDaily.Models.ViewModel;
 using SteelDaily.Repositories;
 using System;
 using System.Collections.Generic;
@@ -31,15 +32,16 @@ namespace SteelDaily.Controllers
         public IActionResult GetUsersCurrentStreak()
         {
             var user = GetCurrentUserProfile();
-
                 var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
                 if (streak is null) 
                 {
-
                     return NoContent();
                 }
-                return Ok(streak);
-
+                var streakObj = new CurrentStreak()
+                {
+                    Streak = streak
+                };
+                return Ok(streakObj);
         }
 
         [HttpPost]
@@ -62,25 +64,22 @@ namespace SteelDaily.Controllers
                     _streakRepository.Add(newStreak);
                     return CreatedAtAction("Get", new { id = newStreak.Id }, newStreak);
                 }
-                else if (streak is not null && result.Complete == true)
+                if (streak is null)
+                {
+                    return BadRequest();
+                }
+                if (streak is not null && result.Complete == true)
                 {
                     streak.LastUpdate = DateTime.Now;
                     _streakRepository.Update(streak);
                     return Ok(streak);
-                } 
-                    
-                    //{ 
-
-                    return Ok(streak);
-                //}
-                //return NoContent();
-
+                }
+                return BadRequest();
             }
             catch
             {
                 return NoContent();
             }
-
         }
 
         private UserProfile GetCurrentUserProfile()

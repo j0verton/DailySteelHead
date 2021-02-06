@@ -10,7 +10,7 @@ import KeySelect from "../components/KeySelect";
 import ResultsView from "../components/ResultsView";
 
 
-const NTIGame = () => {
+const NTIGame = (getStreak) => {
     const { getToken } = useContext(UserProfileContext);
     const [game, setGame] = useState(false);
     const [viewResult, setViewResult] = useState(false);
@@ -69,6 +69,7 @@ const NTIGame = () => {
                 if (res.result.complete === true) {
                     setViewResult(true)
                     setGame(false)
+                    getStreak()
                 }
                 setResult(res)
             })

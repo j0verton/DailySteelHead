@@ -5,16 +5,20 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import AppHeader from "./components/AppHeader";
+import { StreakContext, StreakProvider } from "./providers/StreakProvider";
 
 function App() {
+
   return (
     <div className="App">
       <ToastContainer position="bottom-right" hideProgressBar />
       <UserProfileProvider>
-        <Router>
-          <AppHeader />
-          <ApplicationViews />
-        </Router>
+        <StreakProvider>
+          <Router>
+            <AppHeader />
+            <ApplicationViews />
+          </Router>
+        </StreakProvider>
       </UserProfileProvider>
     </div>
   );

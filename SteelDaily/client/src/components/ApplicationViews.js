@@ -7,14 +7,13 @@ import NTIGame from "../pages/NTIGame";
 import NTIFBGame from "../pages/NTIFBGame";
 import UnisonFinderGame from "../pages/UnisonFinderGame";
 
-const ApplicationViews = () => {
-  const { isLoggedIn } = useContext(UserProfileContext);
-  const { isAdmin } = useContext(UserProfileContext);
+const ApplicationViews = (getStreak) => {
+  const { isLoggedIn, isAdmin } = useContext(UserProfileContext);
 
   return (
     <Switch>
       <Route path="/NTIgame">
-        <NTIGame />
+        <NTIGame getStreak={getStreak} />
       </Route>
       <Route path="/NTIFretboardGame">
         <NTIFBGame />

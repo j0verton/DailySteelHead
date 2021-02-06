@@ -20,12 +20,15 @@ namespace SteelDaily.Controllers
         private readonly IUserProfileRepository _userProfileRepository;
         private readonly IResultRepository _resultRepository;
         private readonly ITuningRepository _tuningRepository;
+        private readonly IStreakRepository _streakRepository;
 
-        public GameController(IUserProfileRepository userProfileRepository, IResultRepository resultRepository, ITuningRepository tuningRepository)
+
+        public GameController(IUserProfileRepository userProfileRepository, IResultRepository resultRepository, ITuningRepository tuningRepository, IStreakRepository streakRepository)
         {
             _userProfileRepository = userProfileRepository;
             _resultRepository = resultRepository;
             _tuningRepository = tuningRepository;
+            _streakRepository = streakRepository;
         }
 
         [HttpGet]
@@ -84,6 +87,7 @@ namespace SteelDaily.Controllers
             {
                 storedGame.Result.Answers += $",{game.Answer}";
                 storedGame.Result.Complete = true;
+                var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
                 return Ok(storedGame);
             }
             if (storedGame.Result.Answers == null)

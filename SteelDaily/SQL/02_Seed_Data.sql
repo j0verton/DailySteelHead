@@ -38,3 +38,8 @@ insert into UserProfile (Id, Username, FirstName, LastName, Email, CreateDateTim
 insert into UserProfile (Id, Username, FirstName, LastName, Email, CreateDateTime, ImageLocation, FirebaseUserId) values (9, 'ecornfoot8', 'Emmaline', 'Cornfoot', 'ecornfoot8@cargocollective.comx', '2020-02-17', 'https://robohash.org/blanditiismaioresest.png?size=150x150&set=set1','smzswoscvmfpvugpmgvkflihdmka');
 insert into UserProfile (Id, Username, FirstName, LastName, Email, CreateDateTime, ImageLocation, FirebaseUserId) values (10, 'jmaruska9', 'Jody', 'Maruska', 'jmaruska9@netscape.comx', '2020-02-09', 'https://robohash.org/voluptatemexercitationemdignissimos.png?size=150x150&set=set1','abcnibyohfhukxngaegjxxzionyt');
 set identity_insert [UserProfile] off
+
+SET IDENTITY_INSERT [dbo].[Streak] ON
+INSERT INTO [dbo].[Streak] ([Id], [Days], [UserProfileId], [DateBegun], [LastUpdate]) VALUES (1, 5, 2, '2/2/2021', '2/6/2021')
+SET IDENTITY_INSERT [dbo].[Streak] OFF
+

@@ -16,12 +16,11 @@ import "./AppHeader.css"
 import logo from "../images/steel.svg"
 
 
-const AppHeader = () => {
+const AppHeader = (streak, getStreak) => {
   const { getCurrentUser, logout, isAdmin, getToken } = useContext(UserProfileContext);
   const user = getCurrentUser();
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
-  const [streak, setStreak] = useState("");
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -33,16 +32,7 @@ const AppHeader = () => {
   };
 
   useEffect(() => {
-    console.log("header useeffect")
-    getToken().then((token) => {
-      return fetch(`/api/streak`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-    }).then(setStreak)
-
+    getStreak()
   }, [])
   return (
     <div>
@@ -130,9 +120,18 @@ const AppHeader = () => {
                 )}
             </Nav>
             {user ? (
-              <NavbarText className="d-sm-none d-md-block">
-                Welcome {user.displayName}
-              </NavbarText>
+              <>
+                <NavbarText className="d-sm-none d-md-block">
+                  Welcome {user.firstName}
+                </NavbarText>
+                {
+
+                  streak ? streak.length ?
+                    <NavbarText className="d-sm-none d-md-block">
+                      Streak - {streak.length}
+                    </NavbarText> : null : null
+                }
+              </>
             ) : null}
           </Collapse>
         </Nav>
