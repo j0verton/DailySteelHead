@@ -4,7 +4,7 @@ namespace SteelDaily.Repositories
 {
     public interface IStreakRepository
     {
-        void Add(StreakRepository streak);
+        void Add(Streak streak);
         Streak GetCurrentStreakByUserProfile(int id);
         void Update(Streak streak);
     }

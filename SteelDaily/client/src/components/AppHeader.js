@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -17,10 +17,11 @@ import logo from "../images/steel.svg"
 
 
 const AppHeader = () => {
-  const { getCurrentUser, logout, isAdmin } = useContext(UserProfileContext);
+  const { getCurrentUser, logout, isAdmin, getToken } = useContext(UserProfileContext);
   const user = getCurrentUser();
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
+  const [streak, setStreak] = useState("");
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -31,6 +32,18 @@ const AppHeader = () => {
     });
   };
 
+  useEffect(() => {
+    console.log("header useeffect")
+    getToken().then((token) => {
+      return fetch(`/api/streak`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+    }).then(setStreak)
+
+  }, [])
   return (
     <div>
       <Navbar color="dark" dark expand="md">

@@ -26,7 +26,18 @@ namespace SteelDaily.Repositories
                 .FirstOrDefault();
         }
 
-    public Result Add(Result result)
+        public Result GetAUserResultForToday(int id)
+        {
+            DateTime today = DateTime.Now.Date;
+            return _context.Result
+                .Include(r => r.Scale)
+                .Include(r => r.Tuning)
+                .Where(r => r.UserProfileId == id)
+                .Where(r => r.Date == today)
+                .FirstOrDefault();
+        }
+
+        public Result Add(Result result)
         {
             try
             {

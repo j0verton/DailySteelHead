@@ -12,7 +12,7 @@ namespace SteelDaily.Models.ViewModel
         {
             get {
                 TimeSpan length = Streak.LastUpdate - Streak.DateBegun;
-                return length
+                return length;
             }
         }
     }

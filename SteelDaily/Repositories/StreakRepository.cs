@@ -17,7 +17,7 @@ namespace SteelDaily.Repositories
             _context = context;
         }
 
-        public void Add(StreakRepository streak)
+        public void Add(Streak streak)
         {
             _context.Add(streak);
             _context.SaveChanges();

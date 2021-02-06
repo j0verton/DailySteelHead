@@ -7,7 +7,7 @@ namespace SteelDaily.Models
 {
     public class Streak
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public int UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
         public DateTime DateBegun { get; set; }

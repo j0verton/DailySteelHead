@@ -18,26 +18,28 @@ namespace SteelDaily.Controllers
     {
         private readonly IStreakRepository _streakRepository;
         private readonly IUserProfileRepository _userProfileRepository;
+        private readonly IResultRepository _resultRepository;
 
-        public StreakController(IStreakRepository streakRepository, IUserProfileRepository userProfileRepository)
+        public StreakController(IStreakRepository streakRepository, IUserProfileRepository userProfileRepository, IResultRepository resultRepository)
         {
             _streakRepository = streakRepository;
             _userProfileRepository = userProfileRepository;
+            _resultRepository =  resultRepository;
         }
 
         [HttpGet]
         public IActionResult GetUsersCurrentStreak()
         {
             var user = GetCurrentUserProfile();
-            try
-            {
+
                 var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
+                if (streak is null) 
+                {
+
+                    return NoContent();
+                }
                 return Ok(streak);
-            }
-            catch 
-            {
-                return NoContent();
-            }
+
         }
 
         [HttpPost]
@@ -47,8 +49,32 @@ namespace SteelDaily.Controllers
             try
             {
                 var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
-                if
-                return Ok(streak);
+                var result = _resultRepository.GetAUserResultForToday(user.Id);
+                if (streak is null && result.Complete == true)
+                {
+                    var newStreak = new Streak()
+                    {
+                        UserProfileId = user.Id,
+                        DateBegun = DateTime.Now,
+                        LastUpdate = DateTime.Now,
+
+                    };
+                    _streakRepository.Add(newStreak);
+                    return CreatedAtAction("Get", new { id = newStreak.Id }, newStreak);
+                }
+                else if (streak is not null && result.Complete == true)
+                {
+                    streak.LastUpdate = DateTime.Now;
+                    _streakRepository.Update(streak);
+                    return Ok(streak);
+                } 
+                    
+                    //{ 
+
+                    return Ok(streak);
+                //}
+                //return NoContent();
+
             }
             catch
             {
