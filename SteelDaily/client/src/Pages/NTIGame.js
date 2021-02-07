@@ -13,7 +13,7 @@ import { StreakContext } from "../providers/StreakProvider";
 
 const NTIGame = () => {
     const { getToken } = useContext(UserProfileContext);
-    const { getStreak, streak } = useContext(StreakContext)
+    const { getStreak } = useContext(StreakContext)
 
     const [game, setGame] = useState(false);
     const [viewResult, setViewResult] = useState(false);

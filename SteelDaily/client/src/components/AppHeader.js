@@ -34,7 +34,7 @@ const AppHeader = () => {
   };
 
   useEffect(() => {
-    setTimeout(getStreak(), 6000);
+    getStreak()
   }, [])
 
   return (
