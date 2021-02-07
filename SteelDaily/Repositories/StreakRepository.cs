@@ -41,6 +41,8 @@ namespace SteelDaily.Repositories
             return _context.Streak
         .Include(s => s.UserProfile)
         .Where(s => s.LastUpdate.Date == DateTime.Today.AddDays(-1) || s.LastUpdate.Date == DateTime.Today)
+        .OrderBy(s=> s.DateBegun)
+        .Take(5)
         .ToList();
         }
 

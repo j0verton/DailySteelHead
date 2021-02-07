@@ -47,7 +47,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                         is at<br />
                     <h2>fret {result.questions.slice(-1)[0][0]}</h2>
                         on the <br />
-                    <h2>string {result.questions.slice(-1)[0][1]}</h2>
+                    <h2>string {result.questions.slice(-1)[0][1] + 1}</h2>
                 </Card>
 
                 {//Back of car with answer
@@ -59,7 +59,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                             : <h1>Incorrect!</h1>}
                         <h2>fret {result.questions.slice(-2, -1)[0][0]}</h2>
                         on the <br />
-                        <h2>string {result.questions.slice(-2, -1)[0][1]}</h2>
+                        <h2>string {result.questions.slice(-2, -1)[0][1] + 1}</h2>
                         is the<br />
                         {result.outcomes.slice(-1)[0] ?
                             //display correct answer
@@ -76,11 +76,8 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                                     <h2>
                                         {convertCharIntervalToNumericInterval(result.correctAnswerList.slice(-2, -1)[0])}
                                     </h2>
-
                                 </>)}
                         degree of the {result.key} scale<br />
-
-
                     </>) : null}
                 </Card>
             </ReactCardFlip>
