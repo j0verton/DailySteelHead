@@ -46,12 +46,12 @@ namespace SteelDaily.Controllers
                 },
             };
 
-            var questionList = new List<List<int>>();
-
-            questionList.Add(newGame.GetQuestionNumbers());
+            var questionList = new List<List<int>>
+            {
+                newGame.GetQuestionNumbers()
+            };
             string questionString = string.Join(",", questionList[0]);
        
-        //questionList.Join()
             var newResult = new Result()
             {
                 UserProfileId = GetCurrentUserProfile().Id,
@@ -117,7 +117,7 @@ namespace SteelDaily.Controllers
                 storedGame.Result.Answers += $",{game.Answer}";
             }
             List<int> newNumbers = storedGame.GetQuestionNumbers();
-            storedGame.Result.Questions+= $",{newNumbers[0].ToString()},{newNumbers[1].ToString()}";
+            storedGame.Result.Questions+= $",{newNumbers[0]},{newNumbers[1]}";
             _resultRepository.Update(storedGame.Result);
 
             return Ok(storedGame);
