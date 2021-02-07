@@ -1,4 +1,5 @@
 ﻿using SteelDaily.Models;
+using System.Collections.Generic;
 
 namespace SteelDaily.Repositories
 {
@@ -6,6 +7,7 @@ namespace SteelDaily.Repositories
     {
         void Add(Streak streak);
         Streak GetCurrentStreakByUserProfile(int id);
+        List<Streak> GetLongestStreaks();
         void Update(Streak streak);
     }
 }
