@@ -25,7 +25,7 @@ namespace SteelDaily.Models.ViewModel
         }
 
         public List<Result> LastTenResults { get; set; }
-        public List<InProcessGame> c {
+        public List<InProcessGame> ResultsForFeed {
             get
             {
                 var resultsForFeed = new List<InProcessGame>();
