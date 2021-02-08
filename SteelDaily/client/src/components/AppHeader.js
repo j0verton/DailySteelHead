@@ -33,8 +33,8 @@ const AppHeader = () => {
   };
 
   useEffect(() => {
-    getStreak()
-  }, [])
+    if (user) { getStreak() }
+  }, [user])
 
   return (
     <div>

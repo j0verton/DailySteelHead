@@ -31,20 +31,30 @@ export const LandingPage = () => {
     }
     return (
         <div>
-            <Row>
-                <h1>Welcome to SteelHead</h1>
-                <h2>Start a daily practice streak by playing one of our games.</h2>
-                <h4>Keep your streak going!  </h4>
-                <h4>Putting a little brain power into memorizing the interval relationships on your instrument will have lasting benefits</h4>
-            </Row>
-            <Row>
+            {/* <Row>
+                 <Col sm="12" md={{ size: 6, offset: 3 }}>
+                     <h1>Welcome to SteelHead</h1>
+                     <h2>Start a daily practice streak by playing one of our games.</h2>
+                     <h4>Keep your streak going!  </h4>
+                    <h4>Putting a little brain power into memorizing the interval relationships everydayon your instrument will have lasting benefits</h4>
+                 </Col>             </Row> */}
+            < Row >
                 <Col>
                     <ActivityFeed activity={data.resultsForFeed} />
                 </Col>
                 <Col>
+                    <Row><h1>Welcome to SteelHead</h1>
+                        <h2>Start a daily practice streak by playing one of our games.</h2>
+                        <h4>Keep your streak going!  </h4>
+                        <h4>Putting a little brain power into memorizing the interval relationships everydayon your instrument will have lasting benefits</h4>
+                    </Row>
+                    <Row>
+                        <h1>Longest Practice Streaks</h1>
+                    </Row>
+                    <hr></hr>
                     <Leaderboard leaders={data.leaderStreaks} />
                 </Col>
-            </Row>
+            </Row >
         </div >
     )
 }

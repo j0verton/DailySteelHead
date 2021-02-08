@@ -4,9 +4,16 @@ export const Leaderboard = ({ leaders }) => {
 
     return (
         <div>
-            <Card>
-                <CardHeader>{leaders}</CardHeader>
-            </Card>
+            {
+                leaders ? leaders.map((obj) => {
+                    return (
+                        <Card key={obj.streak.id}>
+                            <CardHeader>{obj.length.totalDays} Days - {obj.streak.userProfile.username} </CardHeader>
+                        </Card>
+                    )
+                })
+                    : null
+            }
 
 
         </div>
