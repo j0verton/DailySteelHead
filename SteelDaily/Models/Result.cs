@@ -10,10 +10,11 @@ namespace SteelDaily.Models
     public class Result
     {
         [Key]
-        public int Id  {get; set;}
-        public int UserProfileId  {get; set;}
+        public int Id { get; set; }
+        public int UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
-        public int GameId  { get; set; }
+        public int GameId { get; set; }
+        public Game Game {get;set;}
         [MaxLength(5)]
         public string Key  { get; set; }
         public int ScaleId { get; set; }

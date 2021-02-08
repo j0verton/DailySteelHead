@@ -111,7 +111,7 @@ const UnisonFinderGame = () => {
                             <Button onClick={startHandler}>Start Game</Button>
                         </>
                         }
-
+                        {/* <FindUnisonNotes result={result} /> */}
                         <Fretboard result={result} ><FindUnisonNotes result={result} /></Fretboard>
                     </div>
                     <div className="button-container">

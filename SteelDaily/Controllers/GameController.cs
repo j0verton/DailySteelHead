@@ -31,8 +31,8 @@ namespace SteelDaily.Controllers
             _streakRepository = streakRepository;
         }
 
-        [HttpGet]
-        public IActionResult BeginNtI(string key)
+        [HttpGet("{gameId}/{key}")]
+        public IActionResult BeginNtI(int gameId, string key)
         {
             var newGame = new NameTheIntervalGame()
             {

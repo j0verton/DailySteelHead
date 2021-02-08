@@ -37,7 +37,7 @@ const NTIGame = () => {
     const startGame = () => {
         return getToken()
             .then(token =>
-                fetch(`/api/Game?key=${key}`, {
+                fetch(`/api/game/1/${key}`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,

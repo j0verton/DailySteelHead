@@ -34,11 +34,11 @@ const AppHeader = () => {
 
   useEffect(() => {
     if (user) { getStreak() }
-  }, [user])
+  }, [])
 
   return (
     <div>
-      <Navbar color="dark" dark expand="md">
+      <Navbar color="dark" dark expand="md" >
         <NavbarBrand tag={Link} to="/">
           <img
             id="header-logo"
@@ -50,7 +50,7 @@ const AppHeader = () => {
           />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Nav>
+        <Nav className="d-flex justify-content-between">
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               {user ? (
@@ -103,14 +103,14 @@ const AppHeader = () => {
             </Nav>
             {user ? (
               <>
-                <NavbarText className="d-sm-none d-md-block float-right">
-                  Welcome {user.firstName} -
+                <NavbarText className="d-sm-none d-md-block">
+                  Welcome {user.firstName}
                 </NavbarText>
                 {
 
                   streak ? streak.length ?
-                    <NavbarText className="d-sm-none d-md-block float-right">
-                      Current Streak - {streak.length.days}
+                    <NavbarText className="d-sm-none d-md-block">
+                      - Current Streak - {streak.length.days}
                     </NavbarText> : null : null
                 }
               </>

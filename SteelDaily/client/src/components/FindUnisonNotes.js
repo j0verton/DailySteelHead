@@ -4,7 +4,7 @@ function FindUnisonNotes({ result, gameComponent }) {
 
     const handleNoteClick = e => {
         console.log(e);
-        e.target.visibility = "visible"
+        e.target.style.visibility = "visible"
 
     }
     return (
@@ -22,6 +22,7 @@ function FindUnisonNotes({ result, gameComponent }) {
                             fill="#39FF14"
                             visibility={(i === result.questions.slice(-1)[0][0] && j === result.questions.slice(-1)[0][1]) ? "visible" : "hidden"
                             }
+
                             // maybe saves wrong guesses or total guesses til all have been found?
                             onClick={handleNoteClick}
                         />

@@ -2,9 +2,9 @@ import React from "react";
 
 function Star({ outcome }) {
     return (
-        <svg transform="scale(.4)" width={160} height={175}>
+        <svg clastransform="scale(.4)" width={170} height={175}>
             <path
-                transform="translate(-10) scale(.6)"
+                transform="translate(-4) scale(.6)"
                 fill={outcome ? "#fdff00" : "#808080"}
                 stroke="#605a00"
                 strokeWidth={15}

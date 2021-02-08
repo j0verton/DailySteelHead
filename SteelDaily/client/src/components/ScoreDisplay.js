@@ -11,6 +11,7 @@ const ScoreDisplay = ({ result, game }) => {
             {
                 result.outcomes ?
                     <>
+                        <h3>{result.result.tuning.name} - Key of {result.result.key}</h3>
                         <Row m="5">
                             <Col sm={{ size: 12, order: 2, offset: 1 }} className="d-flex flex-nowrap">
                                 {result.outcomes.map(outcome => {
@@ -19,7 +20,7 @@ const ScoreDisplay = ({ result, game }) => {
                             </Col>
                         </Row>
                     </>
-                    : game ? null : <h3>Select A Key Then Begin</h3>
+                    : game ? <h3>{result.result.tuning.name} - Key of {result.result.key}</h3> : <h3>Select A Key Then Begin</h3>
             }
         </>
     )
