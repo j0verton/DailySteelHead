@@ -37,7 +37,7 @@ const NTIFBGame = () => {
     const startGame = () => {
         return getToken()
             .then(token =>
-                fetch(`/api/game/1/${key}`, {
+                fetch(`/api/game/2/${key}`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
