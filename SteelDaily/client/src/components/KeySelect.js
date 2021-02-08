@@ -4,7 +4,6 @@ import { Col, Input } from "reactstrap";
 const KeySelect = ({ setKey }) => {
 
     const handleSelect = e => {
-        console.log(e.target.value)
         setKey(e.target.value)
     }
 

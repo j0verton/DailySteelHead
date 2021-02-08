@@ -7,7 +7,6 @@ const DisplayQuestionDot = ({ result }) => {
         <>
             {
                 result.fretboard.intFretboard.map((fret, i) => {
-                    console.log("in dispay dot")
                     return fret.map((note, j) => {
                         return (
                             <circle

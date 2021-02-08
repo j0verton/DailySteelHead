@@ -5,32 +5,17 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models.ViewModel
 {
-    public class InProcessGame : NameTheIntervalGame
+    public class InProcessGame : NewGame
     {
-        public List<int> QuestionNumbers
-        {
-            get
-            {
-                var noteCoordinates = new List<int>();
-                int frets = Fretboard.IntFretboard.Count();
-                int strings = Fretboard.ChromaticFretboard.Tuning.Notes.Split(',').Count();
-                noteCoordinates.Add(new Random().Next(frets));
-                noteCoordinates.Add(new Random().Next(strings));
-                return noteCoordinates;
-            }
-        }
+
         public Result Result { get; set; }
-        public override IntervalFretboard Fretboard
+        public IntervalFretboard Fretboard
         {
             get {
                 var fretboard = new IntervalFretboard()
                 {
                     Key = Result.Key,
-                    ChromaticFretboard = new ChromaticFretboard()
-                    {
-                        Tuning = Result.Tuning
-                    }
-
+                    ChromaticFretboard = ChromaticFretboard
                 };
                 return fretboard;
             }

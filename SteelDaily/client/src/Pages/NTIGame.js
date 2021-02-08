@@ -54,7 +54,6 @@ const NTIGame = () => {
             questionNumbers: result.questions.slice(-1).join(","),
             answer: answer
         }
-        console.log("game", gameReturn)
         return getToken()
             .then(token =>
                 fetch(`/api/game/`, {
@@ -67,8 +66,6 @@ const NTIGame = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log("ans response", res)
-                console.log(res.result.complete)
                 if (res.result.complete === true) {
                     setViewResult(true)
                     setGame(false)
@@ -83,7 +80,6 @@ const NTIGame = () => {
         setGame(true)
     }
     async function AnswerHandler(e) {
-        console.log("answer steps", e.target.value)
         await answerQuestion(e.target.value)
         setIsFlipped(!isFlipped)
     }

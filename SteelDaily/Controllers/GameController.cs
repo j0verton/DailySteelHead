@@ -34,7 +34,7 @@ namespace SteelDaily.Controllers
         [HttpGet("{gameId}/{key}")]
         public IActionResult BeginNtI(int gameId, string key)
         {
-            var newGame = new NameTheIntervalGame()
+            var newGame = new NewGame()
             {
                 Fretboard = new IntervalFretboard()
                 {
@@ -127,10 +127,41 @@ namespace SteelDaily.Controllers
         [HttpGet("unison")]
         public IActionResult BeginUnisonGame()
         {
+            var newGame = new NewGame()
+            {
+                    ChromaticFretboard = new ChromaticFretboard()
+                    {
+                        Tuning = _tuningRepository.GetDefaultTuning()
+                    }
+            };
+            var questionList = new List<List<int>>
+            {
+                newGame.GetQuestionNumbers()
+            };
+            string questionString = string.Join(",", questionList[0]);
+
+            var newResult = new Result()
+            {
+                UserProfileId = GetCurrentUserProfile().Id,
+                GameId = 3,
+                ScaleId = 1,
+                TuningId = newGame.ChromaticFretboard.Tuning.Id,
+                Public = true,
+                Date = DateTime.Now,
+                Questions = questionString
+            };
+
+            var returnedResult = _resultRepository.Add(newResult);
+            var game = new InProcessGame()
+            {
+                Result = returnedResult,
+            };
+            return Ok(game);
+
 
 
         }
-            private UserProfile GetCurrentUserProfile()
+        private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
