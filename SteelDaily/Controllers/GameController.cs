@@ -55,7 +55,7 @@ namespace SteelDaily.Controllers
             var newResult = new Result()
             {
                 UserProfileId = GetCurrentUserProfile().Id,
-                GameId = 1,
+                GameId = gameId,
                 ScaleId = 1,
                 Key = key,
                 TuningId = newGame.Fretboard.ChromaticFretboard.Tuning.Id,
@@ -124,7 +124,13 @@ namespace SteelDaily.Controllers
         }
 
 
-        private UserProfile GetCurrentUserProfile()
+        [HttpGet("unison")]
+        public IActionResult BeginUnisonGame()
+        {
+
+
+        }
+            private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);

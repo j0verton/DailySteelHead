@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models.ViewModel
 {
-    public class BeginNTIGame
+    public class UnisonGame
     {
-        public int GameId { get; set; }
-        public string Key { get; set; }
     }
 }
