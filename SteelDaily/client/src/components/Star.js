@@ -2,7 +2,7 @@ import React from "react";
 
 function Star({ outcome }) {
     return (
-        <svg transform="scale(.5)" width={150} height={175}>
+        <svg transform="scale(.4)" width={160} height={175}>
             <path
                 transform="translate(-10) scale(.6)"
                 fill={outcome ? "#fdff00" : "#808080"}

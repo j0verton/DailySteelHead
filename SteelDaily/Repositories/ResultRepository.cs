@@ -26,6 +26,17 @@ namespace SteelDaily.Repositories
                 .FirstOrDefault();
         }
 
+        public List<Result> GetLastTenCompleteResults() 
+        {
+            return _context.Result
+                .Include(r => r.Scale)
+                .Include(r => r.Tuning)
+                .Include(r => r.UserProfile)
+                .Where(r => r.Complete == true)
+                .Take(10)
+                .ToList();
+        }
+
         public Result GetAUserResultForToday(int id)
         {
             DateTime today = DateTime.Now.Date;

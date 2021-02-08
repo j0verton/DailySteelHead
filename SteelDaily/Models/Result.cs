@@ -12,6 +12,7 @@ namespace SteelDaily.Models
         [Key]
         public int Id  {get; set;}
         public int UserProfileId  {get; set;}
+        public UserProfile UserProfile { get; set; }
         public int GameId  { get; set; }
         [MaxLength(5)]
         public string Key  { get; set; }

@@ -12,9 +12,8 @@ const ScoreDisplay = ({ result, game }) => {
                 result.outcomes ?
                     <>
                         <Row m="5">
-                            <Col sm={{ size: 10, order: 2, offset: 1 }}>
+                            <Col sm={{ size: 12, order: 2, offset: 1 }} className="d-flex flex-nowrap">
                                 {result.outcomes.map(outcome => {
-                                    console.log("outcome", outcome)
                                     return <Star outcome={outcome} />
                                 })}
                             </Col>

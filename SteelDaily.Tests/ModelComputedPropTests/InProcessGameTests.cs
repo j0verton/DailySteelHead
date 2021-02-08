@@ -24,9 +24,10 @@ namespace SteelDaily.Tests
                 Key = "C",
                 TuningId = 1,
                 Tuning = TestTuning,
-                Questions = "11,2,8,8,7,4,15,5",
+                Questions = "11,1,8,7,7,3,15,5",
                 Answers = "Two,One,FlatSeven,Two"
             };
+            //these answers are all off b/c not accouting for 0 index in the second value... 2 is string 3
             ////ans = D/2
             //Result1.Questions.Add(new List<int> { 11, 2 });
             ////ans = C/1

@@ -57,9 +57,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                         {result.outcomes.slice(-1)[0] ?
                             <h1>Correct!</h1>
                             : <h1>Incorrect!</h1>}
-                        <h2>fret {result.questions.slice(-2, -1)[0][0]}</h2>
-                        on the <br />
-                        <h2>string {result.questions.slice(-2, -1)[0][1] + 1}</h2>
+                        <h2>fret {result.questions.slice(-2, -1)[0][0]}, string {result.questions.slice(-2, -1)[0][1] + 1}</h2>
                         is the<br />
                         {result.outcomes.slice(-1)[0] ?
                             //display correct answer
@@ -77,7 +75,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                                         {convertCharIntervalToNumericInterval(result.correctAnswerList.slice(-2, -1)[0])}
                                     </h2>
                                 </>)}
-                        degree of the {result.key} scale<br />
+                        <h4>degree of {result.result.key}</h4>
                     </>) : null}
                 </Card>
             </ReactCardFlip>

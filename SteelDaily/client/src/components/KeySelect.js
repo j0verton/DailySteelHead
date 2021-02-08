@@ -14,6 +14,7 @@ const KeySelect = ({ setKey }) => {
         <Input type="select"
             name="keySelect"
             id="keySelect"
+            className="m-5"
             onChange={handleSelect}>
             {keys.map(key => (
                 <option value={key} key={key}>{key}</option>

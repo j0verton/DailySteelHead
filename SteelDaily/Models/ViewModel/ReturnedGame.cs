@@ -11,5 +11,6 @@ namespace SteelDaily.Models.ViewModel
         public string QuestionNumbers { get; set; }
 
         public string Answer { get; set; }
+
     }
 }

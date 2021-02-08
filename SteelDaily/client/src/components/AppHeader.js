@@ -12,7 +12,6 @@ import {
   NavbarText,
 } from "reactstrap";
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import "./AppHeader.css"
 import logo from "../images/steel.svg"
 import { StreakContext } from "../providers/StreakProvider";
 
@@ -52,26 +51,6 @@ const AppHeader = () => {
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Nav>
-          {/* <NavItem>
-            <NavLink to="/myprofile" tag={Link}>
-              My Profile
-                  </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/NTIgame" tag={Link}>
-              Name That Interval Flash Cards
-                  </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/NTIFretboardGame" tag={Link}>
-              Name That Interval Fretboard
-                  </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/UnisonFinderGame" tag={Link}>
-              Unison Finder
-                  </NavLink>
-          </NavItem> */}
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               {user ? (
@@ -124,13 +103,13 @@ const AppHeader = () => {
             </Nav>
             {user ? (
               <>
-                <NavbarText className="d-sm-none d-md-block">
+                <NavbarText className="d-sm-none d-md-block float-right">
                   Welcome {user.firstName} -
                 </NavbarText>
                 {
 
                   streak ? streak.length ?
-                    <NavbarText className="d-sm-none d-md-block">
+                    <NavbarText className="d-sm-none d-md-block float-right">
                       Current Streak - {streak.length.days}
                     </NavbarText> : null : null
                 }
