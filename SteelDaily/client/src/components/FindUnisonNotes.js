@@ -17,7 +17,13 @@ function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
         e.target.style.visibility = "visible"
         const [prefix, coords] = e.target.id.split("--");
         console.log("coords", coords)
-        const updatedAnswers = answers += coords;
+        let updatedAnswers = ''
+        if (answers.length === 0) {
+            updatedAnswers = coords;
+        } else if (answers.length >= 1) {
+
+            updatedAnswers = answers += `,${coords}`;
+        }
         console.log("updatedAnswers", updatedAnswers)
         setAnswers(updatedAnswers);
         console.log("answers", answers)
@@ -41,7 +47,7 @@ function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
                         <circle
                             pointerEvents="bounding-box"
                             key={`${i}-${j}`}
-                            id={`note--${i},${j},`}
+                            id={`note--${i},${j}`}
                             className={noteTarget == result.chromaticFretboard.fretboard[i][j] ? "correct" : "incorrect"}
                             //add a class correct or incorrect based on note
                             cx={21 + (110 * i)} cy={25 + (34 * j)} r="15"

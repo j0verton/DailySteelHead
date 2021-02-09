@@ -7,7 +7,7 @@ namespace SteelDaily.Models.ViewModel
 {
     public class NewGame
     {
-        public ChromaticFretboard ChromaticFretboard { get; set; }
+        public virtual ChromaticFretboard ChromaticFretboard { get; set; }
 
         public List<int> GetQuestionNumbers()
          {

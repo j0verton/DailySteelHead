@@ -94,12 +94,14 @@ namespace SteelDaily.Controllers
                         LastUpdate = DateTime.Now,
                     };
                     _streakRepository.Add(newStreak);
+                    _resultRepository.Update(storedGame.Result);
                     return Ok(storedGame);
                 }
                 if (streak is not null)
                 {
                     streak.LastUpdate = DateTime.Now;
                     _streakRepository.Update(streak);
+                    _resultRepository.Update(storedGame.Result);
                     return Ok(storedGame);
                 }
             }
@@ -157,19 +159,20 @@ namespace SteelDaily.Controllers
         [HttpPost("unison")]
         public IActionResult CompleteUnisonGame(ReturnedGame game)
         {
-            var storedGame = new UnisonGame()
+            var currentGame = new UnisonGame()
             {
                 Result = _resultRepository.GetById(game.ResultId)
             };
-            if (storedGame.Result.UserProfileId != GetCurrentUserProfile().Id || storedGame.Result.Complete == true)
+            currentGame.Result.Answers = game.Answer;
+
+            if (currentGame.Result.UserProfileId != GetCurrentUserProfile().Id || currentGame.Result.Complete == true)
             {
                 return BadRequest();
             }
 
-            if (storedGame.Questions.Count >= 10)
+            if (currentGame.Answers.Count >= 10)
             {
-                storedGame.Result.Answers += $",{game.Answer}";
-                storedGame.Result.Complete = true;
+                currentGame.Result.Complete = true;
                 var user = GetCurrentUserProfile();
                 var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
                 if (streak is null)
@@ -181,28 +184,21 @@ namespace SteelDaily.Controllers
                         LastUpdate = DateTime.Now,
                     };
                     _streakRepository.Add(newStreak);
-                    return Ok(storedGame);
+                    _resultRepository.Update(currentGame.Result);
+                    return Ok(currentGame);
                 }
-                if (streak is not null)
-                {
+                else
+                {                
                     streak.LastUpdate = DateTime.Now;
                     _streakRepository.Update(streak);
-                    return Ok(storedGame);
+                    _resultRepository.Update(currentGame.Result);
+                    return Ok(currentGame);
                 }
             }
-            if (storedGame.Result.Answers == null)
+            else 
             {
-                storedGame.Result.Answers = game.Answer;
+                return BadRequest();
             }
-            else
-            {
-                storedGame.Result.Answers += $",{game.Answer}";
-            }
-            List<int> newNumbers = storedGame.GetQuestionNumbers();
-            storedGame.Result.Questions += $",{newNumbers[0]},{newNumbers[1]}";
-            _resultRepository.Update(storedGame.Result);
-
-            return Ok(storedGame);
         }
 
             private UserProfile GetCurrentUserProfile()

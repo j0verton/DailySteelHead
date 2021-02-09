@@ -16,6 +16,20 @@ namespace SteelDaily.Models.ViewModel
                 return question;
             }
         }
+        
+
+        public override ChromaticFretboard ChromaticFretboard
+        {
+            get
+            {
+                var fretboard = new ChromaticFretboard()
+                {
+                    Tuning = Result.Tuning
+                };
+                return fretboard;
+            }
+        }
+
 
         public List<List<int>> Answers
         {
@@ -51,7 +65,7 @@ namespace SteelDaily.Models.ViewModel
                         var correctAnswer = ChromaticFretboard.Fretboard[Question[0]][Question[1]];
                         if (ChromaticFretboard.Fretboard[Answers[i][0]][Answers[1][1]] == correctAnswer)
                         {
-                            outcomes.Add(true);
+                           outcomes.Add(true);
                         }
                         else
                         {

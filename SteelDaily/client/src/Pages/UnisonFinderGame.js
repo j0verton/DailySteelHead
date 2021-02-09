@@ -44,16 +44,16 @@ const UnisonFinderGame = () => {
         setOutcomes(newOutcomes);
     }
 
-    const submitAnswer = (answers, outcomes) => {
+    const submitAnswer = () => {
         const gameReturn = {
             resultId: result.result.id,
-            questionNumbers: result.questions.slice(-1).join(","),
-            answer: answer
+            // questionNumbers: result.questions.slice(-1).join(","),
+            answer: answers
         }
         console.log("game", gameReturn)
         return getToken()
             .then(token =>
-                fetch(`/api/game/`, {
+                fetch(`/api/game/unison`, {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -111,7 +111,7 @@ const UnisonFinderGame = () => {
                         <Fretboard result={result} ><FindUnisonNotes updateOutcomes={updateOutcomes} result={result} answers={answers} setAnswers={setAnswers} /></Fretboard>
                     </div>
 
-                    { answers.length > 9 ? <Button onClick={AnswerHandler}>Submit</Button> : null}
+                    { answers.length > 9 ? <Button onClick={submitAnswer}>Submit</Button> : null}
                     {/* <div className="button-container">
                         {
                             isFlipped ? <Button onClick={() => setIsFlipped(false)}>Next</Button> :
