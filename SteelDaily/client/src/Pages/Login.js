@@ -21,7 +21,7 @@ const Login = () => {
       .then((user) => {
         setLoading(false);
         user.userStatusId === 2 ? toast.info('That account in inactive', logout())
-          : toast.info(`Welcome back ${user.displayName}`, history.push("/"));
+          : toast.info(`Welcome back ${user.username}`, history.push("/"));
       })
       .catch((err) => {
         setLoading(false);
