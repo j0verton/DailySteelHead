@@ -44,7 +44,7 @@ const UnisonFinderGame = () => {
         setOutcomes(newOutcomes);
     }
 
-    const answerQuestion = (answer) => {
+    const submitAnswer = (answers, outcomes) => {
         const gameReturn = {
             resultId: result.result.id,
             questionNumbers: result.questions.slice(-1).join(","),

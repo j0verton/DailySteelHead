@@ -153,11 +153,16 @@ namespace SteelDaily.Controllers
                 }
             };
             return Ok(game);
-
-
-
         }
-        private UserProfile GetCurrentUserProfile()
+        [HttpPost("unison")]
+        public IActionResult CompleteUnisonGame()
+        {
+
+
+            return Ok();
+        }
+
+            private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
