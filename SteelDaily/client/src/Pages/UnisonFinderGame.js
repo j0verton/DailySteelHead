@@ -5,6 +5,7 @@ import { UserProfileContext } from "../providers/UserProfileProvider";
 import Fretboard from "../components/Fretboard";
 import FindUnisonNotes from "../components/FindUnisonNotes";
 import ResultsView from "../components/ResultsView";
+import ScoreDisplay from "../components/ScoreDisplay";
 
 
 const UnisonFinderGame = () => {
