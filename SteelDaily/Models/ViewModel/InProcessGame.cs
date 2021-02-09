@@ -15,7 +15,11 @@ namespace SteelDaily.Models.ViewModel
                 var fretboard = new IntervalFretboard()
                 {
                     Key = Result.Key,
-                    ChromaticFretboard = ChromaticFretboard
+                    ChromaticFretboard = new ChromaticFretboard()
+                    {
+                        Tuning = Result.Tuning
+                    }
+
                 };
                 return fretboard;
             }
