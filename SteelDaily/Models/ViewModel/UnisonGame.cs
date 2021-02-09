@@ -63,7 +63,8 @@ namespace SteelDaily.Models.ViewModel
                     for (int i = 0; i < Answers.Count(); i++)
                     {
                         var correctAnswer = ChromaticFretboard.Fretboard[Question[0]][Question[1]];
-                        if (ChromaticFretboard.Fretboard[Answers[i][0]][Answers[1][1]] == correctAnswer)
+                        var answer = ChromaticFretboard.Fretboard[Answers[i][0]][Answers[i][1]];
+                        if (answer == correctAnswer)
                         {
                            outcomes.Add(true);
                         }
