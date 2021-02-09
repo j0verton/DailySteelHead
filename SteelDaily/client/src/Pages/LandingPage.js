@@ -39,15 +39,21 @@ export const LandingPage = () => {
                     <h4>Putting a little brain power into memorizing the interval relationships everydayon your instrument will have lasting benefits</h4>
                  </Col>             </Row> */}
             < Row >
-                <Col>
+                <Col className="ml-2">
+                    <h2>Latest Activity</h2>
                     <ActivityFeed activity={data.resultsForFeed} />
                 </Col>
                 <Col>
-                    <Row><h1>Welcome to SteelHead</h1>
-                        <h2>Start a daily practice streak by playing one of our games.</h2>
-                        <h4>Keep your streak going!  </h4>
-                        <h4>Putting a little brain power into memorizing the interval relationships everydayon your instrument will have lasting benefits</h4>
+                    <Row>
+                        <Col sm="12" md={{ size: 8, offset: 1 }}>
+                            <h1 >Welcome to SteelHead</h1>
+                            <h2>Start a daily practice streak by playing a games.</h2>
+                            <h4>Keep your streak going!</h4>
+
+                            <h5>Putting a little brain power into memorizing the interval relationships every day on your instrument will have lasting benefits</h5>
+                        </Col>
                     </Row>
+                    <hr></hr>
                     <Row>
                         <h1>Longest Practice Streaks</h1>
                     </Row>
