@@ -14,6 +14,7 @@ const UnisonFinderGame = () => {
     const [key, setKey] = useState("A")
     const [result, setResult] = useState({})
     const [answers, setAnswers] = useState([])
+    const [outcomes, setOutcomes] = useState([])
 
 
     const startGame = () => {
@@ -32,6 +33,18 @@ const UnisonFinderGame = () => {
             }
             )
     }
+
+    const updateOutcomes = (bool) => {
+        console.log("bool", bool)
+        console.log("outcomes", outcomes);
+        const newOutcomes = outcomes.slice();
+        newOutcomes.push(bool)
+        console.log("newOutcomes", newOutcomes);
+        setOutcomes(newOutcomes);
+        console.log("outcomes after set", outcomes);
+
+    }
+
     const answerQuestion = (answer) => {
         const gameReturn = {
             resultId: result.result.id,
@@ -96,7 +109,7 @@ const UnisonFinderGame = () => {
                             </>
                         }
                         {/* <FindUnisonNotes result={result} /> */}
-                        <Fretboard result={result} ><FindUnisonNotes result={result} answers={answers} setAnswers={setAnswers} /></Fretboard>
+                        <Fretboard result={result} ><FindUnisonNotes updateOutcomes={updateOutcomes} result={result} answers={answers} setAnswers={setAnswers} /></Fretboard>
                     </div>
 
                     { answers.length > 9 ? <Button onClick={AnswerHandler}>Submit</Button> : null}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./FindUnisonNotes.css"
-function FindUnisonNotes({ result, answers, setAnswers }) {
+function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
     const [noteTarget, setNoteTarget] = useState()
     // const [answers, setAnswers] = useState([])
     useEffect(() => {
@@ -20,14 +20,22 @@ function FindUnisonNotes({ result, answers, setAnswers }) {
         const updatedAnswers = answers += coords;
         console.log("updatedAnswers", updatedAnswers)
         setAnswers(updatedAnswers);
-
+        console.log("answers", answers)
+        if (e.target.classList.contains("incorrect")) {
+            console.log("incorrect")
+            updateOutcomes(false)
+        } else if (e.target.classList.contains("correct")) {
+            console.log("correct")
+            updateOutcomes(true)
+        }
     }
+
     return (
         <>
             {result.chromaticFretboard ? result.chromaticFretboard.fretboard.map((fret, i) => {
                 return fret.map((note, j) => {
                     {
-                        console.log("noteTarget in return", noteTarget, result.chromaticFretboard.fretboard[i][j])
+                        // console.log("noteTarget in return", noteTarget, result.chromaticFretboard.fretboard[i][j])
                     }
                     return (
                         <circle
