@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models.ViewModel
 {
-    public class UnisonGame : NewGame
+    public class UnisonGame : NewGame, IGame
     {
         public Result Result { get; set; }
         public List<int> Question
@@ -16,7 +16,7 @@ namespace SteelDaily.Models.ViewModel
                 return question;
             }
         }
-        
+
 
         public override ChromaticFretboard ChromaticFretboard
         {
@@ -46,9 +46,9 @@ namespace SteelDaily.Models.ViewModel
                     }
                     return answers;
                 }
-                else 
-                { 
-                    return null; 
+                else
+                {
+                    return null;
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace SteelDaily.Models.ViewModel
                         var answer = ChromaticFretboard.Fretboard[Answers[i][0]][Answers[i][1]];
                         if (answer == correctAnswer)
                         {
-                           outcomes.Add(true);
+                            outcomes.Add(true);
                         }
                         else
                         {

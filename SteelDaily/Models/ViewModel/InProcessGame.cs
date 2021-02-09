@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models.ViewModel
 {
-    public class InProcessGame : NewGame
+    public class InProcessGame : NewGame, IGame
     {
 
         public Result Result { get; set; }
