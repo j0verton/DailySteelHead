@@ -157,7 +157,7 @@ namespace SteelDaily.Controllers
         [HttpPost("unison")]
         public IActionResult CompleteUnisonGame(ReturnedGame game)
         {
-            var storedGame = new InProcessGame()
+            var storedGame = new UnisonGame()
             {
                 Result = _resultRepository.GetById(game.ResultId)
             };
@@ -165,6 +165,7 @@ namespace SteelDaily.Controllers
             {
                 return BadRequest();
             }
+
             if (storedGame.Questions.Count >= 10)
             {
                 storedGame.Result.Answers += $",{game.Answer}";
