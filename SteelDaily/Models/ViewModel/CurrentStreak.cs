@@ -11,7 +11,7 @@ namespace SteelDaily.Models.ViewModel
         public TimeSpan Length 
         {
             get {
-                TimeSpan length = Streak.LastUpdate - Streak.DateBegun;
+                TimeSpan length = Streak.LastUpdate.AddDays(1) - Streak.DateBegun;
                 return length;
             }
         }

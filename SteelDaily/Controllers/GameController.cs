@@ -73,7 +73,11 @@ namespace SteelDaily.Controllers
             //outcomes throwing null ref exception
             var storedGame = new InProcessGame()
             {
-                Result = _resultRepository.GetById(game.ResultId)
+                Result = _resultRepository.GetById(game.ResultId),
+                ChromaticFretboard = new ChromaticFretboard()
+                {
+                    Tuning = _tuningRepository.GetDefaultTuning()
+                }
             };
             if (storedGame.Result.UserProfileId != GetCurrentUserProfile().Id || storedGame.Result.Complete == true)
             {

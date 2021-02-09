@@ -7,10 +7,13 @@ import { UserProfileContext } from "../providers/UserProfileProvider"
 
 export const LandingPage = () => {
     const { streak } = useContext(StreakContext)
-    const { getToken } = useContext(UserProfileContext)
+    const { getToken, getCurrentUser } = useContext(UserProfileContext)
     const [data, setData] = useState({})
     useEffect(() => {
-        loadFeedData()
+        if (getCurrentUser()) {
+
+            loadFeedData()
+        }
 
     }, [])
 
