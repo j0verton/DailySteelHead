@@ -147,6 +147,10 @@ namespace SteelDaily.Controllers
             var game = new UnisonGame()
             {
                 Result = returnedResult,
+                ChromaticFretboard = new ChromaticFretboard()
+                {
+                    Tuning = _tuningRepository.GetDefaultTuning()
+                }
             };
             return Ok(game);
 

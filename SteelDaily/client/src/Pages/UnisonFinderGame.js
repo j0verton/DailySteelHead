@@ -1,11 +1,7 @@
 import React, { useContext, useState } from "react";
-import { toast } from "react-toastify";
-import ScoreDisplay from "../components/ScoreDisplay";
-import { Button, Card, Col } from "reactstrap";
-import "./NTIGame.css";
+import { Button } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import KeySelect from "../components/KeySelect";
 import Fretboard from "../components/Fretboard";
 import FindUnisonNotes from "../components/FindUnisonNotes";
 import ResultsView from "../components/ResultsView";
@@ -17,22 +13,8 @@ const UnisonFinderGame = () => {
     const [viewResult, setViewResult] = useState(false);
     const [key, setKey] = useState("A")
     const [result, setResult] = useState({})
-    // const [isFlipped, setIsFlipped] = useState(false)
     const [answers, setAnswers] = useState([])
-    // const scale = [
-    //     { steps: 1, buttonName: "1", interval: "1st", stringName: "One" },
-    //     { steps: 2, buttonName: "b2", interval: "b2nd", stringName: "FlatTwo" },
-    //     { steps: 3, buttonName: "2", interval: "2nd", stringName: "Two" },
-    //     { steps: 4, buttonName: "b3", interval: "b3rd", stringName: "FlatThree" },
-    //     { steps: 5, buttonName: "3", interval: "3rd", stringName: "Three" },
-    //     { steps: 6, buttonName: "4", interval: "4th", stringName: "Four" },
-    //     { steps: 7, buttonName: "b5", interval: "b5th", stringName: "FlatFive" },
-    //     { steps: 8, buttonName: "5", interval: "5th", stringName: "Five" },
-    //     { steps: 9, buttonName: "b6", interval: "b6th", stringName: "FlatSix" },
-    //     { steps: 10, buttonName: "6", interval: "6th", stringName: "Six" },
-    //     { steps: 11, buttonName: "b7", interval: "b7th", stringName: "FlatSeven" },
-    //     { steps: 12, buttonName: "7", interval: "7th", stringName: "Seven" }
-    // ]
+
 
     const startGame = () => {
         return getToken()
@@ -114,7 +96,7 @@ const UnisonFinderGame = () => {
                             </>
                         }
                         {/* <FindUnisonNotes result={result} /> */}
-                        <Fretboard result={result} ><FindUnisonNotes result={result} /></Fretboard>
+                        <Fretboard result={result} ><FindUnisonNotes result={result} answers={answers} setAnswers={setAnswers} /></Fretboard>
                     </div>
 
                     { answers.length > 9 ? <Button onClick={AnswerHandler}>Submit</Button> : null}
