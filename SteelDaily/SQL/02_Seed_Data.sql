@@ -6,8 +6,8 @@ VALUES
   (2, 'E9AB', 'Gb,Eb,A,E,Db,A,Gb,E,D,Db');
   SET IDENTITY_INSERT [Tuning] OFF
   
-  SET IDENTITY_INSERT [Tuning] ON
-INSERT INTO [Tuning]
+  SET IDENTITY_INSERT [Game] ON
+INSERT INTO [Game]
   ([Id], [Name])
 VALUES
   (1, 'Interval Flash Cards'),
@@ -15,7 +15,7 @@ VALUES
   (3, 'Find the Unisons'),
   (4, 'Find the Fifths'),
   (5, 'Play by Ear Challenge');
-  SET IDENTITY_INSERT [Tuning] OFF
+  SET IDENTITY_INSERT [Game] OFF
 
 SET IDENTITY_INSERT [Scale] ON
 INSERT INTO [Scale]

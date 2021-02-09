@@ -1,32 +1,63 @@
-import React from "react";
-
-function FindUnisonNotes({ result, gameComponent }) {
-
+import React, { useEffect, useState } from "react";
+import "./FindUnisonNotes.css"
+function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
+    const [noteTarget, setNoteTarget] = useState()
+    // const [answers, setAnswers] = useState([])
+    useEffect(() => {
+        if (result.chromaticFretboard) {
+            console.log("result in findUnotes", result)
+            const coordinates = result.question;
+            const coordiNote = result.chromaticFretboard.fretboard[coordinates[0]][coordinates[1]]
+            console.log("coordiNote", coordiNote)
+            setNoteTarget(coordiNote)
+        }
+    }, [result])
     const handleNoteClick = e => {
         console.log(e);
         e.target.style.visibility = "visible"
+        const [prefix, coords] = e.target.id.split("--");
+        console.log("coords", coords)
+        let updatedAnswers = ''
+        if (answers.length === 0) {
+            updatedAnswers = coords;
+        } else if (answers.length >= 1) {
 
+            updatedAnswers = answers += `,${coords}`;
+        }
+        console.log("updatedAnswers", updatedAnswers)
+        setAnswers(updatedAnswers);
+        console.log("answers", answers)
+        if (e.target.classList.contains("incorrect")) {
+            console.log("incorrect")
+            updateOutcomes(false)
+        } else if (e.target.classList.contains("correct")) {
+            console.log("correct")
+            updateOutcomes(true)
+        }
     }
+
     return (
         <>
-            {result.fretboard ? result.fretboard.intFretboard.map((fret, i) => {
+            {result.chromaticFretboard ? result.chromaticFretboard.fretboard.map((fret, i) => {
                 return fret.map((note, j) => {
+                    {
+                        // console.log("noteTarget in return", noteTarget, result.chromaticFretboard.fretboard[i][j])
+                    }
                     return (
                         <circle
-                            pointer-events="bounding-box"
+                            pointerEvents="bounding-box"
                             key={`${i}-${j}`}
-                            id={`note--${i}-${j}`}
+                            id={`note--${i},${j}`}
+                            className={noteTarget == result.chromaticFretboard.fretboard[i][j] ? "correct" : "incorrect"}
                             //add a class correct or incorrect based on note
                             cx={21 + (110 * i)} cy={25 + (34 * j)} r="15"
                             //change fill color based on correct incorrect
-                            fill="#39FF14"
-                            visibility={(i === result.questions.slice(-1)[0][0] && j === result.questions.slice(-1)[0][1]) ? "visible" : "hidden"
-                            }
+                            // fill="#39FF14"
+                            visibility={(i === result.question[0] && j === result.question[1]) ? "visible" : "hidden"}
 
                             // maybe saves wrong guesses or total guesses til all have been found?
                             onClick={handleNoteClick}
                         />
-
                     )
                 });
             }) : null}

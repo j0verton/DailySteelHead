@@ -1,13 +1,15 @@
-﻿using System;
-using Xunit;
-using SteelDaily.Models;
+﻿using SteelDaily.Models;
 using SteelDaily.Models.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
 
-namespace SteelDaily.Tests
+namespace SteelDaily.Tests.ModelComputedPropTests
 {
-    public class InProcessGameTests
+    public class UnisonGameTests
     {
         [Fact]
         public void Correct_Answer_Should_Create_Correct_Outcome()
@@ -24,20 +26,12 @@ namespace SteelDaily.Tests
                 Key = "C",
                 TuningId = 1,
                 Tuning = TestTuning,
-                Questions = "11,1,8,7,7,3,15,5",
-                Answers = "Two,One,FlatSeven,Two"
+                Questions = "8,7",
+                Answers = "6,6,6,5"
             };
-            //these answers are all off b/c not accouting for 0 index in the second value... 2 is string 3
-            ////ans = D/2
-            //Result1.Questions.Add(new List<int> { 11, 2 });
-            ////ans = C/1
-            //Result1.Questions.Add(new List<int> { 8, 8 });
-            ////ans = B/b7
-            //Result1.Questions.Add(new List<int> { 7, 4 });
-            ////ans = E/3
-            //Result1.Questions.Add(new List<int> { 15, 5 });
+//true, false
 
-            var Game = new InProcessGame()
+            var Game = new UnisonGame()
             {
                 Result = Result1
             };

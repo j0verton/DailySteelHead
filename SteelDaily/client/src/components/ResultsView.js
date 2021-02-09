@@ -14,10 +14,16 @@ const ResultsView = ({ result, game }) => {
 
     return (
         <>
-            <h3>Great job taking the time to study</h3>
-            <h2> {userProfile.firstName}!</h2>
-            <h4>you got {result.outcomes.filter(Boolean).length} right out of 10 question</h4>
-            <ScoreDisplay result={result} game={game} />
+            {
+                result.outcomes ?
+                    <>
+                        <h3>Great job taking the time to study</h3>
+                        <h2> {userProfile.firstName}!</h2>
+                        <h4>you got {result.outcomes.filter(Boolean).length} right out of {result.outcomes.length} question</h4>
+                        <ScoreDisplay result={result} game={game} />
+                    </>
+                    : null
+            }
         </>
     )
 }

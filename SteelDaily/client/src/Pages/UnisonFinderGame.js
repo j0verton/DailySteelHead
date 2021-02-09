@@ -1,14 +1,11 @@
 import React, { useContext, useState } from "react";
-import { toast } from "react-toastify";
-import ScoreDisplay from "../components/ScoreDisplay";
-import { Button, Card, Col } from "reactstrap";
-import "./NTIGame.css";
+import { Button } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import KeySelect from "../components/KeySelect";
 import Fretboard from "../components/Fretboard";
 import FindUnisonNotes from "../components/FindUnisonNotes";
 import ResultsView from "../components/ResultsView";
+import ScoreDisplay from "../components/ScoreDisplay";
 
 
 const UnisonFinderGame = () => {
@@ -17,26 +14,14 @@ const UnisonFinderGame = () => {
     const [viewResult, setViewResult] = useState(false);
     const [key, setKey] = useState("A")
     const [result, setResult] = useState({})
-    const [isFlipped, setIsFlipped] = useState(false)
-    const scale = [
-        { steps: 1, buttonName: "1", interval: "1st", stringName: "One" },
-        { steps: 2, buttonName: "b2", interval: "b2nd", stringName: "FlatTwo" },
-        { steps: 3, buttonName: "2", interval: "2nd", stringName: "Two" },
-        { steps: 4, buttonName: "b3", interval: "b3rd", stringName: "FlatThree" },
-        { steps: 5, buttonName: "3", interval: "3rd", stringName: "Three" },
-        { steps: 6, buttonName: "4", interval: "4th", stringName: "Four" },
-        { steps: 7, buttonName: "b5", interval: "b5th", stringName: "FlatFive" },
-        { steps: 8, buttonName: "5", interval: "5th", stringName: "Five" },
-        { steps: 9, buttonName: "b6", interval: "b6th", stringName: "FlatSix" },
-        { steps: 10, buttonName: "6", interval: "6th", stringName: "Six" },
-        { steps: 11, buttonName: "b7", interval: "b7th", stringName: "FlatSeven" },
-        { steps: 12, buttonName: "7", interval: "7th", stringName: "Seven" }
-    ]
+    const [answers, setAnswers] = useState([])
+    const [outcomes, setOutcomes] = useState([])
+
 
     const startGame = () => {
         return getToken()
             .then(token =>
-                fetch(`/api/Game?key=${key}`, {
+                fetch(`/api/game/unison`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -49,16 +34,26 @@ const UnisonFinderGame = () => {
             }
             )
     }
-    const answerQuestion = (answer) => {
+
+    const updateOutcomes = (bool) => {
+        console.log("bool", bool)
+        console.log("outcomes", outcomes);
+        const newOutcomes = outcomes.slice();
+        newOutcomes.push(bool)
+        console.log("newOutcomes", newOutcomes);
+        setOutcomes(newOutcomes);
+    }
+
+    const submitAnswer = () => {
         const gameReturn = {
             resultId: result.result.id,
-            questionNumbers: result.questions.slice(-1).join(","),
-            answer: answer
+            // questionNumbers: result.questions.slice(-1).join(","),
+            answer: answers
         }
         console.log("game", gameReturn)
         return getToken()
             .then(token =>
-                fetch(`/api/game/`, {
+                fetch(`/api/game/unison`, {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -83,8 +78,8 @@ const UnisonFinderGame = () => {
     }
     async function AnswerHandler(e) {
         console.log("answer steps", e.target.value)
-        await answerQuestion(e.target.value)
-        setIsFlipped(!isFlipped)
+        // await answerQuestion(e.target.value)
+        // setIsFlipped(!isFlipped)
     }
 
     return (
@@ -94,27 +89,31 @@ const UnisonFinderGame = () => {
                 <Button
                     onClick={() => {
                         setGame(false)
-                        setIsFlipped(false)
                         setViewResult(false)
-                        result.outcomes = null
+                        setAnswers([])
+                        setOutcomes(null)
                     }}>
-                    Next
+                    Play Again
                         </Button>
             </> :
                 <>
                     <div m="5" className="score-container">
-                        <ScoreDisplay result={result} game={game} />
+
+                        <ScoreDisplay result={result} game={game} outcomes={outcomes} />
                     </div>
                     <div className="fretboard-container">
-                        {game ? null : <>
-                            <KeySelect setKey={setKey} />
-                            <Button onClick={startHandler}>Start Game</Button>
-                        </>
+                        {game ? answers.length > 0 ? null : <h2>You will be scored based on your first 10 answers</h2>
+                            : <>
+                                {/* <KeySelect setKey={setKey} /> */}
+                                <Button onClick={startHandler}>Start Game</Button>
+                            </>
                         }
                         {/* <FindUnisonNotes result={result} /> */}
-                        <Fretboard result={result} ><FindUnisonNotes result={result} /></Fretboard>
+                        <Fretboard result={result} ><FindUnisonNotes updateOutcomes={updateOutcomes} result={result} answers={answers} setAnswers={setAnswers} /></Fretboard>
                     </div>
-                    <div className="button-container">
+
+                    { answers.length > 9 ? <Button onClick={submitAnswer}>Submit</Button> : null}
+                    {/* <div className="button-container">
                         {
                             isFlipped ? <Button onClick={() => setIsFlipped(false)}>Next</Button> :
 
@@ -125,7 +124,7 @@ const UnisonFinderGame = () => {
                                         >{interval.buttonName}</Button>
                                     )) : null
                         }
-                    </div>
+                    </div> */}
                 </>
             }
         </div >

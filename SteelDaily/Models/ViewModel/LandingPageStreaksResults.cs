@@ -25,17 +25,28 @@ namespace SteelDaily.Models.ViewModel
         }
 
         public List<Result> LastTenResults { get; set; }
-        public List<InProcessGame> ResultsForFeed {
+        public List<IGame> ResultsForFeed {
             get
             {
-                var resultsForFeed = new List<InProcessGame>();
+                var resultsForFeed = new List<IGame>();
                 foreach (Result result in LastTenResults)
                 {
-                    var gameObj = new InProcessGame()
+                    if (result.GameId == 1 || result.GameId == 2)
                     {
-                        Result = result
-                    };
-                    resultsForFeed.Add(gameObj);
+                        var gameObj = new InProcessGame()
+                        {
+                            Result = result
+                        };
+                        resultsForFeed.Add(gameObj);
+                    }
+                    else if (result.GameId == 3)
+                    {
+                        var gameObj = new UnisonGame()
+                        {
+                            Result = result
+                        };
+                        resultsForFeed.Add(gameObj);
+                    }
                 }
                 return resultsForFeed;
             }

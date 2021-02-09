@@ -34,16 +34,12 @@ namespace SteelDaily.Controllers
         [HttpGet("{gameId}/{key}")]
         public IActionResult BeginNtI(int gameId, string key)
         {
-            var newGame = new NameTheIntervalGame()
+            var newGame = new NewGame()
             {
-                Fretboard = new IntervalFretboard()
-                {
-                    Key = key,
-                    ChromaticFretboard = new ChromaticFretboard() 
-                    { 
-                        Tuning = _tuningRepository.GetDefaultTuning()
-                    }
-                },
+                ChromaticFretboard = new ChromaticFretboard() 
+                { 
+                    Tuning = _tuningRepository.GetDefaultTuning()
+                }
             };
 
             var questionList = new List<List<int>>
@@ -58,7 +54,7 @@ namespace SteelDaily.Controllers
                 GameId = gameId,
                 ScaleId = 1,
                 Key = key,
-                TuningId = newGame.Fretboard.ChromaticFretboard.Tuning.Id,
+                TuningId = newGame.ChromaticFretboard.Tuning.Id,
                 Public = true,
                 Date = DateTime.Now,
                 Questions = questionString
@@ -96,15 +92,16 @@ namespace SteelDaily.Controllers
                         UserProfileId = user.Id,
                         DateBegun = DateTime.Now,
                         LastUpdate = DateTime.Now,
-
                     };
                     _streakRepository.Add(newStreak);
+                    _resultRepository.Update(storedGame.Result);
                     return Ok(storedGame);
                 }
                 if (streak is not null)
                 {
                     streak.LastUpdate = DateTime.Now;
                     _streakRepository.Update(streak);
+                    _resultRepository.Update(storedGame.Result);
                     return Ok(storedGame);
                 }
             }
@@ -127,9 +124,83 @@ namespace SteelDaily.Controllers
         [HttpGet("unison")]
         public IActionResult BeginUnisonGame()
         {
+            var newGame = new NewGame()
+            {
+                    ChromaticFretboard = new ChromaticFretboard()
+                    {
+                        Tuning = _tuningRepository.GetDefaultTuning()
+                    }
+            };
+            var newQuestion = newGame.GetQuestionNumbers();
+            string questionString = string.Join(",", newQuestion);
 
+            var newResult = new Result()
+            {
+                UserProfileId = GetCurrentUserProfile().Id,
+                GameId = 3,
+                ScaleId = 1,
+                TuningId = newGame.ChromaticFretboard.Tuning.Id,
+                Public = true,
+                Date = DateTime.Now,
+                Questions = questionString
+            };
 
+            var returnedResult = _resultRepository.Add(newResult);
+            var game = new UnisonGame()
+            {
+                Result = returnedResult,
+                ChromaticFretboard = new ChromaticFretboard()
+                {
+                    Tuning = _tuningRepository.GetDefaultTuning()
+                }
+            };
+            return Ok(game);
         }
+        [HttpPost("unison")]
+        public IActionResult CompleteUnisonGame(ReturnedGame game)
+        {
+            var currentGame = new UnisonGame()
+            {
+                Result = _resultRepository.GetById(game.ResultId)
+            };
+            currentGame.Result.Answers = game.Answer;
+
+            if (currentGame.Result.UserProfileId != GetCurrentUserProfile().Id || currentGame.Result.Complete == true)
+            {
+                return BadRequest();
+            }
+
+            if (currentGame.Answers.Count >= 10)
+            {
+                currentGame.Result.Complete = true;
+                var user = GetCurrentUserProfile();
+                var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
+                if (streak is null)
+                {
+                    var newStreak = new Streak()
+                    {
+                        UserProfileId = user.Id,
+                        DateBegun = DateTime.Now,
+                        LastUpdate = DateTime.Now,
+                    };
+                    _streakRepository.Add(newStreak);
+                    _resultRepository.Update(currentGame.Result);
+                    return Ok(currentGame);
+                }
+                else
+                {                
+                    streak.LastUpdate = DateTime.Now;
+                    _streakRepository.Update(streak);
+                    _resultRepository.Update(currentGame.Result);
+                    return Ok(currentGame);
+                }
+            }
+            else 
+            {
+                return BadRequest();
+            }
+        }
+
             private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

@@ -45,7 +45,6 @@ const NTIFBGame = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log(res)
                 setResult(res)
             }
             )
@@ -56,10 +55,9 @@ const NTIFBGame = () => {
             questionNumbers: result.questions.slice(-1).join(","),
             answer: answer
         }
-        console.log("game", gameReturn)
         return getToken()
             .then(token =>
-                fetch(`/ api / game / `, {
+                fetch(`/api/game/`, {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -69,7 +67,6 @@ const NTIFBGame = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log("ans response", res)
                 if (res.result.complete === true) {
                     setViewResult(true)
                     setGame(false)
@@ -83,7 +80,6 @@ const NTIFBGame = () => {
         setGame(true)
     }
     async function AnswerHandler(e) {
-        console.log("answer steps", e.target.value)
         await answerQuestion(e.target.value)
         setIsFlipped(!isFlipped)
     }
@@ -104,7 +100,7 @@ const NTIFBGame = () => {
             </> :
                 <>
                     <div m="5" className="score-container">
-                        <ScoreDisplay result={result} game={game} />
+                        <ScoreDisplay result={result} game={game} outcomes={result.outcomes} />
                     </div>
                     <div className="fretboard-container">
                         {game ? null : <>
