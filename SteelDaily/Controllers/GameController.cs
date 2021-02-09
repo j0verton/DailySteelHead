@@ -155,11 +155,53 @@ namespace SteelDaily.Controllers
             return Ok(game);
         }
         [HttpPost("unison")]
-        public IActionResult CompleteUnisonGame()
+        public IActionResult CompleteUnisonGame(ReturnedGame game)
         {
+            var storedGame = new InProcessGame()
+            {
+                Result = _resultRepository.GetById(game.ResultId)
+            };
+            if (storedGame.Result.UserProfileId != GetCurrentUserProfile().Id || storedGame.Result.Complete == true)
+            {
+                return BadRequest();
+            }
+            if (storedGame.Questions.Count >= 10)
+            {
+                storedGame.Result.Answers += $",{game.Answer}";
+                storedGame.Result.Complete = true;
+                var user = GetCurrentUserProfile();
+                var streak = _streakRepository.GetCurrentStreakByUserProfile(user.Id);
+                if (streak is null)
+                {
+                    var newStreak = new Streak()
+                    {
+                        UserProfileId = user.Id,
+                        DateBegun = DateTime.Now,
+                        LastUpdate = DateTime.Now,
+                    };
+                    _streakRepository.Add(newStreak);
+                    return Ok(storedGame);
+                }
+                if (streak is not null)
+                {
+                    streak.LastUpdate = DateTime.Now;
+                    _streakRepository.Update(streak);
+                    return Ok(storedGame);
+                }
+            }
+            if (storedGame.Result.Answers == null)
+            {
+                storedGame.Result.Answers = game.Answer;
+            }
+            else
+            {
+                storedGame.Result.Answers += $",{game.Answer}";
+            }
+            List<int> newNumbers = storedGame.GetQuestionNumbers();
+            storedGame.Result.Questions += $",{newNumbers[0]},{newNumbers[1]}";
+            _resultRepository.Update(storedGame.Result);
 
-
-            return Ok();
+            return Ok(storedGame);
         }
 
             private UserProfile GetCurrentUserProfile()
