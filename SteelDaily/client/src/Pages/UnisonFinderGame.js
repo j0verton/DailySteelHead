@@ -91,6 +91,7 @@ const UnisonFinderGame = () => {
                         setGame(false)
                         setViewResult(false)
                         setAnswers([])
+                        setOutcomes(null)
                     }}>
                     Play Again
                         </Button>
