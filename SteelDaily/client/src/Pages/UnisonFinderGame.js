@@ -41,8 +41,6 @@ const UnisonFinderGame = () => {
         newOutcomes.push(bool)
         console.log("newOutcomes", newOutcomes);
         setOutcomes(newOutcomes);
-        console.log("outcomes after set", outcomes);
-
     }
 
     const answerQuestion = (answer) => {
@@ -99,7 +97,7 @@ const UnisonFinderGame = () => {
                 <>
                     <div m="5" className="score-container">
 
-                        {/* <ScoreDisplay result={result} game={game} /> */}
+                        <ScoreDisplay result={result} game={game} outcomes={outcomes} />
                     </div>
                     <div className="fretboard-container">
                         {game ? answers.length > 0 ? null : <h2>You will be scored based on your first 10 answers</h2>

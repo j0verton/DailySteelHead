@@ -100,7 +100,7 @@ const NTIGame = () => {
             </> :
                 <>
                     <div m="5" className="score-container">
-                        <ScoreDisplay result={result} game={game} />
+                        <ScoreDisplay result={result} game={game} outcomes={result.outcomes} />
                     </div>
                     <div className="card-area">
                         <Col sm="12" md={{ size: 6, offset: 3 }}>

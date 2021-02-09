@@ -4,7 +4,7 @@ import Star from "./Star";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const ScoreDisplay = ({ result, game }) => {
+const ScoreDisplay = ({ result, game, outcomes }) => {
 
     return (
         <>
@@ -14,7 +14,7 @@ const ScoreDisplay = ({ result, game }) => {
                         <h3>{result.result.tuning.name} - Key of {result.result.key}</h3>
                         <Row m="5">
                             <Col sm={{ size: 12, order: 2, offset: 1 }} className="d-flex flex-nowrap">
-                                {result.outcomes.map(outcome => {
+                                {outcomes.map(outcome => {
                                     return <Star outcome={outcome} />
                                 })}
                             </Col>

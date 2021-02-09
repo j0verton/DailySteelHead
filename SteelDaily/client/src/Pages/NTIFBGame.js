@@ -100,7 +100,7 @@ const NTIFBGame = () => {
             </> :
                 <>
                     <div m="5" className="score-container">
-                        <ScoreDisplay result={result} game={game} />
+                        <ScoreDisplay result={result} game={game} outcomes={result.outcomes} />
                     </div>
                     <div className="fretboard-container">
                         {game ? null : <>
