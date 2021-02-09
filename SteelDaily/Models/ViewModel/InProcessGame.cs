@@ -40,13 +40,13 @@ namespace SteelDaily.Models.ViewModel
 
             }
         }
-        public List<bool?> Outcomes
+        public List<bool> Outcomes
         {
             get
             {
                 if (Result.Answers != null)
                 {
-                    var outcomes = new List<bool?>();
+                    var outcomes = new List<bool>();
                     var answerList = Result.Answers.Split(',').ToList();
                     for (int i = 0; i < answerList.Count(); i++)
                     {
