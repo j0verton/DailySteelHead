@@ -17,26 +17,27 @@ const UnisonFinderGame = () => {
     const [viewResult, setViewResult] = useState(false);
     const [key, setKey] = useState("A")
     const [result, setResult] = useState({})
-    const [isFlipped, setIsFlipped] = useState(false)
-    const scale = [
-        { steps: 1, buttonName: "1", interval: "1st", stringName: "One" },
-        { steps: 2, buttonName: "b2", interval: "b2nd", stringName: "FlatTwo" },
-        { steps: 3, buttonName: "2", interval: "2nd", stringName: "Two" },
-        { steps: 4, buttonName: "b3", interval: "b3rd", stringName: "FlatThree" },
-        { steps: 5, buttonName: "3", interval: "3rd", stringName: "Three" },
-        { steps: 6, buttonName: "4", interval: "4th", stringName: "Four" },
-        { steps: 7, buttonName: "b5", interval: "b5th", stringName: "FlatFive" },
-        { steps: 8, buttonName: "5", interval: "5th", stringName: "Five" },
-        { steps: 9, buttonName: "b6", interval: "b6th", stringName: "FlatSix" },
-        { steps: 10, buttonName: "6", interval: "6th", stringName: "Six" },
-        { steps: 11, buttonName: "b7", interval: "b7th", stringName: "FlatSeven" },
-        { steps: 12, buttonName: "7", interval: "7th", stringName: "Seven" }
-    ]
+    // const [isFlipped, setIsFlipped] = useState(false)
+    const [answers, setAnswers] = useState([])
+    // const scale = [
+    //     { steps: 1, buttonName: "1", interval: "1st", stringName: "One" },
+    //     { steps: 2, buttonName: "b2", interval: "b2nd", stringName: "FlatTwo" },
+    //     { steps: 3, buttonName: "2", interval: "2nd", stringName: "Two" },
+    //     { steps: 4, buttonName: "b3", interval: "b3rd", stringName: "FlatThree" },
+    //     { steps: 5, buttonName: "3", interval: "3rd", stringName: "Three" },
+    //     { steps: 6, buttonName: "4", interval: "4th", stringName: "Four" },
+    //     { steps: 7, buttonName: "b5", interval: "b5th", stringName: "FlatFive" },
+    //     { steps: 8, buttonName: "5", interval: "5th", stringName: "Five" },
+    //     { steps: 9, buttonName: "b6", interval: "b6th", stringName: "FlatSix" },
+    //     { steps: 10, buttonName: "6", interval: "6th", stringName: "Six" },
+    //     { steps: 11, buttonName: "b7", interval: "b7th", stringName: "FlatSeven" },
+    //     { steps: 12, buttonName: "7", interval: "7th", stringName: "Seven" }
+    // ]
 
     const startGame = () => {
         return getToken()
             .then(token =>
-                fetch(`/api/Game?key=${key}`, {
+                fetch(`/api/game/unison`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -83,8 +84,8 @@ const UnisonFinderGame = () => {
     }
     async function AnswerHandler(e) {
         console.log("answer steps", e.target.value)
-        await answerQuestion(e.target.value)
-        setIsFlipped(!isFlipped)
+        // await answerQuestion(e.target.value)
+        // setIsFlipped(!isFlipped)
     }
 
     return (
@@ -94,27 +95,30 @@ const UnisonFinderGame = () => {
                 <Button
                     onClick={() => {
                         setGame(false)
-                        setIsFlipped(false)
                         setViewResult(false)
-                        result.outcomes = null
+                        setAnswers([])
                     }}>
-                    Next
+                    Play Again
                         </Button>
             </> :
                 <>
                     <div m="5" className="score-container">
-                        <ScoreDisplay result={result} game={game} />
+
+                        {/* <ScoreDisplay result={result} game={game} /> */}
                     </div>
                     <div className="fretboard-container">
-                        {game ? null : <>
-                            <KeySelect setKey={setKey} />
-                            <Button onClick={startHandler}>Start Game</Button>
-                        </>
+                        {game ? answers.length > 0 ? null : <h2>You will be scored based on your first 10 answers</h2>
+                            : <>
+                                {/* <KeySelect setKey={setKey} /> */}
+                                <Button onClick={startHandler}>Start Game</Button>
+                            </>
                         }
                         {/* <FindUnisonNotes result={result} /> */}
                         <Fretboard result={result} ><FindUnisonNotes result={result} /></Fretboard>
                     </div>
-                    <div className="button-container">
+
+                    { answers.length > 9 ? <Button onClick={AnswerHandler}>Submit</Button> : null}
+                    {/* <div className="button-container">
                         {
                             isFlipped ? <Button onClick={() => setIsFlipped(false)}>Next</Button> :
 
@@ -125,7 +129,7 @@ const UnisonFinderGame = () => {
                                         >{interval.buttonName}</Button>
                                     )) : null
                         }
-                    </div>
+                    </div> */}
                 </>
             }
         </div >

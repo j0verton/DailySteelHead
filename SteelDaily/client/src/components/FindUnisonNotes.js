@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function FindUnisonNotes({ result, gameComponent }) {
 
+    useEffect(() => {
+        console.log(result)
+    }, [])
     const handleNoteClick = e => {
         console.log(e);
         e.target.style.visibility = "visible"

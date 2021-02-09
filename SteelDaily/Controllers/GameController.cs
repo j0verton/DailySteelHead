@@ -36,14 +36,10 @@ namespace SteelDaily.Controllers
         {
             var newGame = new NewGame()
             {
-                Fretboard = new IntervalFretboard()
-                {
-                    Key = key,
-                    ChromaticFretboard = new ChromaticFretboard() 
-                    { 
-                        Tuning = _tuningRepository.GetDefaultTuning()
-                    }
-                },
+                ChromaticFretboard = new ChromaticFretboard() 
+                { 
+                    Tuning = _tuningRepository.GetDefaultTuning()
+                }
             };
 
             var questionList = new List<List<int>>
@@ -58,7 +54,7 @@ namespace SteelDaily.Controllers
                 GameId = gameId,
                 ScaleId = 1,
                 Key = key,
-                TuningId = newGame.Fretboard.ChromaticFretboard.Tuning.Id,
+                TuningId = newGame.ChromaticFretboard.Tuning.Id,
                 Public = true,
                 Date = DateTime.Now,
                 Questions = questionString
@@ -96,7 +92,6 @@ namespace SteelDaily.Controllers
                         UserProfileId = user.Id,
                         DateBegun = DateTime.Now,
                         LastUpdate = DateTime.Now,
-
                     };
                     _streakRepository.Add(newStreak);
                     return Ok(storedGame);
@@ -134,11 +129,8 @@ namespace SteelDaily.Controllers
                         Tuning = _tuningRepository.GetDefaultTuning()
                     }
             };
-            var questionList = new List<List<int>>
-            {
-                newGame.GetQuestionNumbers()
-            };
-            string questionString = string.Join(",", questionList[0]);
+            var newQuestion = newGame.GetQuestionNumbers();
+            string questionString = string.Join(",", newQuestion);
 
             var newResult = new Result()
             {
@@ -152,7 +144,7 @@ namespace SteelDaily.Controllers
             };
 
             var returnedResult = _resultRepository.Add(newResult);
-            var game = new InProcessGame()
+            var game = new UnisonGame()
             {
                 Result = returnedResult,
             };

@@ -32,6 +32,7 @@ namespace SteelDaily.Repositories
                 .Include(r => r.Scale)
                 .Include(r => r.Tuning)
                 .Include(r => r.UserProfile)
+                .Include(r=> r.Game)
                 .Where(r => r.Complete == true)
                 .Take(10)
                 .ToList();
