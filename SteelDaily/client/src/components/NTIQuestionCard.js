@@ -29,10 +29,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
     const flipRandomizer = () => {
         const num = Math.floor(Math.random() * 10)
         if (num >= 4) {
-            console.log("if")
         } else {
-            console.log("else")
-
             setFlip(!vertFlip);
         }
     }

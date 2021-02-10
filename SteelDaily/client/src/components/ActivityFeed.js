@@ -5,7 +5,6 @@ export const ActivityFeed = ({ activity }) => {
 
     return (
         <div>
-            {console.log("activity", activity)}
             {
                 activity ? activity.map(result => {
                     return (<Card key={result.result.id} className="mt-1">

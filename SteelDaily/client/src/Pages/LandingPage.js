@@ -28,7 +28,6 @@ export const LandingPage = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log(res)
                 setData(res)
             })
     }

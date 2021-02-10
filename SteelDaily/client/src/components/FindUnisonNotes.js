@@ -5,18 +5,14 @@ function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
     // const [answers, setAnswers] = useState([])
     useEffect(() => {
         if (result.chromaticFretboard) {
-            console.log("result in findUnotes", result)
             const coordinates = result.question;
             const coordiNote = result.chromaticFretboard.fretboard[coordinates[0]][coordinates[1]]
-            console.log("coordiNote", coordiNote)
             setNoteTarget(coordiNote)
         }
     }, [result])
     const handleNoteClick = e => {
-        console.log(e);
         e.target.style.visibility = "visible"
         const [prefix, coords] = e.target.id.split("--");
-        console.log("coords", coords)
         let updatedAnswers = ''
         if (answers.length === 0) {
             updatedAnswers = coords;
@@ -24,14 +20,10 @@ function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
 
             updatedAnswers = answers += `,${coords}`;
         }
-        console.log("updatedAnswers", updatedAnswers)
         setAnswers(updatedAnswers);
-        console.log("answers", answers)
         if (e.target.classList.contains("incorrect")) {
-            console.log("incorrect")
             updateOutcomes(false)
         } else if (e.target.classList.contains("correct")) {
-            console.log("correct")
             updateOutcomes(true)
         }
     }

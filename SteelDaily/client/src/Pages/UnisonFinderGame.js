@@ -29,18 +29,14 @@ const UnisonFinderGame = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log(res)
                 setResult(res)
             }
             )
     }
 
     const updateOutcomes = (bool) => {
-        console.log("bool", bool)
-        console.log("outcomes", outcomes);
         const newOutcomes = outcomes.slice();
         newOutcomes.push(bool)
-        console.log("newOutcomes", newOutcomes);
         setOutcomes(newOutcomes);
     }
 
@@ -50,7 +46,6 @@ const UnisonFinderGame = () => {
             // questionNumbers: result.questions.slice(-1).join(","),
             answer: answers
         }
-        console.log("game", gameReturn)
         return getToken()
             .then(token =>
                 fetch(`/api/game/unison`, {
@@ -63,7 +58,6 @@ const UnisonFinderGame = () => {
                 })
             ).then(res => res.json())
             .then(res => {
-                console.log("ans response", res)
                 if (res.result.complete === true) {
                     setViewResult(true)
                     setGame(false)
@@ -77,7 +71,6 @@ const UnisonFinderGame = () => {
         setGame(true)
     }
     async function AnswerHandler(e) {
-        console.log("answer steps", e.target.value)
         // await answerQuestion(e.target.value)
         // setIsFlipped(!isFlipped)
     }

@@ -18,7 +18,6 @@ export function StreakProvider(props) {
             })
         }).then(res => res.json())
             .then(res => {
-                console.log(res)
                 setStreak(res)
             })
     }
