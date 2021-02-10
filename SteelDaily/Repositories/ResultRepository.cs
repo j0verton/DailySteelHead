@@ -34,8 +34,8 @@ namespace SteelDaily.Repositories
                 .Include(r => r.UserProfile)
                 .Include(r=> r.Game)
                 .Where(r => r.Complete == true)
-                .Take(10)
                 .OrderByDescending(r => r.Date)
+                .Take(10)
                 .ToList();
         }
 
