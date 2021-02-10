@@ -20,5 +20,6 @@ namespace SteelDaily.Data
         public DbSet<MusicTheory> MusicTheory { get; set; }
         public DbSet<Result> Result { get; set; }
         public DbSet<Streak> Streak { get; set; }
+
     }
 }

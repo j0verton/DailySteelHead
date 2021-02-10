@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models
 {
+    [Table("tuning")]
     public class Tuning
     {
         public int Id { get; set; }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models
 {
+    [Table("result")]
     public class Result
     {
         [Key]
