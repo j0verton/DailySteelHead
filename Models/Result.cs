@@ -11,21 +11,32 @@ namespace SteelDaily.Models
     public class Result
     {
         [Key]
+        [Column("id")]
         public int Id { get; set; }
+        [Column("userprofileid")]
         public int UserProfileId { get; set; }
         public UserProfile UserProfile { get; set; }
+        [Column("gameid")]
         public int GameId { get; set; }
         public Game Game {get;set;}
         [MaxLength(5)]
+        [Column("key")]
         public string Key  { get; set; }
+        [Column("scaleid")]
         public int ScaleId { get; set; }
         public Scale Scale { get; set; }
+        [Column("tuningid")]
         public int TuningId { get; set; }
         public Tuning Tuning { get; set; }
+        [Column("questions")]
         public string Questions { get; set; }
+        [Column("answers")]
         public string Answers { get; set; }
+        [Column("public")]
         public bool Public { get; set; }
+        [Column("date")]
         public DateTime Date { get; set; }
+        [Column("complete")]
         public bool Complete { get; set; }
 
     }

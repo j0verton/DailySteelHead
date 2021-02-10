@@ -10,9 +10,11 @@ namespace SteelDaily.Models
     [Table("key")]
     public class Key
     {
-        [Key]
+        
+        [Column("id")]
         public int Id { get; set; }
         [Required]
+        [Column("root")]
         public string Root { get; set; }
     }
 }

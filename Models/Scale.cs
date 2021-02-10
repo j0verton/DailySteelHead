@@ -12,10 +12,13 @@ namespace SteelDaily.Models
     {
         [Required]
         [Key]
+        [Column("id")]
         public int Id { get; set; }
         [Required]
         [MaxLength(255)]
+        [Column("name")]
         public string Name { get; set; }
+        [Column("pattern")]
         public string Pattern { get; set; }
 
     }
