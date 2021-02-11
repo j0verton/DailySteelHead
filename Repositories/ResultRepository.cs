@@ -20,7 +20,6 @@ namespace SteelDaily.Repositories
         public Result GetById(int id)
         {
             return _context.Result
-                .Include(r => r.Scale)
                 .Include(r => r.Tuning)
                 .Where(r => r.Id == id)
                 .FirstOrDefault();
@@ -29,7 +28,6 @@ namespace SteelDaily.Repositories
         public List<Result> GetLastTenCompleteResults() 
         {
             return _context.Result
-                .Include(r => r.Scale)
                 .Include(r => r.Tuning)
                 .Include(r => r.UserProfile)
                 .Include(r=> r.Game)
@@ -44,7 +42,6 @@ namespace SteelDaily.Repositories
         {
             DateTime today = DateTime.Now.Date;
             return _context.Result
-                .Include(r => r.Scale)
                 .Include(r => r.Tuning)
                 .Where(r => r.UserProfileId == id)
                 .Where(r => r.Date == today)

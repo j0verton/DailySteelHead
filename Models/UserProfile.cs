@@ -26,7 +26,6 @@ namespace SteelDaily.Models
         [Required]
         [MaxLength(50)]
         [Column("lastname")]
-
         public string LastName { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
