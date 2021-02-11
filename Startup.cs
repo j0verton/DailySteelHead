@@ -85,7 +85,7 @@ namespace SteelDaily
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SteelDaily v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.Use(async (context, next) =>
             {
                 await next();
