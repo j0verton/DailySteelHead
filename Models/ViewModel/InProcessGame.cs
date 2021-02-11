@@ -7,7 +7,6 @@ namespace SteelDaily.Models.ViewModel
 {
     public class InProcessGame : NewGame, IGame
     {
-
         public Result Result { get; set; }
         public IntervalFretboard Fretboard
         {
