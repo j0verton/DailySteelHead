@@ -38,7 +38,7 @@ const AppHeader = () => {
 
   return (
     <div>
-      <Navbar color="dark" dark expand="md" >
+      <Navbar color="dark" dark expand="lg" >
         <NavbarBrand tag={Link} to="/">
           <img
             id="header-logo"
@@ -50,9 +50,9 @@ const AppHeader = () => {
           />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Nav className="d-flex justify-content-between">
+        <Nav className="d-flex justify-content-between w-100">
           <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
+            <Nav navbar>
               {user ? (
                 <>
                   <NavItem>
@@ -96,21 +96,21 @@ const AppHeader = () => {
                   </>
                 )}
             </Nav>
-            {user ? (
-              <>
-                <NavbarText className="d-sm-none d-md-block">
-                  Welcome {user.firstName}
-                </NavbarText>
-                {
-
-                  streak ? streak.length ?
-                    <NavbarText className="d-sm-none d-md-block">
-                      - Current Streak - {streak.length.days}
-                    </NavbarText> : null : null
-                }
-              </>
-            ) : null}
           </Collapse>
+          {user ? (
+            <Nav className="ml-auto d-none d-lg-flex">
+              <NavbarText className="d-sm-none d-md-block">
+                Welcome {user.firstName}
+              </NavbarText>
+              {
+
+                streak ? streak.length ?
+                  <NavbarText className="d-sm-none d-md-block">
+                    - Current Streak - {streak.length.days}
+                  </NavbarText> : null : null
+              }
+            </Nav>
+          ) : null}
         </Nav>
       </Navbar>
     </div>

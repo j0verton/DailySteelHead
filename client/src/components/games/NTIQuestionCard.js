@@ -38,7 +38,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
             <ReactCardFlip
                 isFlipped={isFlipped}
                 flipDirection={vertFlip ? "vertical" : "horizontal"}>
-                <Card className="gameCard">
+                <Card className="gameCard pt-5">
                     What interval of <br />
                     <h2>{result.result.key}</h2>
                         is at<br />
@@ -49,7 +49,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
 
                 {//Back of car with answer
                 }
-                <Card id="gameCard" className={result.outcomes ? result.outcomes.slice(-1)[0] ? "isCorrect" : "isIncorrect" : null}>
+                <Card id="gameCard" className={result.outcomes ? result.outcomes.slice(-1)[0] ? "isCorrect gameCard  pt-4" : "isIncorrect gameCard  pt-2" : null}>
                     {result.outcomes ? (<>
                         {result.outcomes.slice(-1)[0] ?
                             <h1>Correct!</h1>

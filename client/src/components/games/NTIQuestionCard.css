@@ -8,7 +8,8 @@
     text-decoration: line-through;
 }
 
-#gameCard {
-padding: 15px;
+.gameCard {
 margin: 15px;
+width: 25em;
+height: 18em
 }
