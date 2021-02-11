@@ -29,8 +29,8 @@ namespace SteelDaily.Models
         public string Questions { get; set; }
         [Column("answers")]
         public string Answers { get; set; }
-        [Column("public")]
-        public bool Public { get; set; }
+        [Column("share")]
+        public bool Share { get; set; }
         [Column("date")]
         public DateTime Date { get; set; }
         [Column("complete")]

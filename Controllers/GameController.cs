@@ -54,7 +54,7 @@ namespace SteelDaily.Controllers
                 GameId = gameId,
                 Root = key,
                 TuningId = newGame.ChromaticFretboard.Tuning.Id,
-                Public = true,
+                Share = true,
                 Date = DateTime.Now,
                 Questions = questionString
             };
@@ -142,7 +142,7 @@ namespace SteelDaily.Controllers
                 UserProfileId = GetCurrentUserProfile().Id,
                 GameId = 3,
                 TuningId = newGame.ChromaticFretboard.Tuning.Id,
-                Public = true,
+                Share = true,
                 Date = DateTime.Now,
                 Questions = questionString
             };

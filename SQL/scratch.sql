@@ -30,3 +30,6 @@ GO
 
 ALTER TABLE Post ADD FOREIGN KEY ([Id]) REFERENCES Comment([PostId])
 GO
+
+
+EXEC sp_rename 'Result.Public', 'Share', 'COLUMN';
