@@ -17,7 +17,7 @@ import { StreakContext } from "../providers/StreakProvider";
 
 
 const AppHeader = () => {
-  const { getCurrentUser, logout, isAdmin, getToken } = useContext(UserProfileContext);
+  const { getCurrentUser, logout } = useContext(UserProfileContext);
   const { getStreak, streak } = useContext(StreakContext)
   const user = getCurrentUser();
   const history = useHistory();
@@ -55,11 +55,6 @@ const AppHeader = () => {
             <Nav className="mr-auto" navbar>
               {user ? (
                 <>
-                  <NavItem>
-                    <NavLink to="/myprofile" tag={Link}>
-                      My Profile
-                  </NavLink>
-                  </NavItem>
                   <NavItem>
                     <NavLink to="/NTIgame" tag={Link}>
                       Name That Interval Flash Cards

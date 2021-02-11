@@ -14,8 +14,6 @@ namespace SteelDaily.Data
 
         }
         public DbSet<Tuning> Tuning { get; set; }
-        public DbSet<Scale> Scale { get; set; }
-        public DbSet<Key> Key { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
         public DbSet<MusicTheory> MusicTheory { get; set; }
         public DbSet<Result> Result { get; set; }

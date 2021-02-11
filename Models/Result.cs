@@ -22,9 +22,6 @@ namespace SteelDaily.Models
         [MaxLength(5)]
         [Column("key")]
         public string Key  { get; set; }
-        [Column("scaleid")]
-        public int ScaleId { get; set; }
-        public Scale Scale { get; set; }
         [Column("tuningid")]
         public int TuningId { get; set; }
         public Tuning Tuning { get; set; }

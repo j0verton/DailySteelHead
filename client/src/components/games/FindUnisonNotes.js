@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./FindUnisonNotes.css"
+
 function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
     const [noteTarget, setNoteTarget] = useState()
-    // const [answers, setAnswers] = useState([])
+
     useEffect(() => {
         if (result.chromaticFretboard) {
             const coordinates = result.question;
@@ -10,6 +11,7 @@ function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
             setNoteTarget(coordiNote)
         }
     }, [result])
+
     const handleNoteClick = e => {
         e.target.style.visibility = "visible"
         const [prefix, coords] = e.target.id.split("--");
@@ -26,27 +28,23 @@ function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
         } else if (e.target.classList.contains("correct")) {
             updateOutcomes(true)
         }
+        console.log("answers", answers)
     }
 
     return (
         <>
             {result.chromaticFretboard ? result.chromaticFretboard.fretboard.map((fret, i) => {
                 return fret.map((note, j) => {
-                    {
-                        // console.log("noteTarget in return", noteTarget, result.chromaticFretboard.fretboard[i][j])
-                    }
                     return (
                         <circle
                             pointerEvents="bounding-box"
                             key={`${i}-${j}`}
                             id={`note--${i},${j}`}
-                            className={noteTarget == result.chromaticFretboard.fretboard[i][j] ? "correct" : "incorrect"}
+                            className={noteTarget === result.chromaticFretboard.fretboard[i][j] ? "correct" : "incorrect"}
                             //add a class correct or incorrect based on note
                             cx={21 + (110 * i)} cy={25 + (34 * j)} r="15"
                             //change fill color based on correct incorrect
-                            // fill="#39FF14"
                             visibility={(i === result.question[0] && j === result.question[1]) ? "visible" : "hidden"}
-
                             // maybe saves wrong guesses or total guesses til all have been found?
                             onClick={handleNoteClick}
                         />

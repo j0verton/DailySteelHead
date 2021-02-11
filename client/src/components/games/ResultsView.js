@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react"
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { UserProfileContext } from "../../providers/UserProfileProvider";
 import ScoreDisplay from "./ScoreDisplay"
 
 const ResultsView = ({ result, game }) => {
     const [userProfile, setUserProfile] = useState({})
-    const { getToken, getCurrentUser } = useContext(UserProfileContext);
+    const { getCurrentUser } = useContext(UserProfileContext);
 
     useEffect(() => {
         setUserProfile(getCurrentUser())

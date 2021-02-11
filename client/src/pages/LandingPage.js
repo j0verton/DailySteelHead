@@ -1,7 +1,7 @@
 import react, { useContext, useEffect, useState } from "react"
 import { Col, Row } from "reactstrap"
-import { ActivityFeed } from "../components/ActivityFeed"
-import { Leaderboard } from "../components/Leaderboard"
+import { ActivityFeed } from "../components/landingPage/ActivityFeed"
+import { Leaderboard } from "../components/landingPage/Leaderboard"
 import { StreakContext } from "../providers/StreakProvider"
 import { UserProfileContext } from "../providers/UserProfileProvider"
 

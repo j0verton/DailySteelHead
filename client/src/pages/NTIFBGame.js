@@ -1,15 +1,13 @@
 import React, { useContext, useState } from "react";
-import { toast } from "react-toastify";
-import ScoreDisplay from "../components/ScoreDisplay";
-import { Button, Card, Col } from "reactstrap";
+import { Button } from "reactstrap";
 import "./NTIGame.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import KeySelect from "../components/KeySelect";
-import fretboard from "../images/fretboard.svg"
-import Fretboard from "../components/Fretboard";
-import DisplayQuestionDot from "../components/DisplayQuestionDot";
-import ResultsView from "../components/ResultsView";
+import KeySelect from "../components/games/KeySelect";
+import Fretboard from "../components/games/Fretboard";
+import ScoreDisplay from "../components/games/ScoreDisplay";
+import DisplayQuestionDot from "../components/games/DisplayQuestionDot";
+import ResultsView from "../components/games/ResultsView";
 
 
 const NTIFBGame = () => {

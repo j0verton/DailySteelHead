@@ -10,7 +10,7 @@ import { LandingPage } from "../pages/LandingPage";
 import { ProfileView } from "../pages/ProfileView";
 
 const ApplicationViews = () => {
-  const { isLoggedIn, isAdmin } = useContext(UserProfileContext);
+  const { isLoggedIn } = useContext(UserProfileContext);
 
   return (
     <Switch>

@@ -1,14 +1,13 @@
 import React, { useContext, useState } from "react";
-import { toast } from "react-toastify";
-import NTIQuestionCard from "../components/NTIQuestionCard";
-import ScoreDisplay from "../components/ScoreDisplay";
-import { Button, Card, Col } from "reactstrap";
+import { Button, Col } from "reactstrap";
 import "./NTIGame.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import KeySelect from "../components/KeySelect";
-import ResultsView from "../components/ResultsView";
 import { StreakContext } from "../providers/StreakProvider";
+import NTIQuestionCard from "../components/games/NTIQuestionCard";
+import ScoreDisplay from "../components/games/ScoreDisplay";
+import KeySelect from "../components/games/KeySelect";
+import ResultsView from "../components/games/ResultsView";
 
 
 const NTIGame = () => {

@@ -1,6 +1,4 @@
-import react, { useEffect } from "react"
-import { Card, CardBody, CardHeader, CardImg, Col, Media, Row } from "reactstrap"
-import ScoreDisplay from "./ScoreDisplay"
+import { Card, CardHeader, Col, Media, Row } from "reactstrap"
 export const ActivityFeed = ({ activity }) => {
 
     return (
