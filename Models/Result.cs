@@ -21,7 +21,7 @@ namespace SteelDaily.Models
         public Game Game {get;set;}
         [MaxLength(5)]
         [Column("root")]
-        public string Key  { get; set; }
+        public string Root  { get; set; }
         [Column("tuningid")]
         public int TuningId { get; set; }
         public Tuning Tuning { get; set; }
