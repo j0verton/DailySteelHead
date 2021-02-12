@@ -14,7 +14,7 @@ export const ActivityFeed = ({ activity }) => {
                             </Col>
                             <Col xs="6">
                                 played <h3>{result.result.game.name}</h3>
-                                and scored <h3>{result.outcomes.filter(Boolean).length} / 10</h3>
+                                and scored <h3>{result.outcomes.filter(Boolean).length} / {result.outcomes.length}</h3>
 
 
                             </Col>

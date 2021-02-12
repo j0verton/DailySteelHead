@@ -10,7 +10,7 @@ export const LandingPage = () => {
     const { getToken, getCurrentUser } = useContext(UserProfileContext)
     const [data, setData] = useState({})
     useEffect(() => {
-        if (getCurrentUser()) {
+        if (localStorage.getItem("userProfile")) {
 
             loadFeedData()
         }
