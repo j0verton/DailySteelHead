@@ -44,11 +44,6 @@ CREATE TABLE [Tuning] (
   [Notes] nvarchar(255)
 )
 
-CREATE TABLE [Key] (
-  [Id] int PRIMARY KEY IDENTITY,
-  [Root] nvarchar(255)
-)
-
 
 CREATE TABLE [Streak] (
   [Id] int PRIMARY KEY IDENTITY,
@@ -61,77 +56,22 @@ CREATE TABLE [Streak] (
 	REFERENCES [UserProfile] ([Id])
 )
 
-
-CREATE TABLE [Status] (
-  [Id] int PRIMARY KEY IDENTITY,
-  [Name] nvarchar(255)
-)
-CREATE TABLE [Challenge] (
-  [Id] int PRIMARY KEY IDENTITY,
-  [StatusId] int,
-  [UserProfileOneId] int,
-  [UserProfileTwoId] int
-
-  CONSTRAINT [FK_Challenge_Status] FOREIGN KEY ([StatusId])
-	REFERENCES [Status] ([Id])
-	  /*CONSTRAINT [FK_Challenge_UserProfile] FOREIGN KEY (UserProfileOneId])
-	REFERENCES [UserProfile] ([Id]),*/
-)
-
-
-
-
-CREATE TABLE [Scale] (
-  [Id] int PRIMARY KEY IDENTITY,
-  [Name] nvarchar(255),
-  [Pattern] nvarchar(255)
-)
 CREATE TABLE [Result] (
   [Id] int PRIMARY KEY IDENTITY,
   [UserProfileId] int,
   [GameId] int,
-  [Key] nvarchar(5),
-  [ScaleId] int,
+  [Root] nvarchar(5),
   [TuningId] int,
   [Questions] nvarchar(255),
   [Answers] nvarchar(255),
-  [Public] bit,
   [Date] date,
   [Complete] bit
 
   	CONSTRAINT [FK_Result_UserProfile] FOREIGN KEY ([UserProfileId])
 		REFERENCES [UserProfile] ([Id]),
-	CONSTRAINT [FK_Result_Scale] FOREIGN KEY ([ScaleId])
-		REFERENCES [Scale] ([Id]),
 	CONSTRAINT [FK_Result_Tuning] FOREIGN KEY ([TuningId])
 		REFERENCES [Tuning] ([Id])
 )
-
-
-CREATE TABLE [Post] (
-  [Id] int PRIMARY KEY IDENTITY,
-  [UserProfileId] int,
-  [Title] nvarchar(255),
-  [Content] nvarchar(255),
-  [ResultId] int,
-
-    CONSTRAINT [FK_Post_UserProfile] FOREIGN KEY ([UserProfileId])
-		REFERENCES [UserProfile] ([Id]),
-
-	CONSTRAINT [FK_Post_Result] FOREIGN KEY ([ResultId])
-		REFERENCES [Result] ([Id])
-)
-
-
-CREATE TABLE [Comment] (
-  [Id] int PRIMARY KEY IDENTITY,
-  [UserProfileId] int,
-  [PostId] int,
-    CONSTRAINT [FK_Comment_UserProfile] FOREIGN KEY ([UserProfileId])
-	REFERENCES [UserProfile] ([Id])
-
-)
-
 
 CREATE TABLE [Game] (
   [Id] int PRIMARY KEY IDENTITY,

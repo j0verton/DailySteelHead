@@ -29,5 +29,10 @@ namespace SteelDaily.Repositories
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
         }
+
+        public List<Tuning> GetTunings()
+        {
+            return _context.Tuning.ToList();
+        }
     }
 }

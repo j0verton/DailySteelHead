@@ -8,6 +8,7 @@ import NTIQuestionCard from "../components/games/NTIQuestionCard";
 import ScoreDisplay from "../components/games/ScoreDisplay";
 import KeySelect from "../components/games/KeySelect";
 import ResultsView from "../components/games/ResultsView";
+import TuningSelect from "../components/games/TuningSelect";
 
 
 const NTIGame = () => {
@@ -17,6 +18,7 @@ const NTIGame = () => {
     const [game, setGame] = useState(false);
     const [viewResult, setViewResult] = useState(false);
     const [key, setKey] = useState("A");
+    const [tuning, setTuning] = useState(1);
     const [result, setResult] = useState({});
     const [isFlipped, setIsFlipped] = useState(false);
     const scale = [
@@ -36,7 +38,7 @@ const NTIGame = () => {
     const startGame = () => {
         return getToken()
             .then(token =>
-                fetch(`/api/game/1/${key}`, {
+                fetch(`/api/game/1/${tuning}/${key}`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -78,6 +80,7 @@ const NTIGame = () => {
         await startGame()
         setGame(true)
     }
+
     async function AnswerHandler(e) {
         await answerQuestion(e.target.value)
         setIsFlipped(!isFlipped)
@@ -107,6 +110,7 @@ const NTIGame = () => {
                                 <NTIQuestionCard result={result} isFlipped={isFlipped} scale={scale} />
                                 : <>
                                     <KeySelect setKey={setKey} />
+                                    <TuningSelect setTuning={setTuning} />
                                     <Button onClick={startHandler}>Start Game</Button>
                                 </>
                             }

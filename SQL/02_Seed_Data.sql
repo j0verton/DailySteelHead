@@ -3,7 +3,9 @@ INSERT INTO [Tuning]
   ([Id], [Name], [Notes])
 VALUES
   (1, 'E9', 'Gb,Eb,Ab,E,B,Ab,Gb,E,D,B'),
-  (2, 'E9AB', 'Gb,Eb,A,E,Db,A,Gb,E,D,Db');
+  (2, 'E9AB', 'Gb,Eb,A,E,Db,A,Gb,E,D,Db'),
+  (3, 'C6', 'G,E,C,A,G,E,C,A,F,C');
+
   SET IDENTITY_INSERT [Tuning] OFF
   
   SET IDENTITY_INSERT [Game] ON
@@ -16,16 +18,6 @@ VALUES
   (4, 'Find the Fifths'),
   (5, 'Play by Ear Challenge');
   SET IDENTITY_INSERT [Game] OFF
-
-SET IDENTITY_INSERT [Scale] ON
-INSERT INTO [Scale]
-  ([Id], [Name], [Pattern])
-VALUES
-  (1, 'major', '2,2,1,2,2,2,1'),
-  (2, 'pentatonic', '2,2,3,2,3'),
-  (3, 'chromatic', '1,1,1,1,1,1,1,1,1,1,1');
-  SET IDENTITY_INSERT [Scale] OFF
-  
 
 SET IDENTITY_INSERT [Key] ON
 INSERT INTO [Key]
@@ -54,12 +46,12 @@ INSERT INTO [dbo].[Streak] ([Id], [Days], [UserProfileId], [DateBegun], [LastUpd
 SET IDENTITY_INSERT [dbo].[Streak] OFF
 
 SET IDENTITY_INSERT [dbo].[Result] ON
-INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Key], [ScaleId], [TuningId], [Questions], [Answers], [Public], [Date], [Complete]) VALUES (1, 2, 1, N'Eb', 1, 1, N'0,3,9,0,5,6,3,1,8,5,1,0,3,1,9,3,15,5,13,9', N'Four,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive', 1, N'2021-02-07', 1)
-INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Key], [ScaleId], [TuningId], [Questions], [Answers], [Public], [Date], [Complete]) VALUES (2, 1, 1, N'C', 1, 1, N'15,8,3,2,9,0,14,0,12,0,6,0,4,4,2,6,10,1,8,1', N'Four,Seven,FlatThree,FlatSix,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive', 1, N'2021-02-07', 1)
-INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Key], [ScaleId], [TuningId], [Questions], [Answers], [Public], [Date], [Complete]) VALUES (3, 3, 1, N'E', 1, 1, N'0,7,3,4,12,1,7,8,8,7,7,6,4,8,2,0,16,0,16,1', N'One,Two,Four,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive', 1, N'2021-02-07', 1)
-INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Key], [ScaleId], [TuningId], [Questions], [Answers], [Public], [Date], [Complete]) VALUES (4, 4, 1, N'D', 1, 1, N'8,2,11,0,16,7,13,9,14,7,11,6,7,3,6,0,0,3,2,1', N'Four,FlatFive,Three,Four,FlatFive,Four,FlatFive,FlatFive,Five,Five', 1, N'2021-02-07', 1)
-INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Key], [ScaleId], [TuningId], [Questions], [Answers], [Public], [Date], [Complete]) VALUES (5, 5, 1, N'D', 1, 1, N'3,8,1,5,2,1,12,4,11,6,11,8,16,0,13,8,8,6,1,3', N'FlatFive,FlatSix,Six,Six,Six,Six,Six,Six,Six,Six', 1, N'2021-02-07', 1)
-INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Key], [ScaleId], [TuningId], [Questions], [Answers], [Public], [Date], [Complete]) VALUES (6, 1, 1, N'Db', 1, 1, N'14,9,5,2,9,3,14,5,9,6,0,6,15,1,16,4,7,3,3,2', N'Five,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive', 1, N'2021-02-08', 1)
-INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Key], [ScaleId], [TuningId], [Questions], [Answers], [Public], [Date], [Complete]) VALUES (7, 2, 1, N'C', 1, 1, N'6,5,15,5,15,4,3,6,12,9,11,9,3,6,14,9,16,8,3,8', N'Two,Seven,Two,Two,Four,Three,Six,One,Four,Four', 1, N'2021-02-08', 1)
+INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Root],[TuningId], [Questions], [Answers], [Date], [Complete]) VALUES (1, 2, 1, 'Eb', 1, 1, N'0,3,9,0,5,6,3,1,8,5,1,0,3,1,9,3,15,5,13,9', 'Four,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive','2021-02-07', 1)
+INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Root], [TuningId], [Questions], [Answers], [Date], [Complete]) VALUES (2, 1, 1, 'C', 1, 1, N'15,8,3,2,9,0,14,0,12,0,6,0,4,4,2,6,10,1,8,1', 'Four,Seven,FlatThree,FlatSix,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive', '2021-02-07', 1)
+INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Root], [TuningId], [Questions], [Answers], [Date], [Complete]) VALUES (3, 3, 1, 'E', 1, 1, N'0,7,3,4,12,1,7,8,8,7,7,6,4,8,2,0,16,0,16,1', 'One,Two,Four,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive','2021-02-07', 1)
+INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Root], [TuningId], [Questions], [Answers], [Date], [Complete]) VALUES (4, 4, 1,'D', 1, 1, N'8,2,11,0,16,7,13,9,14,7,11,6,7,3,6,0,0,3,2,1', 'Four,FlatFive,Three,Four,FlatFive,Four,FlatFive,FlatFive,Five,Five', '2021-02-07', 1)
+INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Root], [TuningId], [Questions], [Answers], [Date], [Complete]) VALUES (5, 5, 1, 'D', 1, 1, N'3,8,1,5,2,1,12,4,11,6,11,8,16,0,13,8,8,6,1,3', 'FlatFive,FlatSix,Six,Six,Six,Six,Six,Six,Six,Six', '2021-02-07', 1)
+INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Root], [TuningId], [Questions], [Answers], [Date], [Complete]) VALUES (6, 1, 1,'Db', 1, 1, N'14,9,5,2,9,3,14,5,9,6,0,6,15,1,16,4,7,3,3,2', 'Five,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive,FlatFive', '2021-02-08', 1)
+INSERT INTO [dbo].[Result] ([Id], [UserProfileId], [GameId], [Root], [TuningId], [Questions], [Answers], [Date], [Complete]) VALUES (7, 2, 1, 'C', 1, 1, N'6,5,15,5,15,4,3,6,12,9,11,9,3,6,14,9,16,8,3,8', 'Two,Seven,Two,Two,Four,Three,Six,One,Four,Four','2021-02-08', 1)
 SET IDENTITY_INSERT [dbo].[Result] OFF
 
