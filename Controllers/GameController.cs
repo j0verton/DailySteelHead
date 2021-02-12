@@ -31,14 +31,14 @@ namespace SteelDaily.Controllers
             _streakRepository = streakRepository;
         }
 
-        [HttpGet("{gameId}/{key}")]
-        public IActionResult BeginNtI(int gameId, string key)
+        [HttpGet("{gameId}/{tuningId}/{key}")]
+        public IActionResult BeginNtI(int gameId, string key, int tuningId)
         {
             var newGame = new NewGame()
             {
                 ChromaticFretboard = new ChromaticFretboard() 
                 { 
-                    Tuning = _tuningRepository.GetDefaultTuning()
+                    Tuning = _tuningRepository.GetTuningById(tuningId)
                 }
             };
 
@@ -201,6 +201,13 @@ namespace SteelDaily.Controllers
             }
         }
 
+
+        [HttpGet("tunings")]
+        public IActionResult GetAllTunings()
+        {
+            var allTunings = _tuningRepository.GetTunings();
+            return Ok(allTunings);
+        }
             private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

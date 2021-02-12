@@ -8,6 +8,7 @@ import Fretboard from "../components/games/Fretboard";
 import ScoreDisplay from "../components/games/ScoreDisplay";
 import DisplayQuestionDot from "../components/games/DisplayQuestionDot";
 import ResultsView from "../components/games/ResultsView";
+import TuningSelect from "../components/games/TuningSelect";
 
 
 const NTIFBGame = () => {
@@ -15,6 +16,8 @@ const NTIFBGame = () => {
     const [game, setGame] = useState(false)
     const [viewResult, setViewResult] = useState(false);
     const [key, setKey] = useState("A")
+    const [tuning, setTuning] = useState(1);
+
     const [result, setResult] = useState({})
     const [isFlipped, setIsFlipped] = useState(false)
     const scale = [
@@ -35,7 +38,7 @@ const NTIFBGame = () => {
     const startGame = () => {
         return getToken()
             .then(token =>
-                fetch(`/api/game/2/${key}`, {
+                fetch(`/api/game/2/${tuning}/${key}`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -103,6 +106,7 @@ const NTIFBGame = () => {
                     <div className="fretboard-container">
                         {game ? null : <>
                             <KeySelect setKey={setKey} />
+                            <TuningSelect setTuning={setTuning} />
                             <Button onClick={startHandler}>Start Game</Button>
                         </>
                         }

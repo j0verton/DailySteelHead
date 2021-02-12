@@ -20,7 +20,7 @@ const ScoreDisplay = ({ result, game, outcomes, viewResult }) => {
                             </Col>
                         </Row>
                     </>
-                    : game ? <h3>{result.result.tuning.name}{result.result.gameId === 1 || result.result.gameId === 2 ? `- Key of ${result.result.root}` : null}</h3> : viewResult ? null : <h3>Select A Key Then Begin</h3>
+                    : game ? <h3>{result.result.tuning.name}{result.result.gameId === 1 || result.result.gameId === 2 ? `- Key of ${result.result.root}` : null}</h3> : viewResult ? null : <h3>Select A Key and a Tuning Then Begin</h3>
             }
         </>
     )
