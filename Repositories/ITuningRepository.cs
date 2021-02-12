@@ -1,4 +1,5 @@
 ﻿using SteelDaily.Models;
+using System.Collections.Generic;
 
 namespace SteelDaily.Repositories
 {
@@ -6,5 +7,6 @@ namespace SteelDaily.Repositories
     {
         Tuning GetDefaultTuning();
         Tuning GetTuningById(int id);
+        List<Tuning> GetTunings();
     }
 }
