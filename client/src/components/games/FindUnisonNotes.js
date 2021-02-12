@@ -28,7 +28,6 @@ function FindUnisonNotes({ result, answers, setAnswers, updateOutcomes }) {
         } else if (e.target.classList.contains("correct")) {
             updateOutcomes(true)
         }
-        console.log("answers", answers)
     }
 
     return (

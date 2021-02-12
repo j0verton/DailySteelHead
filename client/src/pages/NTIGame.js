@@ -86,7 +86,7 @@ const NTIGame = () => {
     return (
         <div className="game-area">
             {viewResult ? <>
-                <ResultsView result={result} game={game} />
+                <ResultsView result={result} game={game} viewResult={viewResult} />
                 <Button
                     onClick={() => {
                         setGame(false)
@@ -99,7 +99,7 @@ const NTIGame = () => {
             </> :
                 <>
                     <div m="5" className="score-container">
-                        <ScoreDisplay result={result} game={game} outcomes={result.outcomes} />
+                        <ScoreDisplay result={result} game={game} outcomes={result.outcomes} viewResult={viewResult} />
                     </div>
                     <div className="card-area">
                         <Col sm="12" md={{ size: 6, offset: 3 }}>
