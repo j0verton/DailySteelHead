@@ -1,6 +1,6 @@
 # SteelDaily
 
-https://dailysteel.joeovertonmusic.com/
+https://dailysteel.joeovertonmusic.com/ - the deployment is currently down pending some work on migrating the database
 
 Thanks for stopping by!
 
