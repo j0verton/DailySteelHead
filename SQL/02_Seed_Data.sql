@@ -19,14 +19,6 @@ VALUES
   (5, 'Play by Ear Challenge');
   SET IDENTITY_INSERT [Game] OFF
 
-SET IDENTITY_INSERT [Key] ON
-INSERT INTO [Key]
-  ([Id], [Root])
-VALUES
-  (1, 'C'),
-  (2, 'A');
-  SET IDENTITY_INSERT [Key] OFF
-
 
   set identity_insert [UserProfile] on
 insert into UserProfile (Id, Username, FirstName, LastName, Email, CreateDateTime, ImageLocation, FirebaseUserId) values (1, 'admin', 'Reina', 'Sandwith', 'admin@example.com', '2020-04-23', 'https://robohash.org/numquamutut.png?size=150x150&set=set1', 'HHhIydCh6cYHusJOurjxUGDlShA2');
