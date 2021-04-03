@@ -16,7 +16,10 @@ export function StreakProvider(props) {
                     Authorization: `Bearer ${token}`,
                 },
             })
-        }).then(res => res.json())
+        }).then(res => {
+            console.log(res)
+            return res.json()
+        })
             .then(res => {
                 setStreak(res)
             })
