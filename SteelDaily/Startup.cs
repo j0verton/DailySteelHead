@@ -14,7 +14,6 @@ using SteelDaily.Data;
 using SteelDaily.Repositories;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,7 +21,6 @@ namespace SteelDaily
 {
     public class Startup
     {
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -39,8 +37,6 @@ namespace SteelDaily
             services.AddTransient<ITuningRepository, TuningRepository>();
             services.AddTransient<IStreakRepository, StreakRepository>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -77,7 +73,6 @@ namespace SteelDaily
 
             app.UseHttpsRedirection();
 
-
             app.UseRouting();
 
             app.UseAuthentication();
@@ -87,7 +82,6 @@ namespace SteelDaily
             {
                 endpoints.MapControllers();
             });
-
         }
     }
 }
