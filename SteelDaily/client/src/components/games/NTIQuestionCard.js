@@ -41,7 +41,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                 flipDirection={vertFlip ? "vertical" : "horizontal"}>
                 <Card className="gameCard d-flex justify-content-center">
                     What interval of <br />
-                    <h2>{result.result.root}</h2>
+                    <h2>{result.result.key}</h2>
                         is at<br />
                     <h2>fret {result.questions.slice(-1)[0][0]}</h2>
                         on<br />
@@ -73,7 +73,7 @@ const NTIQuestionCard = ({ result, isFlipped, scale }) => {
                                         {convertCharIntervalToNumericInterval(result.correctAnswerList.slice(-2, -1)[0])}
                                     </h2>
                                 </>)}
-                        <h4>degree of {result.result.root}</h4>
+                        <h4>degree of {result.result.key}</h4>
                     </>) : null}
                 </Card>
             </ReactCardFlip>

@@ -13,7 +13,7 @@ namespace SteelDaily.Models.ViewModel
             get {
                 var fretboard = new IntervalFretboard()
                 {
-                    Key = Result.Root,
+                    Key = Result.Key,
                     ChromaticFretboard = new ChromaticFretboard()
                     {
                         Tuning = Result.Tuning

@@ -60,7 +60,7 @@ CREATE TABLE [Result] (
   [Id] int PRIMARY KEY IDENTITY,
   [UserProfileId] int,
   [GameId] int,
-  [Root] nvarchar(5),
+  [Key] nvarchar(5),
   [TuningId] int,
   [Questions] nvarchar(255),
   [Answers] nvarchar(255),

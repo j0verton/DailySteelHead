@@ -13,19 +13,15 @@ namespace SteelDaily.Models
         public int Id { get; set; }
         [Required]
         [MaxLength(28)]
-        [Column("firebaseuserid")]
         public string FirebaseUserId { get; set; }
         [Required]
         [MaxLength(50)]
-        [Column("username")]
         public string Username { get; set; }
         [Required]
         [MaxLength(50)]
-        [Column("firstname")]
         public string FirstName { get; set; }
         [Required]
         [MaxLength(50)]
-        [Column("lastname")]
         public string LastName { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]

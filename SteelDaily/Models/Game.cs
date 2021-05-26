@@ -9,9 +9,7 @@ namespace SteelDaily.Models
     [Table("game")]
     public class Game
     {
-        [Column("id")]
         public int Id { get; set; }
-        [Column("name")]
         public string Name { get; set; }
 }
 }

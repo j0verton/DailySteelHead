@@ -14,11 +14,9 @@ namespace SteelDaily.Models
         public int Id { get; set; }
         [Required]
         [MaxLength(255)]
-        [Column("name")]
         public string Name { get; set; }
 
         [Required]
-        [Column("notes")]
         public string Notes { get; set; }
 
 
