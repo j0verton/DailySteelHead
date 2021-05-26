@@ -21,7 +21,6 @@ namespace SteelDaily.Tests
             var Result1 = new Result()
             {
                 Id = 1,
-                Key = "C",
                 TuningId = 1,
                 Tuning = TestTuning,
                 Questions = "11,1,8,7,7,3,15,5",

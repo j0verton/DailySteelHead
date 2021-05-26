@@ -23,7 +23,6 @@ namespace SteelDaily.Tests.ModelComputedPropTests
             var Result1 = new Result()
             {
                 Id = 1,
-                Key = "C",
                 TuningId = 1,
                 Tuning = TestTuning,
                 Questions = "8,7",

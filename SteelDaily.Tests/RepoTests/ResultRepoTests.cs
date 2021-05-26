@@ -54,9 +54,7 @@ namespace SteelDaily.Tests
             var Result1 = new Result()
             {
                 Id = 1,
-                Key = "C",
                 TuningId = 1,
-                ScaleId= 1,
                 Questions = "11,2,8,8,7,4,18,5",
                 Answers = "2,1,b7,4",
                 Complete = false
@@ -67,9 +65,7 @@ namespace SteelDaily.Tests
             var Result2 = new Result()
             {
                 Id = 2,
-                Key = "A",
                 TuningId = 1,
-                ScaleId = 1,
                 Questions = "11,2,8,8,7,4,18,5,18,5,18,5,18,5,18,5,18,5,18,5",
                 Answers = "2,1,b7,4",
                 Complete = true
