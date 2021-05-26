@@ -41,14 +41,8 @@ namespace SteelDaily.Tests
                 Name = "E9",
                 Notes = "B,D,E,F#,G#,B,E,G#,D#,F#"
             };
-            var chromScale = new Scale()
-            {
-                Id = 1,
-                Name = "Chromatic"
-            };
 
             _context.Add(E9Tuning);
-            _context.Add(chromScale);
 
             //test updating with a new outcome and a new question 
             var Result1 = new Result()
