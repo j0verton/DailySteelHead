@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models
 {
-    [Table("game")]
     public class Game
     {
         public int Id { get; set; }

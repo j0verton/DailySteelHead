@@ -9,7 +9,6 @@ namespace SteelDaily.Models
     public class UserProfile
     {
         [Key]
-        [Column("id")]
         public int Id { get; set; }
         [Required]
         [MaxLength(28)]
@@ -25,15 +24,10 @@ namespace SteelDaily.Models
         public string LastName { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
-        [Column("email")]
         public string Email { get; set; }
-        [Column("description")]
         public string Description { get; set; }
-        [Column("createdatetime")]
         public DateTime CreateDateTime { get; set; }
         [MaxLength(255)]
-        //[DataType(DataType.ImageUrl)]
-        [Column("imagelocation")]
         public string ImageLocation { get; set; }
     }
 }

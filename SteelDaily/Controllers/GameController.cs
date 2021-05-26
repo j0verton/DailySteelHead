@@ -52,7 +52,7 @@ namespace SteelDaily.Controllers
             {
                 UserProfileId = GetCurrentUserProfile().Id,
                 GameId = gameId,
-                Root = key,
+                Key = key,
                 TuningId = newGame.ChromaticFretboard.Tuning.Id,
                 Date = DateTime.Now,
                 Questions = questionString

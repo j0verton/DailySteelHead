@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models
 {
-    [Table("result")]
     public class Result
     {
         [Key]
@@ -17,7 +16,7 @@ namespace SteelDaily.Models
         public int GameId { get; set; }
         public Game Game {get;set;}
         [MaxLength(5)]
-        public string Root  { get; set; }
+        public string Key  { get; set; }
         public int TuningId { get; set; }
         public Tuning Tuning { get; set; }
         public string Questions { get; set; }

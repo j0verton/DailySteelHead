@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace SteelDaily.Models
 {
-    [Table("tuning")]
     public class Tuning
     {
-        [Column("id")]
         public int Id { get; set; }
         [Required]
         [MaxLength(255)]
