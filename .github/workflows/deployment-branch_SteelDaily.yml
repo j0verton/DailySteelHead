@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: client
+        working-directory: SteelDaily/client
         
     steps:
     - uses: actions/checkout@v2
