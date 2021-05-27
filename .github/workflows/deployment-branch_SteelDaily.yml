@@ -47,8 +47,7 @@ jobs:
       with: 
        node-version: 12.x
     
-    - name: npm ci
-      run: npm ci
+
     - name: Build client
       run: npm run build
 
