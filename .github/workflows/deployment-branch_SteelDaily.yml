@@ -44,9 +44,12 @@ jobs:
         
     - name: Set up Node.js
       uses: actions/setup-node@v2.1.5
-      
+    
+    - name: npm ci
+      run: npm ci
     - name: Build client
-      run: npm build
+      run: npm run build
+
     
     
   deploy:
